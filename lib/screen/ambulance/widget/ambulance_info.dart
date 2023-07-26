@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:one_tap_health/screen/ambulance/constant.dart';
 import 'package:one_tap_health/screen/ambulance/widget/attribute.dart';
+import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 
 import '../model/ambulance_model.dart';
 
@@ -21,7 +22,7 @@ class CarInfomation extends StatelessWidget {
       margin: EdgeInsets.only(left: 24, right: 24,top: 50),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: mCardColor,
+        color: AppColor.oneTapBrwnDeep,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

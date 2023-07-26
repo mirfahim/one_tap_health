@@ -26,7 +26,7 @@ class SplashscreenView extends GetView<SplashscreenController> {
               child: SizedBox(
                 height: size.width * .35,
                 width: size.width * .35,
-                child: Image.asset("images/Icons/hospital.png"),
+                child: Image.asset("images/Icons/onetaplogo.png"),
               ),
             ),
 

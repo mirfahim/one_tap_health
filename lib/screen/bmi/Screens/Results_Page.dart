@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tap_health/screen/bmi/Components/BottomContainer_Button.dart';
 import 'package:one_tap_health/screen/bmi/constants.dart';
+import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 import '../Components/Reusable_Bg.dart';
 
 class ResultPage extends StatelessWidget {
@@ -21,6 +22,7 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.oneTapBrwnDeep,
         title: Center(
           child: Text('BMI CALCULATOR'),
         ),
@@ -57,7 +59,7 @@ class ResultPage extends StatelessWidget {
                   ),
                   Text(
                     bmi,
-                    style: kBMITextStyle,
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
                   ),
                   Text(
                     'Normal BMI range:',
@@ -65,12 +67,14 @@ class ResultPage extends StatelessWidget {
                   ),
                   Text(
                     '18.5 - 25 kg/m2',
-                    style: kBodyTextStyle,
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+
                   ),
                   Text(
                     advise,
                     textAlign: TextAlign.center,
-                    style: kBodyTextStyle,
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+
                   ),
                   SizedBox(
                     height: 15.0,
@@ -81,13 +85,14 @@ class ResultPage extends StatelessWidget {
                       width: 200.0,
                       height: 56.0,
                     ),
-                    fillColor: Color(0xFF4C4F5E),
+                    fillColor: AppColor.appBackGroundBrn,
                     elevation: 0.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     child: Text(
                       'SAVE RESULT',
-                      style: kBodyTextStyle,
+                      style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 20),
+
                     ),
                   ),
                 ],

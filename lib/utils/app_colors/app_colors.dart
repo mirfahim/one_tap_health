@@ -15,4 +15,26 @@ class AppColor {
   static Color containerColor=Color(0xffFAFAFA);
   static Color colorBlue=Colors.blue;
   static Color cuteColor1 = Colors.pink;
+  static  Color appBackGroundBrn =HexColor("#FDF0C3");
+
+  static  Color buttonColorYellow = HexColor("#FFCE4E");
+  static  Color jaygaWhite = HexColor("#FFFCF3");
+  static  Color oneTapBg = HexColor("#DFA878");
+  static  Color oneTapBlue = HexColor("#CEE6F3");
+  static  Color oneTapBrwnDeep = HexColor("#BA704F");
+  static  Color oneTapBrwnDeepest = HexColor("#6C3428");
+  static  Color oneTapGreen = HexColor("#CCEEBC");
+
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF$hexColor";
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

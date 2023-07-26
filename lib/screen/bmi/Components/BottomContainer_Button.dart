@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../utils/app_colors/app_colors.dart';
 import '../constants.dart';
 
 class BottomContainer extends StatelessWidget {
@@ -11,7 +12,7 @@ class BottomContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: kbottomContainerColor,
+        color: AppColor.oneTapBrwnDeep,
         margin: EdgeInsets.only(top: 10.0),
         width: double.infinity,
         height: kbottomContainerHeight,

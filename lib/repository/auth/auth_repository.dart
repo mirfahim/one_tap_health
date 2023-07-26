@@ -10,7 +10,9 @@ class AuthRepository {
     APIManager _manager = APIManager();
     final response = await _manager.postAPICall(
       ApiUrl.login,
-      {'username': "01687835844", 'password': "12345678"},
+      //01687835844
+      //12345678
+      {'username': "01782084390", 'password': "123456"},
 
 
 
@@ -21,20 +23,21 @@ class AuthRepository {
     return response;
   }
 
-  Future registration(String email, String pass) async {
+  Future registration({String? email, String? conPass, String? pass, String? mobile, String? address, String? birthDate, String? name}) async {
     APIManager _manager = APIManager();
     final response = await _manager.postAPICall(
       ApiUrl.signup,
       {
-        'name': "mir2",
-        'email': "testt@gmail.com",
-        'phone': "01712345673",
-        'password': "123456",
-        'confirm_password': "123456",
-        'address': "Dhaka",
+        'name': name,
+        'email': email,
+        'phone': mobile,
+        'password': pass,
+        'confirm_password': pass,
+        'address': address,
         'birth_date':"2023-5-20",
         'user_role':"4",
       },
+        //
 
 
 

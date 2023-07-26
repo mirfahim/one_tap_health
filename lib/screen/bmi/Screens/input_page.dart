@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 import '../Components/Icon_Content.dart';
 import '../Components/Reusable_Bg.dart';
 import '../Components/RoundIcon_Button.dart';
@@ -32,6 +33,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.oneTapBrwnDeep,
         title: Center(
           child: Text('BMI CALCULATOR'),
         ),
@@ -51,8 +53,8 @@ class _InputPageState extends State<InputPage> {
                     },
                     child: ReusableBg(
                       colour: selectedGender == Gender.male
-                          ? kactiveCardColor
-                          : kinactiveCardColor,
+                          ? AppColor.appBackGroundBrn
+                          :AppColor.oneTapBrwnDeep,
                       cardChild: IconContent(
                           myicon: FontAwesomeIcons.mars, text: 'MALE'),
                     ),
@@ -67,8 +69,8 @@ class _InputPageState extends State<InputPage> {
                     },
                     child: ReusableBg(
                       colour: selectedGender == Gender.female
-                          ? kactiveCardColor
-                          : kinactiveCardColor,
+                          ? AppColor.appBackGroundBrn
+                          :AppColor.oneTapBrwnDeep,
                       cardChild: IconContent(
                           myicon: FontAwesomeIcons.venus, text: 'FEMALE'),
                     ),
@@ -79,7 +81,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableBg(
-              colour: kactiveCardColor,
+              colour: AppColor.appBackGroundBrn,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -133,7 +135,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableBg(
-                    colour: kactiveCardColor,
+                    colour: AppColor.appBackGroundBrn,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -175,7 +177,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableBg(
-                    colour: kactiveCardColor,
+                    colour: AppColor.appBackGroundBrn,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

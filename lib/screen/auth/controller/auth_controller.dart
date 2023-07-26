@@ -11,6 +11,11 @@ class AuthController extends GetxController {
 
   var emailController = TextEditingController().obs;
   var passController = TextEditingController().obs;
+  var confirmPassController = TextEditingController().obs;
+  var phoneController = TextEditingController().obs;
+  var addressController = TextEditingController().obs;
+  var birthDateController = TextEditingController().obs;
+  var nameController = TextEditingController().obs;
   final visible = 0.obs;
   @override
   void onInit() {
@@ -37,7 +42,7 @@ class AuthController extends GetxController {
         await Get.find<AuthService>().setUser(data);
         visible.value = 0;
         print("hlw bro ++++++++++ ${Get.find<AuthService>().isAuth.toString()}");
-        Get.offAllNamed(Routes.HOME);
+        Get.offAllNamed(Routes.BASE);
       } else {
         print("error ++++++++++++++");
         visible.value = 0;
@@ -48,7 +53,8 @@ class AuthController extends GetxController {
   }
   registerController() async{
     visible.value++;
-    AuthRepository().registration(emailController.value.text, passController.value.text).then((e) async{
+    AuthRepository().registration(email: emailController.value.text, mobile: phoneController.value.text, conPass: confirmPassController.value.text,
+        address: addressController.value.text, name: nameController.value.text, pass: passController.value.text).then((e) async{
 
       print("my login data");
       if(e != null){

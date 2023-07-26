@@ -9,11 +9,21 @@ abstract class Routes {
   static const LEADMARKET = _Paths.LEADMARKET;
   static const POSTPROJECT = _Paths.POSTPROJECT;
   static const CREATEESTIMATION = _Paths.CREATEESTIMATION;
-
+  static const TESTCAT = _Paths.TESTCAT;
+  static const ACTIVETEST = _Paths.ACTIVETEST;
+  static const TESTHOSPITAL = _Paths.TESTHOSPITAL;
+  static const PREVIEWTEST = _Paths.PREVIEWTEST;
   static const MENUPAGE = _Paths.MENUPAGE;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const BROWSEJOB = _Paths.BROWSEJOB;
   static const CONTRACTORLISTVIEW = _Paths.CONTRACTORLISTVIEW;
+  static const DOCTOR = _Paths.DOCTOR;
+  static const DOCTORDETAIL = _Paths.DOCTORDETAIL;
+  static const BASE = _Paths.BASE;
+  static const PROFILE = _Paths.PROFILE;
+  static const TESTSUCCESS = _Paths.TESTSUCCESS;
+  static const MEDREMINDER = _Paths.MEDREMINDER;
+  static const LANDING = _Paths.LANDING;
 
 }
 
@@ -21,13 +31,23 @@ abstract class _Paths {
   _Paths._();
 
   static const POSTPROJECT = '/post_project';
+  static const DOCTOR = '/doctor';
+  static const LANDING = '/landing';
+  static const PROFILE = '/profile';
+  static const DOCTORDETAIL = '/detail';
   static const CREATEESTIMATION = '/estimation';
   static const HOME = '/home';
+  static const TESTHOSPITAL = '/hospital';
+  static const TESTSUCCESS = '/test-success';
+  static const MEDREMINDER = '/madereminder';
+  static const TESTCAT = '/testcategory';
   static const LOGIN = '/login';
   static const CONTRACTORLISTVIEW = '/contractorlistview';
   static const LEADMARKET = '/leadmarket';
+  static const PREVIEWTEST = '/previewtest';
+  static const BASE = '/base';
 
-
+  static const ACTIVETEST = '/activeTest';
   static const MENUPAGE = '/menuPage';
   static const SPLASHSCREEN = '/splashscreen';
   static const BROWSEJOB = '/browsejob';

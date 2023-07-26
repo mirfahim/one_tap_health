@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'package:one_tap_health/screen/home/home_page.dart';
+// import 'package:one_tap_health/screen/home/doctor_home_page.dart';
 //
 //
 // class CustomBottomBar extends StatefulWidget {

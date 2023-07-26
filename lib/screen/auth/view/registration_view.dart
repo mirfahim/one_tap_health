@@ -15,8 +15,9 @@ class RegistrationView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.oneTapBlue,
       appBar: AppBar(
-        backgroundColor: AppColor.appColor,
+        backgroundColor: AppColor.oneTapBrwnDeep,
         title: Text("Registration"),
         centerTitle: true,
 
@@ -42,6 +43,29 @@ class RegistrationView extends GetView<AuthController> {
                     child: Container(
                       child: Column(
                         children: <Widget>[
+
+                          TextFormField(
+                            maxLines: 1,
+                            controller: controller.nameController.value,
+                            decoration: new InputDecoration(
+                              labelText: 'Name',
+                              suffixIcon: Icon(
+                                Icons.lock_outline,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                            ),
+                            obscureText: true,
+                            validator: (value) {
+                              if (value!.trim().isEmpty) {
+                                return "Password is Required";
+                              }
+                            },
+                          ),
+                          SizedBox(height: 20),
                           TextFormField(
                             maxLines: 1,
                             controller: controller.emailController.value,
@@ -68,9 +92,53 @@ class RegistrationView extends GetView<AuthController> {
                           SizedBox(height: 20),
                           TextFormField(
                             maxLines: 1,
-                            controller: controller.passController.value,
+                            controller: controller.phoneController.value,
                             decoration: new InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Phone',
+                              suffixIcon: Icon(
+                                Icons.lock_outline,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                            ),
+                            obscureText: true,
+                            validator: (value) {
+                              if (value!.trim().isEmpty) {
+                                return "Password is Required";
+                              }
+                            },
+                          ),
+                          SizedBox(height: 20),
+                          TextFormField(
+                            maxLines: 1,
+                            controller: controller.addressController.value,
+                            decoration: new InputDecoration(
+                              labelText: 'Address',
+                              suffixIcon: Icon(
+                                Icons.lock_outline,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                            ),
+                            obscureText: true,
+                            validator: (value) {
+                              if (value!.trim().isEmpty) {
+                                return "Password is Required";
+                              }
+                            },
+                          ),
+                          SizedBox(height: 20),
+                          TextFormField(
+                            maxLines: 1,
+                            controller: controller.birthDateController.value,
+                            decoration: new InputDecoration(
+                              labelText: 'BirthDate',
                               suffixIcon: Icon(
                                 Icons.lock_outline,
                               ),
@@ -112,9 +180,9 @@ class RegistrationView extends GetView<AuthController> {
                           SizedBox(height: 20),
                           TextFormField(
                             maxLines: 1,
-                            controller: controller.passController.value,
+                            controller: controller.confirmPassController.value,
                             decoration: new InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Confirm Password',
                               suffixIcon: Icon(
                                 Icons.lock_outline,
                               ),
@@ -131,72 +199,7 @@ class RegistrationView extends GetView<AuthController> {
                               }
                             },
                           ),
-                          SizedBox(height: 20),
-                          TextFormField(
-                            maxLines: 1,
-                            controller: controller.passController.value,
-                            decoration: new InputDecoration(
-                              labelText: 'Password',
-                              suffixIcon: Icon(
-                                Icons.lock_outline,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                            obscureText: true,
-                            validator: (value) {
-                              if (value!.trim().isEmpty) {
-                                return "Password is Required";
-                              }
-                            },
-                          ),
-                          SizedBox(height: 20),
-                          TextFormField(
-                            maxLines: 1,
-                            controller: controller.passController.value,
-                            decoration: new InputDecoration(
-                              labelText: 'Password',
-                              suffixIcon: Icon(
-                                Icons.lock_outline,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                            obscureText: true,
-                            validator: (value) {
-                              if (value!.trim().isEmpty) {
-                                return "Password is Required";
-                              }
-                            },
-                          ),
-                          SizedBox(height: 20),
-                          TextFormField(
-                            maxLines: 1,
-                            controller: controller.passController.value,
-                            decoration: new InputDecoration(
-                              labelText: 'Password',
-                              suffixIcon: Icon(
-                                Icons.lock_outline,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                            obscureText: true,
-                            validator: (value) {
-                              if (value!.trim().isEmpty) {
-                                return "Password is Required";
-                              }
-                            },
-                          ),
+
                           SizedBox(
                             height: 25,
                           ),
@@ -214,7 +217,7 @@ class RegistrationView extends GetView<AuthController> {
                       height: controller.visible.value == 1 ? 50 : 60,
                       width: controller.visible.value == 1 ? 50 : 140,
                       decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: AppColor.oneTapBrwnDeep,
                           borderRadius:
                           BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
                       alignment: Alignment.center,

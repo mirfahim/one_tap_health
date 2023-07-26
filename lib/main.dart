@@ -19,7 +19,8 @@ initAllServices() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAllServices();
-  runApp(    GetMaterialApp(
+  runApp(
+      GetMaterialApp(
     debugShowCheckedModeBanner: false,
     title: "One Tap Health",
     theme: ThemeData(
