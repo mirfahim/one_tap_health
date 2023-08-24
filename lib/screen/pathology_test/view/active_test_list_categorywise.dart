@@ -18,97 +18,139 @@ class ActiveTestList extends GetView<PathologyController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColor.appBackGroundBrn,
-          title: Text("Test Available"),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Obx(() {
-              return Column(children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                      itemCount: controller.activeTest.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var data = controller.activeTest[index];
-                        return GestureDetector(
-                            onTap: () {
-                              controller.testName.value = data.title!;
-                              controller.testHospitalCOntrollre(data.id!);
-                            },
-                            child: Card(
-                              elevation: 10,
-                              color: Colors.white,
-                              child: ListTile(
-                                leading:     Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border:
-                                    Border.all(color: AppColor.appColor, width: 2),
-                                    color: AppColor.oneTapBrwnDeep,
+    return Obx(
+       () {
+        return Scaffold(
+            appBar: AppBar(
+              backgroundColor: AppColor.blueHos,
+              title: Text("Test Available"),
+              centerTitle: true,
+              actions: [
+                Icon(Icons.add_shopping_cart),
+                Text("${controller.pathologyTestListID.value.length}",style: TextStyle(color: AppColor.orange),),
+                SizedBox(width: 20,),
+              ],
 
-                                  ),
-                                  child: CachedNetworkImage(
-                                    imageUrl: data.iconPhoto!,
-                                    imageBuilder:
-                                        (context,
-                                        imageProvider) =>
-                                        Container(
-                                          decoration:
-                                          BoxDecoration(
-                                            image:
-                                            DecorationImage(
-                                              image:
-                                              imageProvider,
-                                              fit: BoxFit
-                                                  .fill,
+            ),
+            bottomNavigationBar: InkWell(
+              onTap: (){
+                controller.costOfHospitalUnderTestController(controller.pathologyTestListID);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: AppColor.blueHos,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Center(
+                    child: Text(
+                      "Proceed",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                   Column(
+                      children: [
+
+                    controller.activeTest.isEmpty
+                        ? Center(child: Text("No test available of this category now"))
+                        :
+                    Container(
+                      height: MediaQuery.of(context).size.height *.78,
+                      child: ListView.builder(
+                          itemCount: controller.activeTest.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var data = controller.activeTest[index];
+                            return Obx(
+                               () {
+                                return GestureDetector(
+                                    onTap: () {
+                                      controller.testName.value = data.title!;
+                                      controller.testId.value = data.id!.toString();
+
+                                      controller.addOrRemoveDataInTestList(data.id!.toString());
+                                    },
+                                    child: Card(
+                                      elevation: 10,
+                                      color: controller.pathologyTestListID.contains(data.id!.toString()) ? AppColor.oneTapBg :Colors.white,
+                                      child: ListTile(
+                                        leading:     Container(
+                                          height: 60,
+                                          width: 60,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            border:
+                                            Border.all(color: AppColor.appColor, width: 2),
+                                            color: AppColor.blueHos,
+
+                                          ),
+                                          child: CachedNetworkImage(
+                                            imageUrl: data.iconPhoto!,
+                                            imageBuilder:
+                                                (context,
+                                                imageProvider) =>
+                                                Container(
+                                                  decoration:
+                                                  BoxDecoration(
+                                                    image:
+                                                    DecorationImage(
+                                                      image:
+                                                      imageProvider,
+                                                      fit: BoxFit
+                                                          .fill,
+                                                    ),
+                                                  ),
+                                                ),
+                                            placeholder: (context,
+                                                url) =>
+                                            const Padding(
+                                              padding:
+                                              EdgeInsets
+                                                  .all(
+                                                  5.0),
+                                              child: Image(
+                                                image: AssetImage(
+                                                  'images/Icons/doctor.png',),
+                                              ),
+                                            ),
+                                            errorWidget: (context,
+                                                url,
+                                                error) =>
+                                            const Padding(
+                                              padding:
+                                              EdgeInsets
+                                                  .all(
+                                                  5.0),
+                                              child: Image(
+                                                image: AssetImage(
+                                                    'images/doctor/albert.png'),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                    placeholder: (context,
-                                        url) =>
-                                    const Padding(
-                                      padding:
-                                      EdgeInsets
-                                          .all(
-                                          5.0),
-                                      child: Image(
-                                        image: AssetImage(
-                                          'images/Icons/doctor.png',),
-                                      ),
-                                    ),
-                                    errorWidget: (context,
-                                        url,
-                                        error) =>
-                                    const Padding(
-                                      padding:
-                                      EdgeInsets
-                                          .all(
-                                          5.0),
-                                      child: Image(
-                                        image: AssetImage(
-                                            'images/doctor/albert.png'),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                title: Text(data.title!),
-                                subtitle: Text(data.subTitle!),
+                                        title: Text(data.title!),
+                                        subtitle: Text(data.subTitle!),
 
-                              ),
+                                      ),
 
-                            ));
-                      }),
-                ),
-              ]);
-            }),
-          ),
-        ));
+                                    ));
+                              }
+                            );
+                          }),
+                    ),
+                  ]),
+
+              ),
+            ));
+      }
+    );
   }
 }

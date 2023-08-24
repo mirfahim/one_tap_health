@@ -27,18 +27,18 @@ class LandingView extends GetView<HomeController> {
                         // color: AppColors.backgroundColor,
                         child: controller.landingPage.value == 1 ?
                         Image.asset(
-                          'images/banner/banner1.jpeg',
+                          'images/banner/landing1.jpeg',
                           height: MediaQuery.of(context).size.height *.7,
                           fit: BoxFit.fill,
                           width: MediaQuery.of(context).size.width,
                         )
                             : controller.landingPage.value == 2 ? Image.asset(
-                          'images/banner/banner1.jpeg',
+                          'images/banner/landing1.jpeg',
                           height: MediaQuery.of(context).size.height *.7,
                           fit: BoxFit.fill,
                           width: MediaQuery.of(context).size.width,
                         ) : Image.asset(
-                          'images/banner/banner1.jpeg',
+                          'images/banner/landing1.jpeg',
                           height: MediaQuery.of(context).size.height *.7,
                           fit: BoxFit.fill,
                           width: MediaQuery.of(context).size.width,
@@ -65,7 +65,7 @@ class LandingView extends GetView<HomeController> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "500+ Properties",
+                    "500+ Hospitals",
                     style: TextStyle(
                         fontSize: 20,
                         color: AppColor.textColorBlack,

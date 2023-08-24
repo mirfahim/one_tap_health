@@ -33,7 +33,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.oneTapBrwnDeep,
+        backgroundColor: AppColor.blueHos,
         title: Center(
           child: Text('BMI CALCULATOR'),
         ),
@@ -53,8 +53,8 @@ class _InputPageState extends State<InputPage> {
                     },
                     child: ReusableBg(
                       colour: selectedGender == Gender.male
-                          ? AppColor.appBackGroundBrn
-                          :AppColor.oneTapBrwnDeep,
+                          ? AppColor.blueHos
+                          :AppColor.textColorGrey,
                       cardChild: IconContent(
                           myicon: FontAwesomeIcons.mars, text: 'MALE'),
                     ),
@@ -69,8 +69,8 @@ class _InputPageState extends State<InputPage> {
                     },
                     child: ReusableBg(
                       colour: selectedGender == Gender.female
-                          ? AppColor.appBackGroundBrn
-                          :AppColor.oneTapBrwnDeep,
+                          ? AppColor.blueHos
+                          :AppColor.textColorGrey,
                       cardChild: IconContent(
                           myicon: FontAwesomeIcons.venus, text: 'FEMALE'),
                     ),
@@ -87,7 +87,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Text(
                     'HEIGHT',
-                    style: klabelTextStyle,
+                    style: TextStyle(color: Colors.black),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +100,7 @@ class _InputPageState extends State<InputPage> {
                       ),
                       Text(
                         'cm',
-                        style: klabelTextStyle,
+                        style: TextStyle(color: Colors.black),
                       ),
                     ],
                   ),
@@ -141,7 +141,7 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         Text(
                           'WEIGHT',
-                          style: klabelTextStyle,
+                          style: TextStyle(color: Colors.black),
                         ),
                         Text(
                           weight.toString(),
@@ -152,6 +152,7 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
+
                               onPressed: () {
                                 setState(() {
                                   weight--;
@@ -183,7 +184,7 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         Text(
                           'AGE',
-                          style: klabelTextStyle,
+                          style: TextStyle(color: Colors.black),
                         ),
                         Text(
                           age.toString(),

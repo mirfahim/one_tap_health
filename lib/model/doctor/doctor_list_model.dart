@@ -76,7 +76,7 @@ class Doctor {
   factory Doctor.fromJson(Map<String, dynamic> json) => Doctor(
     id: json["id"],
     name: json["name"],
-    mobile: json["mobile"],
+    mobile: json["mobile"] == null ? "No Data" : json["mobile"],
     email: json["email"] == null ? "no data" : json["email"],
     degree: json["degree"],
     department: json["department"],

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:one_tap_health/screen/auth/controller/auth_controller.dart';
 import 'package:one_tap_health/screen/auth/view/registration_view.dart';
+import 'package:one_tap_health/service/local_notification/notification_service.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
-
+import 'package:timezone/timezone.dart' as tz;
 
 
 
@@ -15,9 +16,9 @@ class LoginView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.oneTapBlue,
+      backgroundColor: AppColor.white,
       appBar: AppBar(
-        backgroundColor: AppColor.oneTapBrwnDeep,
+        backgroundColor: AppColor.blueHos,
         title: Text("Sign In Now"),
         centerTitle: true,
 
@@ -27,7 +28,7 @@ class LoginView extends GetView<AuthController> {
               () {
             return SingleChildScrollView(
               child: Container(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height *.89,
                 child: Column(
                   children: [
                     SizedBox(height: 20,),
@@ -50,7 +51,7 @@ class LoginView extends GetView<AuthController> {
                               maxLines: 1,
                               controller: controller.emailController.value,
                               decoration: new InputDecoration(
-                                labelText: 'Email',
+                                labelText: 'Mobile',
                                 suffixIcon: Icon(
                                   Icons.email_outlined,
                                 ),
@@ -62,9 +63,9 @@ class LoginView extends GetView<AuthController> {
                               ),
                               validator: (value) {
                                 if (value!.trim().isEmpty)
-                                  return "Email is Required";
+                                  return "Mobile is Required";
                                 else if (!GetUtils.isEmail(value.trim()))
-                                  return "Please enter valid email";
+                                  return "Please enter valid phone no";
                                 else
                                   return null;
                               },
@@ -101,6 +102,8 @@ class LoginView extends GetView<AuthController> {
                     InkWell(
                       onTap: () {
                         //controller.visible.value++;
+                        // NotificationService().showNotification(title: "hlw jayga", body: "hi first msg");
+                        // print("timre +++++++ is +++++ ${tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5))}");
                         controller.loginController();
                       },
                       child: AnimatedContainer(
@@ -108,7 +111,7 @@ class LoginView extends GetView<AuthController> {
                         height: controller.visible.value == 1 ? 50 : 60,
                         width: controller.visible.value == 1 ? 50 : 140,
                         decoration: BoxDecoration(
-                            color: AppColor.oneTapBrwnDeep,
+                            color: AppColor.blueHos,
                             borderRadius:
                             BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
                         alignment: Alignment.center,
@@ -129,9 +132,9 @@ class LoginView extends GetView<AuthController> {
                     Text("Forgot Password?"),
                     Spacer(),
                     Container(
-                        height: 30,
+                        height: 40,
                         width: Get.width,
-                        color: AppColor.oneTapBrwnDeep,
+                        color: AppColor.blueHos,
                         child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

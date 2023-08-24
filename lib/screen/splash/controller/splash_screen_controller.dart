@@ -11,14 +11,15 @@ class SplashscreenController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    print('SplashscreenController.onInit');
+    print('SplashscreenController.onInit${Get.find<AuthService>().currentUser.value.accessToken}');
+    print("hlw bro 111++++++++++ ${Get.find<AuthService>().currentUser.value}");
 
-    Timer(const Duration(seconds: 3), () {
+    Timer( Duration(seconds: 3), () async {
       // Get.offAllNamed(Routes.BASE);
-      if (Get.find<AuthService>().isAuth) {
+      if (Get.find<AuthService>().currentUser.value.accessToken == null) {
         Get.offAllNamed(Routes.LANDING);
       } else {
-        Get.offAllNamed(Routes.LOGIN);
+        Get.offAllNamed(Routes.BASE);
       }
     });
 

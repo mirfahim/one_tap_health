@@ -15,9 +15,9 @@ class RegistrationView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.oneTapBlue,
+      backgroundColor: AppColor.white,
       appBar: AppBar(
-        backgroundColor: AppColor.oneTapBrwnDeep,
+        backgroundColor: AppColor.blueHos,
         title: Text("Registration"),
         centerTitle: true,
 
@@ -58,7 +58,7 @@ class RegistrationView extends GetView<AuthController> {
                                 ),
                               ),
                             ),
-                            obscureText: true,
+                            obscureText: false,
                             validator: (value) {
                               if (value!.trim().isEmpty) {
                                 return "Password is Required";
@@ -96,7 +96,7 @@ class RegistrationView extends GetView<AuthController> {
                             decoration: new InputDecoration(
                               labelText: 'Phone',
                               suffixIcon: Icon(
-                                Icons.lock_outline,
+                                Icons.call,
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -104,7 +104,7 @@ class RegistrationView extends GetView<AuthController> {
                                 ),
                               ),
                             ),
-                            obscureText: true,
+                            obscureText: false,
                             validator: (value) {
                               if (value!.trim().isEmpty) {
                                 return "Password is Required";
@@ -118,7 +118,7 @@ class RegistrationView extends GetView<AuthController> {
                             decoration: new InputDecoration(
                               labelText: 'Address',
                               suffixIcon: Icon(
-                                Icons.lock_outline,
+                                Icons.map,
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -126,7 +126,7 @@ class RegistrationView extends GetView<AuthController> {
                                 ),
                               ),
                             ),
-                            obscureText: true,
+                            obscureText: false,
                             validator: (value) {
                               if (value!.trim().isEmpty) {
                                 return "Password is Required";
@@ -217,7 +217,7 @@ class RegistrationView extends GetView<AuthController> {
                       height: controller.visible.value == 1 ? 50 : 60,
                       width: controller.visible.value == 1 ? 50 : 140,
                       decoration: BoxDecoration(
-                          color: AppColor.oneTapBrwnDeep,
+                          color: AppColor.blueHos,
                           borderRadius:
                           BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
                       alignment: Alignment.center,

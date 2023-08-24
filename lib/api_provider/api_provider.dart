@@ -7,14 +7,16 @@ import 'package:one_tap_health/api_provider/api_exception.dart';
 
 
 class APIManager {
-  Future<dynamic> postAPICallWithHeader(String url, Map<String, String> param, Map<String, String> headerData) async {
+  Future<dynamic> postAPICallWithHeader(String url, Map<String, dynamic> param, Map<String, String> headerData) async {
     print("Calling API: $url");
     print("Calling parameters: $param");
 
     var responseJson;
     try {
-      final response = await http.post(Uri.parse(url), body: param, headers: headerData);
+      final response = await http.post(Uri.parse(url), body: jsonEncode(param), headers: headerData);
       print(response.body);
+
+
       responseJson = _response(response);
       print(responseJson);
     } on SocketException catch (_) {
@@ -32,9 +34,10 @@ class APIManager {
       final response = await http.post(Uri.parse(url), body:param, headers: headerr);
       if(response.statusCode ==  200 ){
         responseJson = _response(response);
-        print('APIManager.postAPICall');
+        print('APIManager.postAPICall calling in 200 ++++++');
         print(responseJson);
       } else {
+        print('not in 200 ++++++++');
         return null;
       }
 
@@ -118,7 +121,7 @@ class APIManager {
     print("Calling API: $url");
     var responseJson;
     try {
-      final response = await http.get(Uri.parse(url), headers: headerData);
+      final response = await http.get(Uri.parse(url.toString()), headers: headerData);
       print("my getWithHeader method data response ${response.body}");
       responseJson = _response(response);
     } on SocketException catch (_) {
@@ -136,7 +139,9 @@ class APIManager {
         var responseJson = json.decode(response.body.toString());
         return responseJson;
       case 400:
-        throw BadRequestException(response.body.toString());
+        var responseJson = json.decode(response.body.toString());
+       //  BadRequestException(response.body.toString());
+         return responseJson;
       case 401:
       case 403:
         throw UnauthorisedException(response.body.toString());

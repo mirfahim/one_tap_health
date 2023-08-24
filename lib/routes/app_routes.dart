@@ -8,6 +8,7 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const LEADMARKET = _Paths.LEADMARKET;
   static const POSTPROJECT = _Paths.POSTPROJECT;
+  static const HOSPITALIST = _Paths.HOSPITALIST;
   static const CREATEESTIMATION = _Paths.CREATEESTIMATION;
   static const TESTCAT = _Paths.TESTCAT;
   static const ACTIVETEST = _Paths.ACTIVETEST;
@@ -17,6 +18,8 @@ abstract class Routes {
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const BROWSEJOB = _Paths.BROWSEJOB;
   static const CONTRACTORLISTVIEW = _Paths.CONTRACTORLISTVIEW;
+  static const MYORDERTEST = _Paths.MYORDERTEST;
+
   static const DOCTOR = _Paths.DOCTOR;
   static const DOCTORDETAIL = _Paths.DOCTORDETAIL;
   static const BASE = _Paths.BASE;
@@ -24,6 +27,9 @@ abstract class Routes {
   static const TESTSUCCESS = _Paths.TESTSUCCESS;
   static const MEDREMINDER = _Paths.MEDREMINDER;
   static const LANDING = _Paths.LANDING;
+  static const PAYMENTWEB = _Paths.PAYMENTWEB;
+  static const HOSPITALWISETEST = _Paths.HOSPITALWISETEST;
+
 
 }
 
@@ -38,6 +44,10 @@ abstract class _Paths {
   static const CREATEESTIMATION = '/estimation';
   static const HOME = '/home';
   static const TESTHOSPITAL = '/hospital';
+  static const PAYMENTWEB = '/payment-web';
+  static const HOSPITALWISETEST = '/hospital-wise-test';
+  static const MYORDERTEST = '/my-order-test';
+
   static const TESTSUCCESS = '/test-success';
   static const MEDREMINDER = '/madereminder';
   static const TESTCAT = '/testcategory';
@@ -46,7 +56,7 @@ abstract class _Paths {
   static const LEADMARKET = '/leadmarket';
   static const PREVIEWTEST = '/previewtest';
   static const BASE = '/base';
-
+  static const HOSPITALIST = '/hospital-list';
   static const ACTIVETEST = '/activeTest';
   static const MENUPAGE = '/menuPage';
   static const SPLASHSCREEN = '/splashscreen';

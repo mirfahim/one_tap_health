@@ -7,7 +7,7 @@ import 'package:one_tap_health/model/profile_model.dart';
 import 'package:one_tap_health/repository/auth/auth_repository.dart';
 import 'package:one_tap_health/repository/auth/doctor_rep/doctor_repository.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
-import 'package:one_tap_health/screen/doctor/view/pages/make_appointment.dart';
+import 'package:one_tap_health/screen/doctor/view/pages/appointment_time_hos.dart';
 
 import 'package:one_tap_health/service/auth_service.dart';
 

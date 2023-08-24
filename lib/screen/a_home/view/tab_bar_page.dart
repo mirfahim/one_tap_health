@@ -10,17 +10,14 @@ class BaseView extends GetView<HomeController> {
   const BaseView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.advancedStatusCheck(context);
     return Obx(() {
       return Scaffold(
-        appBar:  AppBar(
-          backgroundColor: AppColor.oneTapBrwnDeep,
-          centerTitle: true,
-          title: Text("Home"),
-        ),
+
         body: controller.currentPage,
         extendBody: true,
         bottomNavigationBar: BottomAppBar(
-          color:  AppColor.oneTapBrwnDeep,
+          color:  AppColor.blueHos,
           notchMargin: 6,
           elevation: 10,
           shape: const AutomaticNotchedShape(
@@ -139,7 +136,7 @@ class BaseView extends GetView<HomeController> {
                           //       : Colors.grey,
                           // ),
                           Text(
-                            'My Bookings'.tr,
+                            'Report'.tr,
                             style: TextStyle(
                                 fontSize: 10,
                                 color: controller.currentIndex.value == 2

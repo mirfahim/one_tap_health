@@ -29,7 +29,7 @@ class DoctorHomePageScreen extends GetView<DoctorController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.oneTapBrwnDeep,
+        backgroundColor: AppColor.blueHos,
         title: Text("Doctors"),
         centerTitle: true,
 
@@ -43,6 +43,9 @@ class DoctorHomePageScreen extends GetView<DoctorController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 10,),
+                      controller.doctorList.isEmpty
+                          ? Center(child:CircularProgressIndicator(),)
+                          :
                       SizedBox(
                         height: MediaQuery.of(context).size.height*.2,
                         child: ListView.separated(
@@ -57,6 +60,7 @@ class DoctorHomePageScreen extends GetView<DoctorController> {
                             doctor: controller.doctorList[index],
                             onTap: () {
                               controller.doctorName.value = controller.doctorList[index].name!;
+                              controller.doctorID.value = controller.doctorList[index].id!.toString();
                               controller.doctorDegree.value = controller.doctorList[index].degree!;
                               controller.doctorDepartment.value = controller.doctorList[index].department!;
                               controller.doctorMobile.value = controller.doctorList[index].mobile!;
@@ -73,35 +77,35 @@ class DoctorHomePageScreen extends GetView<DoctorController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Categories',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height*.15,
-                                  child: ListView.separated(
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: controller.doctorList.length,
-                                    separatorBuilder: (BuildContext context, int index) =>
-                                        Divider(indent: 16),
-                                    itemBuilder: (BuildContext context, int index) =>
-                                        CategoryCell(category: controller.doctorList[index]),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            // Column(
+                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       'Categories',
+                            //       style: TextStyle(
+                            //         color: Colors.black,
+                            //         fontSize: 18,
+                            //         fontWeight: FontWeight.w400,
+                            //       ),
+                            //     ),
+                            //     SizedBox(
+                            //       height: 10,
+                            //     ),
+                            //     SizedBox(
+                            //       height: MediaQuery.of(context).size.height*.15,
+                            //       child: ListView.separated(
+                            //         primary: false,
+                            //         shrinkWrap: true,
+                            //         scrollDirection: Axis.horizontal,
+                            //         itemCount: controller.doctorList.length,
+                            //         separatorBuilder: (BuildContext context, int index) =>
+                            //             Divider(indent: 16),
+                            //         itemBuilder: (BuildContext context, int index) =>
+                            //             CategoryCell(category: controller.doctorList[index]),
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                             SizedBox(
                               height: 32,
                             ),

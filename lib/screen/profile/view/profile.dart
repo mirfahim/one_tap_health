@@ -6,6 +6,7 @@ import 'package:one_tap_health/screen/profile/controller/profile_controller.dart
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../service/auth_service.dart';
 import '../../../utils/app_colors/app_colors.dart';
 
 
@@ -14,7 +15,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.oneTapBlue,
+      backgroundColor: AppColor.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -45,7 +46,7 @@ class ProfileView extends GetView<ProfileController> {
                     border: Border.all(
                         color: AppColor.appColor,
                         width: 2),
-                    color: AppColor.oneTapBrwnDeep,
+                    color: AppColor.white,
                   ),
                   child: CachedNetworkImage(
                     imageUrl:controller.profileData!.value!.profilePhotoUrl == null ? "" : controller.profileData!.value!.profilePhotoUrl!,
@@ -240,6 +241,7 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(height: 30,),
                     GestureDetector(
                       onTap: () {
+                        Get.find<AuthService>().removeCurrentUser();
                         Get.toNamed(Routes.SPLASHSCREEN);
                       },
                       child: Text(

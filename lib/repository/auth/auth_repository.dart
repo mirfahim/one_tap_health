@@ -12,7 +12,7 @@ class AuthRepository {
       ApiUrl.login,
       //01687835844
       //12345678
-      {'username': "01782084390", 'password': "123456"},
+      {'username': email, 'password': pass},
 
 
 
@@ -28,38 +28,46 @@ class AuthRepository {
     final response = await _manager.postAPICall(
       ApiUrl.signup,
       {
-        'name': name,
-        'email': email,
-        'phone': mobile,
+        'name': "name",
+        'email': "mir11@gmail.com",
+        'phone': "01782084390",
+        "age": "55",
         'password': pass,
         'confirm_password': pass,
-        'address': address,
+        'address': "address",
         'birth_date':"2023-5-20",
         'user_role':"4",
       },
+     // headerr: {"Content-Type": "application/json"}
         //
 
 
 
 
     );
-    print("login response is $response");
+    print("reg response is $response");
+    var data = response;
 
-    return response;
+    return data;
   }
 
 
-  Future taskAddController() async {
+  Future registerRep({String? email, String? conPass, String? pass, String? mobile, String? address, String? birthDate, String? name, String? age}) async {
 
     Map<String, dynamic> bodyString =
-      {
-        "username":"01687835844",
-        "password":"12345678"
-
-
+    {
+      'name': name,
+      'email': email,
+      'phone': mobile,
+      "age": age,
+      'password': pass,
+      'confirm_password': pass,
+      'address': address,
+      'birth_date':"2023-5-20",
+      'user_role':"4",
     };
 
-    Uri url = Uri.parse( ApiUrl.login,);
+    Uri url = Uri.parse( ApiUrl.signup,);
     final response = await http.post(
       url,
       body: jsonEncode(bodyString),
@@ -68,9 +76,9 @@ class AuthRepository {
       },
     );
 
-    print("my resposnse repo ${response.body}");
-    String data = response.body;
+    print("my resposnse repo from register ${response.body}");
+    Map data = jsonDecode(response.body);
 
-    return response;
+    return data;
   }
 }

@@ -36,7 +36,7 @@ class CategoryCell extends StatelessWidget {
                 Icon(
                   Icons.badge,
                   size: 24,
-                  color:AppColor.oneTapBrwnDeep,
+                  color:AppColor.blueHos,
                 ),
                 SizedBox(
                   height: 8,
@@ -58,7 +58,7 @@ class CategoryCell extends StatelessWidget {
                 height: 30,
                 width: 80,
                 decoration: BoxDecoration(
-                    color: AppColor.oneTapBrwnDeep,
+                    color: AppColor.blueHos,
                     borderRadius:
                         BorderRadius.only(topRight: Radius.circular(10))),
               ),

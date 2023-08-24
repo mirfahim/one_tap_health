@@ -26,139 +26,227 @@ class AvailableTestHospital extends GetView<PathologyController> {
           title: Text("Hospital"),
           centerTitle: true,
         ),
+        bottomNavigationBar: InkWell(
+          onTap: (){
+            Get.toNamed(Routes.PREVIEWTEST);
+
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              height: 40,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: AppColor.blueHos,
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: Center(
+                child: Text(
+                  "Proceed",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Obx(() {
               return Column(
                   children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
+                    controller.matchedTest.isEmpty
+                        ? Center(child: Text("This test is not available in any of our hospital now"))
+                        : Container(
+                  height: MediaQuery.of(context).size.height *.8,
                   child: ListView.builder(
-                      itemCount: controller.testHospitalList.length,
+                      itemCount: controller.matchedTest.length,
                       itemBuilder: (BuildContext context, int index) {
-                        var data = controller.testHospitalList[index];
-                        return GestureDetector(
-                            onTap: () {
-                              controller.hospitalName.value = data.hospitalName!;
-                              controller.hospitalId.value = data.hospitalId!.toString();
-                              controller.hospitalBranch.value = data.hospitalBranch!;
-                              controller.price.value = data.price!;
-                              controller.discount.value = data.discount!;
+                        var data = controller.matchedTest[index];
+                        return Card(
 
+                          child: Column(
+                            children: [
+                              ListTile(
+                                // leading:     Container(
+                                //   height: 60,
+                                //   width: 60,
+                                //   decoration: BoxDecoration(
+                                //     borderRadius: BorderRadius.circular(10),
+                                //     border:
+                                //     Border.all(color: AppColor.appColor, width: 2),
+                                //     color: AppColor.blueHos,
+                                //
+                                //   ),
+                                //   child: CachedNetworkImage(
+                                //     imageUrl: data.photo!,
+                                //     imageBuilder:
+                                //         (context,
+                                //         imageProvider) =>
+                                //         Container(
+                                //           decoration:
+                                //           BoxDecoration(
+                                //             image:
+                                //             DecorationImage(
+                                //               image:
+                                //               imageProvider,
+                                //               fit: BoxFit
+                                //                   .fill,
+                                //             ),
+                                //           ),
+                                //         ),
+                                //     placeholder: (context,
+                                //         url) =>
+                                //     const Padding(
+                                //       padding:
+                                //       EdgeInsets
+                                //           .all(
+                                //           5.0),
+                                //       child: Image(
+                                //         image: AssetImage(
+                                //             'images/Icons/onetaplogo.png'),
+                                //       ),
+                                //     ),
+                                //     errorWidget: (context,
+                                //         url,
+                                //         error) =>
+                                //     const Padding(
+                                //       padding:
+                                //       EdgeInsets
+                                //           .all(
+                                //           5.0),
+                                //       child: Image(
+                                //         image: AssetImage(
+                                //             'images/Icons/onetaplogo.png'),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                title: Text(controller.getTestInfo(data.testId)),
+                              //  subtitle: Text(data.branch!),
 
-                           Get.toNamed(Routes.PREVIEWTEST);
-                            },
-                            child: Card(
-
-                              child: Column(
-                                children: [
-                                  ListTile(
-                                    leading:     Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(60),
-                                        border:
-                                        Border.all(color: AppColor.appColor, width: 2),
-                                        color: AppColor.oneTapBrwnDeep,
-
-                                      ),
-                                      child: CachedNetworkImage(
-                                        imageUrl: data.hospitalPhoto!,
-                                        imageBuilder:
-                                            (context,
-                                            imageProvider) =>
-                                            Container(
-                                              decoration:
-                                              BoxDecoration(
-                                                image:
-                                                DecorationImage(
-                                                  image:
-                                                  imageProvider,
-                                                  fit: BoxFit
-                                                      .fill,
-                                                ),
-                                              ),
-                                            ),
-                                        placeholder: (context,
-                                            url) =>
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(
-                                              5.0),
-                                          child: Image(
-                                            image: AssetImage(
-                                                'images/Icons/onetaplogo.png'),
-                                          ),
-                                        ),
-                                        errorWidget: (context,
-                                            url,
-                                            error) =>
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(
-                                              5.0),
-                                          child: Image(
-                                            image: AssetImage(
-                                                'images/Icons/onetaplogo.png'),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    title: Text(data.hospitalName!),
-                                    subtitle: Text(data.hospitalBranch!),
-
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        height: 50,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border:
-                                          Border.all(color: AppColor.appColor, width: 2),
-                                          color: AppColor.appBackGroundBrn,
-
-                                        ),
-                                        child: Center(child: Text("Price: ${data.price}", style: TextStyle(fontWeight: FontWeight.bold),), ),
-                                      ),
-                                      Container(
-                                        height: 50,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border:
-                                          Border.all(color: AppColor.appColor, width: 2),
-                                          color: AppColor.oneTapBrwnDeep,
-
-                                        ),
-                                        child: Center(child: Text("Discount: ${data.discount}",
-                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),), ),
-                                      ),
-                                      Container(
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border:
-                                          Border.all(color: AppColor.appColor, width: 2),
-                                          color: AppColor.oneTapBrwnDeep,
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                'images/Icons/map.png',
-                                              )),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
                               ),
-                            ));
+                              Container(
+                                height: MediaQuery.of(context).size.height *.3,
+                                child: GridView.builder(
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 5.0,
+                                      mainAxisSpacing: 5.0,
+                                        childAspectRatio: .7,
+                                    ),
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: controller.matchedTest[index].hospitals.length,
+                                    itemBuilder: (BuildContext context, int i) {
+                                      var hosData = controller.matchedTest[index].hospitals[i];
+                                      return GestureDetector(
+                                          onTap: () {
+                                         controller.createHospitalWiseTestmatchList(controller.matchedTest, controller.pathologyTestListID);
+
+                                            // controller.pathologyController.hospitalName.value = controller.hospitalName.value;
+                                            // controller.pathologyController.hospitalBranch.value = controller.hospitalBranch.value;
+                                            // controller.pathologyController.price.value = data.price;
+                                            // controller.pathologyController.testDes.value = data.description ?? "No Description";
+                                            // controller.pathologyController.testName.value = data.testTitle;
+
+
+
+
+                                          },
+                                          child: Container(
+                                            width: 140,
+                                            height: 100,
+                                            clipBehavior: Clip.hardEdge,
+                                            padding: EdgeInsets.only(top: 14),
+                                            decoration: BoxDecoration(
+                                              color: false == false ? AppColor.oneTapBg :Colors.white,
+                                              borderRadius: BorderRadius.circular(16),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: 10),
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.badge,
+                                                        size: 24,
+                                                        color:AppColor.blueHos,
+                                                      ),
+                                                      SizedBox(
+                                                        height: 8,
+                                                      ),
+                                                      Text(
+                                                        hosData.hospitalName,
+                                                        style: TextStyle(
+                                                          color: AppColor.textColorBlack,
+                                                          fontWeight: FontWeight.w700,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Stack(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      children: [
+                                                        Container(
+                                                          height: 30,
+                                                          width: 80,
+                                                          decoration: BoxDecoration(
+                                                              color: AppColor.blueHos,
+                                                              borderRadius:
+                                                              BorderRadius.only(topRight: Radius.circular(10))),
+                                                        ),
+                                                        Container(
+                                                          height: 30,
+                                                          width: 80,
+                                                          decoration: BoxDecoration(
+                                                              color: AppColor.textColorRed.withOpacity(.4),
+                                                              borderRadius:
+                                                              BorderRadius.only(topRight: Radius.circular(10))),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Positioned(
+                                                      left: 16,
+                                                      child: Text(
+                                                        "${hosData.price!}Tk",
+                                                        style: TextStyle(
+                                                          color: AppColor.textColorWhite,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                      right: 16,
+                                                      child: Text(
+                                                        "${hosData.discount!}Tk",
+                                                        style: TextStyle(
+                                                          color: AppColor.textColorWhite,
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          )
+
+                                      );
+                                    }),
+                              ),
+                            ],
+
+                          ),
+                        );
                       }),
                 ),
               ]);

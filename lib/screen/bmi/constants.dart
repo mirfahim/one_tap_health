@@ -7,7 +7,7 @@ const kbottomContainerHeight = 80.0;
 const kbottomContainerColor = Color(0xFFEB1555);
 const klabelTextStyle = TextStyle(
   fontSize: 18.0,
-  color: Color(0xFF8D8E98),
+  color: Colors.white
 );
 const kDigitTextStyle = TextStyle(
   fontSize: 50,

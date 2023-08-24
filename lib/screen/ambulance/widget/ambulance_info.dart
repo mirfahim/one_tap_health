@@ -22,7 +22,7 @@ class CarInfomation extends StatelessWidget {
       margin: EdgeInsets.only(left: 24, right: 24,top: 50),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColor.oneTapBrwnDeep,
+        color: AppColor.blueHos,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

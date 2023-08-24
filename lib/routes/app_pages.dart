@@ -11,22 +11,29 @@ import 'package:one_tap_health/screen/doctor/view/pages/doctor_home_page.dart';
 
 
 import 'package:one_tap_health/screen/a_home/view/tab_bar_page.dart';
+import 'package:one_tap_health/screen/hospital_list/binding/hospital_binding.dart';
+import 'package:one_tap_health/screen/hospital_list/view/hospital_view.dart';
 import 'package:one_tap_health/screen/med_reminder/binding/med_reminder_binding.dart';
 import 'package:one_tap_health/screen/med_reminder/controller/med_reminder_controller.dart';
 import 'package:one_tap_health/screen/med_reminder/view/med_reminder_view.dart';
 import 'package:one_tap_health/screen/pathology_test/binding/pathology_binding.dart';
 import 'package:one_tap_health/screen/pathology_test/view/active_test_list_categorywise.dart';
+import 'package:one_tap_health/screen/pathology_test/view/hospital_wise_test_list.dart';
 import 'package:one_tap_health/screen/pathology_test/view/order_success_page.dart';
 import 'package:one_tap_health/screen/pathology_test/view/preview_test.dart';
+import 'package:one_tap_health/screen/pathology_test/view/ssl_webview.dart';
 import 'package:one_tap_health/screen/pathology_test/view/test_category_screen.dart';
 import 'package:one_tap_health/screen/profile/binding/profile_binding.dart';
 import 'package:one_tap_health/screen/profile/view/profile.dart';
+import 'package:one_tap_health/screen/report/binding/report_binding.dart';
 
 import 'package:one_tap_health/screen/splash/binding/splash_binding.dart';
 import 'package:one_tap_health/screen/splash/view/splash_view.dart';
 
 import '../screen/a_home/controller/home_controller.dart';
 import '../screen/pathology_test/view/available_test_hospital.dart';
+import '../screen/report/view/test/my_test_order_list.dart';
+import '../screen/report/view/test/report_front_page.dart';
 
 
 part 'app_routes.dart';
@@ -51,6 +58,11 @@ class AppPages {
       name: _Paths.HOME,
       page: () =>  HomeView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOSPITALIST,
+      page: () =>  HospitalList(),
+      binding: HospitalBinding(),
     ),
     GetPage(
       name: _Paths.TESTCAT,
@@ -93,6 +105,14 @@ class AppPages {
       page: () =>  DoctorHomePageScreen(),
       binding: DoctorBinding(),
     ),
+
+    GetPage(
+      name: _Paths.PAYMENTWEB,
+      page: () =>  PaymentWebView(),
+      binding: PathologyBinding(),
+    ),
+
+
     GetPage(
       name: _Paths.PROFILE,
       page: () =>  ProfileView(),
@@ -103,6 +123,11 @@ class AppPages {
       page: () =>  DoctorDetailScreen(),
       binding: DoctorBinding(),
     ),
+    GetPage(
+      name: _Paths.HOSPITALWISETEST,
+      page: () =>  HospitalWiseTestList(),
+      binding: PathologyBinding(),
+    ),
 
     GetPage(
       name: _Paths.PREVIEWTEST,
@@ -110,6 +135,10 @@ class AppPages {
       binding: PathologyBinding(),
     ),
 
-
+    GetPage(
+      name: _Paths.MYORDERTEST,
+      page: () =>  MyReportListFront(),
+      binding: ReportBinding(),
+    ),
   ];
 }

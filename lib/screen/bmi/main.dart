@@ -10,7 +10,7 @@ class BMIApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
         primaryColor: AppColor.appBackGroundBrn,
-        scaffoldBackgroundColor: AppColor.oneTapBlue,
+        scaffoldBackgroundColor: AppColor.white,
       ),
       home: InputPage(),
     );

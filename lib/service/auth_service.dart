@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:one_tap_health/model/auth_model/login_model.dart';
+import 'package:one_tap_health/model/reminder_model.dart';
 
 
 
@@ -9,9 +10,11 @@ import 'package:one_tap_health/model/auth_model/login_model.dart';
 
 class AuthService extends GetxService {
   final currentUser = LoginModel().obs;
+  final currentReminder = <ReminderModel>[].obs;
   late GetStorage _box;
   final used = false.obs;
   final deviceToken = ''.obs;
+
 
   final language_key = 'en_US'.obs;
 
@@ -26,8 +29,9 @@ class AuthService extends GetxService {
     //getLanguage();
     //  getDeviceToken();
 
-    // getUsed();
+
     getCurrentUser();
+    getReminder();
     super.onInit();
   }
 
@@ -41,6 +45,18 @@ class AuthService extends GetxService {
       used.value = _box.read('used');
     }
   }
+  setReminder(List<ReminderModel> reminderM) async {
+    _box.write('reminder', reminderM);
+    getReminder();
+  }
+  getReminder() {
+    if (_box.hasData('reminder')) {
+      currentReminder.value = _box.read('reminder');
+      print("${_box.read('reminder')}");
+    }
+    print('reminder data: ${currentReminder.value[0].medName}');
+  }
+
 
   setUser(LoginModel user) async {
     _box.write('currentUser', user.toJson());
@@ -63,6 +79,7 @@ class AuthService extends GetxService {
   bool get isAuth => currentUser.value.accessToken == null ? false : true;
 
   String get apiToken => currentUser.value.accessToken!;
+  List<ReminderModel> get reminderList => currentReminder.value!;
 
   getLanguage() async {
     language_key.value = GetStorage().read<String>('language') ?? 'en_US';

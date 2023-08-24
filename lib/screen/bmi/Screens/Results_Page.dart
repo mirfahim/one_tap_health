@@ -22,7 +22,7 @@ class ResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.oneTapBrwnDeep,
+        backgroundColor: AppColor.blueHos,
         title: Center(
           child: Text('BMI CALCULATOR'),
         ),

@@ -79,7 +79,7 @@ class HDCell extends StatelessWidget {
                   Text(
                     doctor!.mobile!,
                     style: TextStyle(
-                      color: AppColor.oneTapBrwnDeepest,
+                      color: AppColor.blueHosest,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
@@ -96,7 +96,7 @@ class HDCell extends StatelessWidget {
                 width: 77,
                 height: 54,
                 decoration: BoxDecoration(
-                  color: AppColor.oneTapBrwnDeep,
+                  color: AppColor.blueHos,
                   borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
                 ),
                 child: Icon(

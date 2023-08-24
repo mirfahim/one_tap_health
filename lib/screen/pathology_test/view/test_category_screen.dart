@@ -21,7 +21,7 @@ class TestCategoryView extends GetView<PathologyController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.appBackGroundBrn,
+          backgroundColor: AppColor.blueHos,
           title: Text("Lab Tests"),
           centerTitle: true,
         ),
@@ -33,6 +33,36 @@ class TestCategoryView extends GetView<PathologyController> {
               return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        // Add padding around the search bar
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        // Use a Material design search bar
+                        child: TextField(
+                          controller: controller.searchController.value,
+                          onChanged: controller.updateSearchTextDebounced(controller.searchController.value.text),
+                          decoration: InputDecoration(
+                            hintText: 'Search...',
+                            // Add a clear button to the search bar
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.clear),
+                              onPressed: () => controller.searchController.value.clear(),
+                            ),
+                            // Add a search icon or button to the search bar
+                            prefixIcon: IconButton(
+                              icon: Icon(Icons.search),
+                              onPressed: () {
+                                controller.searchListController(controller.searchController.value.text);
+                              },
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     Container(
                       height: 100,
                       width: MediaQuery.of(context).size.width,
@@ -44,7 +74,7 @@ class TestCategoryView extends GetView<PathologyController> {
                             borderRadius: BorderRadius.circular(10),
                             border:
                                 Border.all(color: AppColor.appColor, width: 2),
-                            color: AppColor.oneTapBrwnDeep,
+                            color: AppColor.blueHos,
                             image: DecorationImage(
                                 image: AssetImage(
                               'images/Icons/doctor.png',
@@ -56,30 +86,34 @@ class TestCategoryView extends GetView<PathologyController> {
                         trailing:  Container(
                           width: 100,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+
                             children: [
+
                               InkWell(
                                 onTap: (){
 
                                 },
                                 child: Container(
                                   height: 40,
-                                  width: 40,
+                                  width: 60,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                    BorderRadius.circular(40),
+                                    BorderRadius.circular(10),
                                     border: Border.all(
                                         color: AppColor.appColor,
                                         width: 1),
-                                    color: AppColor.oneTapBrwnDeep,
+                                    color:Colors.transparent,
                                     image:  DecorationImage(
                                         image: AssetImage(
-                                          'images/Icons/phone1.png',
+                                          'images/Icons/med2.png',
                                         )),
+
                                   ),
 
                                 ),
                               ),
-                              Text("Call"),
+
                             ],
                           ),
                         ),
@@ -93,120 +127,59 @@ class TestCategoryView extends GetView<PathologyController> {
                       height: 10,
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height * .2,
+                      height: MediaQuery.of(context).size.height * .7,
                       child: controller.testCatList.isEmpty
                           ? Center(
                               child: Ui.customLoaderSplash(),
                             )
-                          : ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: controller.testCatList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                var dataCat = controller.testCatList[index];
-                                return GestureDetector(
-                                    onTap: () {
-                                      controller
-                                          .categoryWiseActiveTestController(dataCat.id!);
-                                    },
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(40),
-                                            border: Border.all(
-                                                color: AppColor.appColor,
-                                                width: 2),
-                                            color: AppColor.oneTapBrwnDeep,
-                                          ),
-                                          child: CachedNetworkImage(
-                                            imageUrl: dataCat.iconPhoto!,
-                                            imageBuilder:
-                                                (context, imageProvider) =>
-                                                    Container(
+                          : Obx(
+                           () {
+                              return GridView.builder(
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 5.0,
+                                mainAxisSpacing: 5.0,
+                              ),
+                                  itemCount: controller.searchController.value.text.isEmpty ? controller.testCatList.value.length:controller.filterListCat.value.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    var dataCat =controller.searchController.value.text.isEmpty ? controller.testCatList.value[index] : controller.filterListCat.value[index];
+                                    return GestureDetector(
+                                        onTap: () {
+                                          controller
+                                              .categoryWiseActiveTestController(dataCat.id!);
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 50,
+                                              width: 50,
                                               decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: imageProvider,
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                                border: Border.all(
+                                                    color: AppColor.appColor,
+                                                    width: 2),
+                                                color: AppColor.blueHos,
+                                                image: new DecorationImage(
                                                   fit: BoxFit.fill,
+                                                  image: new CachedNetworkImageProvider(dataCat.iconPhoto!,),
                                                 ),
                                               ),
                                             ),
-                                            placeholder: (context, url) =>
-                                                const Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: Image(
-                                                image: AssetImage(
-                                                  'images/Icons/doctor.png',
-                                                ),
-                                              ),
-                                            ),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    const Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: Image(
-                                                image: AssetImage(
-                                                    'images/doctor/albert.png'),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                            width: 100,
-                                            child: Center(
-                                                child: Text(
-                                              dataCat.name!,
-                                              maxLines: 2,
-                                            )))
-                                      ],
-                                    ));
-                              }),
+                                            Container(
+                                                width: 100,
+                                                child: Center(
+                                                    child: Text(
+                                                  dataCat.name!,
+                                                  maxLines: 2,
+                                                )))
+                                          ],
+                                        ));
+                                  });
+                            }
+                          ),
                     ),
-                    Text(
-                      "Popular Health packages",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Powered By",
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * .5,
-                      child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: controller.testCatList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return GestureDetector(
-                                onTap: () {
-                                  controller.categoryWiseActiveTestController(5);
-                                },
-                                child: Card(
-                                  elevation: 10,
-                                  color: Colors.white,
-                                  child: ListTile(
-                                    leading: Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            color: AppColor.appColor, width: 2),
-                                        color: AppColor.oneTapBrwnDeep,
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                          'images/Icons/doctor.png',
-                                        )),
-                                      ),
-                                    ),
-                                    title: Text("Full Body Checkup"),
-                                    subtitle: Text(
-                                        "Include fasting blood sugar, Hba1c"),
-                                  ),
-                                ));
-                          }),
-                    ),
+
                   ]);
             }),
           ),

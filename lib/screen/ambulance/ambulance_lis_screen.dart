@@ -9,7 +9,7 @@ class AvailableCarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.oneTapBlue,
+      backgroundColor: AppColor.white,
       appBar: buildAppBar(),
       body: ListView.builder(
         itemCount: carList.length,
@@ -20,7 +20,7 @@ class AvailableCarScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      backgroundColor: AppColor.oneTapBrwnDeep,
+      backgroundColor: AppColor.blueHos,
       elevation: 0,
       title: Text('Available Car'),
       actions: [

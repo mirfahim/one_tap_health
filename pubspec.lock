@@ -277,10 +277,10 @@ packages:
     dependency: "direct dev"
     description:
       name: dio
-      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
+      sha256: ce75a1b40947fea0a0e16ce73337122a86762e38b982e1ccb909daa3b9bc4197
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.3.2"
   dropdown_search:
     dependency: "direct dev"
     description:
@@ -619,6 +619,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_timezone:
+    dependency: "direct dev"
+    description:
+      name: flutter_timezone
+      sha256: "4508018aba499c837f723e2e718259eb677410490638b7ea669b11113d083e68"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

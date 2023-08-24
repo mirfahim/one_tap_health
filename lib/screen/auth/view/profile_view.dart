@@ -12,7 +12,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: AppColor.oneTapBlue,
+//       backgroundColor: AppColor.white,
 //       body: SingleChildScrollView(
 //         child: Padding(
 //           padding: const EdgeInsets.all(8.0),

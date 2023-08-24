@@ -86,28 +86,49 @@ class Schedule {
   String? startTime;
   String? endTime;
   bool? active;
+  int? doctoFee;
+  int? discount;
+  String? doctorAvailableDay;
+
+  String? branch;
+  String? address;
 
   Schedule({
      this.id,
      this.hospital,
      this.startTime,
+    this.doctoFee,
+    this.discount,
      this.endTime,
      this.active,
+    this.doctorAvailableDay,
+    this.address,
+     this.branch
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
     id: json["id"],
-    hospital: json["hospital"],
+    hospital: json["hospital_name"],
     startTime: json["start_time"],
     endTime: json["end_time"],
     active: json["active"],
+    address: json["address"],
+    doctoFee: json["doctor_fee"],
+    doctorAvailableDay: json["doctorAvailableDay"],
+    discount: json["discount"],
+
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "hospital": hospital,
+    "hospital_name": hospital,
     "start_time": startTime,
     "end_time": endTime,
     "active": active,
+    "address": address,
+    "doctor_fee": doctoFee,
+    "doctorAvailableDay": doctorAvailableDay,
+    "discount": discount,
+
   };
 }

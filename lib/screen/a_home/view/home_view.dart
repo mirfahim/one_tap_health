@@ -4,21 +4,31 @@ import 'package:flutter/services.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
 import 'package:one_tap_health/screen/auth/controller/auth_controller.dart';
 import 'package:one_tap_health/screen/a_home/controller/home_controller.dart';
+import 'package:one_tap_health/screen/blood_donate/view/blood_list.dart';
+
+import 'package:one_tap_health/screen/medicine/view/medicine_home_page.dart';
 import 'package:one_tap_health/screen/pathology_test/view/test_category_screen.dart';
+import 'package:one_tap_health/service/auth_service.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:one_tap_health/screen/ambulance/ambulance_lis_screen.dart';
 import 'package:one_tap_health/screen/bmi/main.dart';
 import 'package:one_tap_health/screen/doctor/view/pages/doctor_home_page.dart';
+import 'package:one_tap_health/utils/ui_support.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    controller.advancedStatusCheck(context);
     return Scaffold(
-      backgroundColor: AppColor.oneTapBlue,
+      backgroundColor: AppColor.textColorWhite,
+        appBar: AppBar(
+          title: Text("Explore"),
+          centerTitle: true,
+        ),
 
         body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
@@ -57,7 +67,7 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/test.png',
@@ -93,7 +103,7 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/doctor.png',
@@ -112,38 +122,9 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                           ),
-                          Container(
-                            height: 150,
-                            width: 90,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 60,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColor.oneTapBrwnDeep,
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                          'images/Icons/doctor2.png',
-                                        )),
-                                  ),
-                                ),
-                                Center(
-                                    child: Text(
-                                      'Hospital',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                          color:Colors.black),
-                                    )),
-                              ],
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              //Get.to(EmployeeList());
+                          InkWell(
+                            onTap: (){
+                             Get.toNamed(Routes.HOSPITALIST);
                             },
                             child: Container(
                               height: 150,
@@ -156,7 +137,52 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
+
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                            'images/Icons/doctor2.png',
+                                          )),
+                                    ),
+                                  ),
+                                  Center(
+                                      child: Text(
+                                        'Hospital',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                            color:Colors.black),
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MedHome(
+
+                                    )),
+                              );
+                              // Get.showSnackbar(Ui.errorSnackBar(
+                              //     message: "Coming Soon......", title: 'error'.tr));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 90,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 60,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColor.textColorWhite,
+
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/medicine.png',
@@ -165,7 +191,7 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   Center(
                                       child: Text(
-                                        'Medicine',
+                                        'Products',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12,
@@ -177,7 +203,10 @@ class HomeView extends GetView<HomeController> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.to(AvailableCarScreen());
+                             print("${Get.find<AuthService>().currentUser.value.accessToken}");
+                             // Get.to(AvailableCarScreen());
+                              Get.showSnackbar(Ui.errorSnackBar(
+                                  message: "Coming Soon....", title: 'error'.tr));
                             },
                             child: Container(
                               height: 150,
@@ -190,7 +219,8 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
+
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/ambuicon.png',
@@ -211,7 +241,18 @@ class HomeView extends GetView<HomeController> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Get.to(ReminderList());
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NewsFeedPage1(
+
+                                    )),
+                              );
+                              // WaterView
+                              // Get.showSnackbar(Ui.errorSnackBar(
+                              //     message: "Coming Soon....", title: 'error'.tr));
+
+
                             },
                             child: Container(
                               height: 150,
@@ -224,7 +265,8 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
+
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/emergency1.png',
@@ -245,6 +287,8 @@ class HomeView extends GetView<HomeController> {
                           ),
                           GestureDetector(
                             onTap: () {
+                              Get.showSnackbar(Ui.errorSnackBar(
+                                  message: "Coming Soon....", title: 'error'.tr));
                               // Get.to(ScheduleHomePage());
                             },
                             child: Container(
@@ -258,7 +302,8 @@ class HomeView extends GetView<HomeController> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: AppColor.oneTapBrwnDeep,
+                                      color: AppColor.textColorWhite,
+
                                       image: DecorationImage(
                                           image: AssetImage(
                                             'images/Icons/blood.png',
@@ -292,7 +337,7 @@ class HomeView extends GetView<HomeController> {
                         color: Colors.black54),),
                   Container(
                     height: MediaQuery.of(context).size.height * .2,
-                    color: AppColor.oneTapBlue,
+                    color: AppColor.white,
 
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -345,6 +390,8 @@ class HomeView extends GetView<HomeController> {
 
                         GestureDetector(
                           onTap: () {
+                            Get.showSnackbar(Ui.errorSnackBar(
+                                message: "Save Health Data is Coming Soon....", title: 'error'.tr));
                             // Get.to(DashBrdFront());
                             // Get.to(WebViewClass());
                             // Get.to(DashBoardPage());
@@ -352,8 +399,6 @@ class HomeView extends GetView<HomeController> {
 
 
                             child: Container(
-
-
                               child: Column(
                                 children: [
                                   Container(
@@ -399,9 +444,10 @@ class HomeView extends GetView<HomeController> {
                         ),
                         GestureDetector(
                           onTap: () {
+                            Get.showSnackbar(Ui.errorSnackBar(
+                                message: "Coming Soon....", title: 'error'.tr));
                             // Get.to(DashBrdFront());
-                            // Get.to(WebViewClass());
-                            // Get.to(DashBoardPage());
+
                           },
                           child: Container(
                             height: 200,
@@ -499,8 +545,8 @@ class HomeView extends GetView<HomeController> {
                         GestureDetector(
                           onTap: () {
                             // Get.to(DashBrdFront());
-                            // Get.to(WebViewClass());
-                            // Get.to(DashBoardPage());
+                            Get.showSnackbar(Ui.errorSnackBar(
+                                message: "Coming Soon....", title: 'error'.tr));
                           },
                           child: Container(
                             height: 200,
@@ -549,8 +595,8 @@ class HomeView extends GetView<HomeController> {
                         GestureDetector(
                           onTap: () {
                             // Get.to(DashBrdFront());
-                            // Get.to(WebViewClass());
-                            // Get.to(DashBoardPage());
+                            Get.showSnackbar(Ui.errorSnackBar(
+                                message: "Coming Soon....", title: 'error'.tr));
                           },
                           child: Container(
                             height: 200,
@@ -649,8 +695,8 @@ class HomeView extends GetView<HomeController> {
                         GestureDetector(
                           onTap: () {
                             // Get.to(DashBrdFront());
-                            // Get.to(WebViewClass());
-                            // Get.to(DashBoardPage());
+                            Get.showSnackbar(Ui.errorSnackBar(
+                                message: "Coming Soon....", title: 'error'.tr));
                           },
                           child: Container(
                             height: 200,
@@ -704,6 +750,8 @@ class HomeView extends GetView<HomeController> {
                   GestureDetector(
                       onTap: () {
                         // controller.categoryWiseActiveTestController();
+                        Get.showSnackbar(Ui.errorSnackBar(
+                            message: "Coming Soon....", title: 'error'.tr));
                       },
                       child: Card(
                         color: AppColor.appBackGroundBrn,
