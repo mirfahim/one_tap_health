@@ -78,7 +78,7 @@ class MyDoctorAppointment {
   factory MyDoctorAppointment.fromJson(Map<String, dynamic> json) => MyDoctorAppointment(
     id: json["id"],
     appointmentNo: json["appointment_no"],
-    paymentStatus: json["payment_status"],
+    paymentStatus: json["payment_status"] ?? 0,
     amount: json["amount"],
     discount: json["discount"],
     serviceCharge: json["service_charge"],

@@ -7,6 +7,8 @@ import 'package:one_tap_health/service/local_notification/notification_service.d
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../../routes/app_pages.dart';
+
 
 
 
@@ -16,10 +18,12 @@ class LoginView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      backgroundColor: AppColor.figmaBackGround,
+
       appBar: AppBar(
-        backgroundColor: AppColor.blueHos,
+        backgroundColor: AppColor.figmaBackGround,
         title: Text("Sign In Now"),
+        elevation: 0,
         centerTitle: true,
 
 
@@ -49,7 +53,7 @@ class LoginView extends GetView<AuthController> {
                           children: <Widget>[
                             TextFormField(
                               maxLines: 1,
-                              controller: controller.emailController.value,
+                              controller: controller.phoneController.value,
                               decoration: new InputDecoration(
                                 labelText: 'Mobile',
                                 suffixIcon: Icon(
@@ -111,7 +115,7 @@ class LoginView extends GetView<AuthController> {
                         height: controller.visible.value == 1 ? 50 : 60,
                         width: controller.visible.value == 1 ? 50 : 140,
                         decoration: BoxDecoration(
-                            color: AppColor.blueHos,
+                            color: AppColor.figmaRed,
                             borderRadius:
                             BorderRadius.circular(controller.visible.value == 1 ? 60 : 10)),
                         alignment: Alignment.center,
@@ -131,22 +135,23 @@ class LoginView extends GetView<AuthController> {
                     ),
                     Text("Forgot Password?"),
                     Spacer(),
-                    Container(
-                        height: 40,
-                        width: Get.width,
-                        color: AppColor.blueHos,
-                        child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Do not have an account?", style: TextStyle(color: Colors.white),),
-                                GestureDetector(
-                                  onTap: (){
-                                    Get.to(RegistrationView());
-                                  },
-                                    child: Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 15),)),
-                              ],
-                            )))
+                    InkWell(
+                      onTap: (){
+                        Get.toNamed(Routes.PHONESCREEN);
+                      },
+                      child: Container(
+                          height: 40,
+                          width: Get.width,
+                          color: AppColor.figmaRed,
+                          child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Do not have an account?", style: TextStyle(color: Colors.white),),
+                                  Text("Create Account", style: TextStyle(color: Colors.white, fontSize: 15),),
+                                ],
+                              ))),
+                    )
 
                   ],
                 ),

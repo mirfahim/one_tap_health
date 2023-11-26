@@ -55,6 +55,7 @@ class Hospital {
   String? address1;
   String?latitude;
   String? longitude;
+  String? disID;
   String? photo;
   List<TestsPrice>? testsPrice;
 
@@ -67,6 +68,7 @@ class Hospital {
      this.longitude,
      this.photo,
      this.testsPrice,
+    this.disID,
   });
 
   factory Hospital.fromJson(Map<String, dynamic> json) => Hospital(
@@ -75,6 +77,7 @@ class Hospital {
     branch: json["branch"],
     address1: json["address1"],
     latitude: json["latitude"],
+    disID: json["district_id"].toString(),
     longitude: json["longitude"],
     photo: json["photo"],
     testsPrice: List<TestsPrice>.from(json["tests_price"].map((x) => TestsPrice.fromJson(x))),
@@ -87,6 +90,7 @@ class Hospital {
     "address1": address1,
     "latitude": latitude,
     "longitude": longitude,
+    "district_id": disID,
     "photo": photo,
     "tests_price": List<dynamic>.from(testsPrice!.map((x) => x.toJson())),
   };

@@ -22,13 +22,41 @@ class PreviewAppointmentView extends GetView<DoctorController> {
     var _size = MediaQuery.of(context).size;
     return Obx(() {
       return Scaffold(
+        backgroundColor: AppColor.figmaBackGround,
         appBar: AppBar(
+          backgroundColor: AppColor.figmaBackGround,
           title: Text("Appointment Preview"),
+          elevation: 0,
           centerTitle: true,
         ),
         bottomNavigationBar: InkWell(
           onTap: () {
-            controller.makeAppointMentOrder();
+            showDialog<void>(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: Text('OneTapHealth'),
+                content: Text('Confirm your appointment!'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      controller.makeAppointMentOrder();
+                    },
+                    child: controller.payCircular.value == false ?  Text('Confirm') : CircularProgressIndicator(),
+                  ),
+                  TextButton(
+                    onPressed: () {
+
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Decline',
+                      style: TextStyle(color: AppColor.figmaRed),
+                    ),
+                  )
+                ],
+              ),
+            );
+
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -37,7 +65,7 @@ class PreviewAppointmentView extends GetView<DoctorController> {
               height: controller.previewVisible.value == 1 ? 50 : 60,
               width: controller.previewVisible.value == 1 ? 50 : 140,
               decoration: BoxDecoration(
-                  color: AppColor.blueHos,
+                  color: AppColor.figmaRed,
                   borderRadius: BorderRadius.circular(
                       controller.previewVisible.value == 1 ? 60 : 10)),
               alignment: Alignment.center,
@@ -79,9 +107,9 @@ class PreviewAppointmentView extends GetView<DoctorController> {
                         ),
                       ),
                       ListTile(
-                        title: Text("Total Test Price"),
+                        title: Text("Service Charge"),
                         trailing: Text(
-                          "${controller.scheduleList.value[index].doctoFee} TK",
+                          "20 TK",
                           style: TextStyle(fontWeight: FontWeight.normal),
                         ),
                       ),
@@ -91,7 +119,7 @@ class PreviewAppointmentView extends GetView<DoctorController> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Text(
-                          "${controller.scheduleList.value[index].doctoFee}"
+                          "20"
                           " TK",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
@@ -278,9 +306,8 @@ class PreviewAppointmentView extends GetView<DoctorController> {
                             clipBehavior: Clip.hardEdge,
                             padding: EdgeInsets.only(top: 14),
                             decoration: BoxDecoration(
-                              color: false == false
-                                  ? AppColor.oneTapBg
-                                  : Colors.white,
+                              color:  AppColor.figmaRed.withOpacity(.2),
+                                
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Column(

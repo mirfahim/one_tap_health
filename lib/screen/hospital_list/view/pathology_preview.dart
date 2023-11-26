@@ -7,10 +7,12 @@ import 'package:one_tap_health/screen/hospital_list/controller/hospital_list_con
 import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:one_tap_health/screen/pathology_test/view/terms_and_condition.dart';
 
 import 'package:one_tap_health/utils.dart';
 import 'package:get/get.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
+import 'package:one_tap_health/utils/ui_support.dart';
 
 import '../../../service/auth_service.dart';
 
@@ -22,8 +24,12 @@ class PreviewTestViewFromHospital extends GetView<HospitalController> {
     var _size = MediaQuery.of(context).size;
     return Obx(() {
       return Scaffold(
+        backgroundColor: AppColor.figmaBackGround,
+
         appBar: AppBar(
-          title: Text("Test Details"),
+          backgroundColor: AppColor.figmaBackGround,
+          elevation: 0,
+          title: Text("Preview"),
           centerTitle: true,
         ),
         bottomNavigationBar: InkWell(
@@ -31,7 +37,21 @@ class PreviewTestViewFromHospital extends GetView<HospitalController> {
             // print("hlw ");
              List<int> testIds = controller.pathologyTestListID.map((testOrder) => testOrder.testId).toList();
             //
-             controller.makeTestOrder(testIds);
+             if(controller.selectedCheckinDate.toString().isNotEmpty){
+               if(controller.term.value == true &&controller.privacy.value == true &&controller.refund.value == true){
+                 controller.makeTestOrder(testIds);
+
+               }else {
+                 Get.showSnackbar(Ui.errorSnackBar(
+                     message: "Please tick on all check box to proceed",
+                     title: 'error'.tr));
+               }
+             }else{
+               Get.showSnackbar(Ui.errorSnackBar(
+                   message: "Please select a date",
+                   title: 'error'.tr));
+             }
+
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -40,7 +60,7 @@ class PreviewTestViewFromHospital extends GetView<HospitalController> {
               height: controller.previewVisible.value == 1 ? 50 : 60,
               width: controller.previewVisible.value == 1 ? 50 : 140,
               decoration: BoxDecoration(
-                  color: AppColor.blueHos,
+                  color: AppColor.figmaRed,
                   borderRadius:
                   BorderRadius.circular(controller.previewVisible.value == 1 ? 60 : 10)),
               alignment: Alignment.center,
@@ -352,8 +372,66 @@ class PreviewTestViewFromHospital extends GetView<HospitalController> {
                         },
                       ),
                     ),
+
                   ],
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Get.to(TermAndConditionWeb( paymrntLink: "https://www.onetaphealth.com/terms-condition",appBar: "Terms and Conditions",));
+                    },
+                    child: Text(
+                      "I agree on terms and conditions!",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  Checkbox(
+                      value: controller.term.value,
+                      onChanged: (v) {
+                        controller.term.value = v!;
+                      }),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Get.to(TermAndConditionWeb(paymrntLink: "https://www.onetaphealth.com/privacy-policy", appBar: "Privacy Policy",));
+                    },
+                    child: Text(
+                      "I agree on Privacy Policy",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  Checkbox(
+                      value: controller.privacy.value,
+                      onChanged: (v) {
+                        controller.privacy.value = v!;
+                      }),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Get.to(TermAndConditionWeb(paymrntLink: "https://www.onetaphealth.com/refund-policy", appBar: "Refund Policy",));
+                    },
+                    child: Text(
+                      "I agree on Refund policy",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  Checkbox(
+                      value: controller.refund.value,
+                      onChanged: (v) {
+                        controller.refund.value = v!;
+                      }),
+                ],
               ),
             ]),
           ),

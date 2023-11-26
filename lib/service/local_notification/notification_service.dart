@@ -37,10 +37,10 @@ class NotificationService {
   }
 
   Future showNotification(
-      {int id = 0, String? title, String? body, String? payLoad, tz.TZDateTime? time} ) async {
+      {int? id, String? title, String? body, String? payLoad, tz.TZDateTime? time} ) async {
     print("time is >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> $time");
     return notificationsPlugin.zonedSchedule(
-        0 ,
+        id! ,
         title,
         body,
         time!.add(Duration(seconds: 3)),

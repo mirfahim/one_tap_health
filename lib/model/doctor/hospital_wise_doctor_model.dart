@@ -58,8 +58,8 @@ class Result {
     name: json["name"],
     branch: json["branch"],
     address1: json["address1"],
-    latitude: json["latitude"],
-    longitude: json["longitude"],
+    latitude: json["latitude"] ?? "0.065675675",
+    longitude: json["longitude"] ?? "0.8787978",
     photo: json["photo"],
     schedule: List<ScheduleByHos>.from(json["schedule"].map((x) => ScheduleByHos.fromJson(x))),
   );
@@ -84,6 +84,7 @@ class ScheduleByHos {
   String doctorName;
   String doctorDegree;
   String doctorDepartment;
+  String bio;
   int doctorFee;
   int discount;
   int feeAfterDiscount;
@@ -98,6 +99,7 @@ class ScheduleByHos {
     required this.hospitalBranch,
     required this.hospitalAddress,
     required this.doctorName,
+    required this.bio,
     required this.doctorDegree,
     required this.doctorDepartment,
     required this.doctorFee,
@@ -112,6 +114,8 @@ class ScheduleByHos {
   factory ScheduleByHos.fromJson(Map<String, dynamic> json) => ScheduleByHos(
     id: json["id"],
     hospitalName: json["hospital_name"],
+    bio: json["doctor_bio"],
+
     hospitalBranch: json["hospital_branch"],
     hospitalAddress: json["hospital_address"],
     doctorName: json["doctor_name"],
@@ -136,6 +140,7 @@ class ScheduleByHos {
     "doctor_department": doctorDepartment,
     "doctor_fee": doctorFee,
     "discount": discount,
+    "doctor_bio": bio,
     "fee_after_discount": feeAfterDiscount,
     "doctorAvailableDay": doctorAvailableDay,
     "start_time": startTime,

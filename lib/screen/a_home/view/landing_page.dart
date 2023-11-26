@@ -44,14 +44,7 @@ class LandingView extends GetView<HomeController> {
                           width: MediaQuery.of(context).size.width,
                         ),
                       ),
-                      Positioned(
-                        child:   Center(
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.width * .30,
-                            width: MediaQuery.of(context).size.width * .30,
-                            child: Image.asset('images/Icons/onetaplogo.png',),
-                          ),
-                        ),)
+
                     ],
                   ),
                   SizedBox(
@@ -76,17 +69,17 @@ class LandingView extends GetView<HomeController> {
                     children: [
                       CircleAvatar(
                           radius: 10,
-                          backgroundColor: controller.landingPage.value == 1 ? AppColor.textColorGreen: Colors.white
+                          backgroundColor: controller.landingPage.value == 1 ? AppColor.figmaRed: Colors.white
                       ),
                       SizedBox(width: 5,),
                       CircleAvatar(
                         radius: 10,
-                        backgroundColor: controller.landingPage.value == 2? AppColor.textColorGreen:Colors.white,
+                        backgroundColor: controller.landingPage.value == 2? AppColor.figmaRed:Colors.white,
                       ),
                       SizedBox(width: 5,),
                       CircleAvatar(
                         radius: 10,
-                        backgroundColor:controller.landingPage.value == 3 ?AppColor.textColorGreen:Colors.white ,
+                        backgroundColor:controller.landingPage.value == 3 ?AppColor.figmaRed:Colors.white ,
                       ),
                     ],
                   ),
@@ -111,7 +104,7 @@ class LandingView extends GetView<HomeController> {
                       height:  60,
                       width:  MediaQuery.of(context).size.width * .9,
                       decoration: BoxDecoration(
-                          color: AppColor.textColorGreen,
+                          color: AppColor.figmaRed,
                           borderRadius: BorderRadius.circular(10)),
                       alignment: Alignment.center,
                       child:  Text(

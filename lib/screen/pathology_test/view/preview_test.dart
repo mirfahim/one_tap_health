@@ -6,10 +6,13 @@ import 'package:one_tap_health/screen/a_home/controller/home_controller.dart';
 import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:one_tap_health/screen/pathology_test/view/terms_and_condition.dart';
+import 'package:one_tap_health/service/auth_service.dart';
 
 import 'package:one_tap_health/utils.dart';
 import 'package:get/get.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
+import 'package:one_tap_health/utils/ui_support.dart';
 
 class PreviewTestView extends GetView<PathologyController> {
   const PreviewTestView({Key? key}) : super(key: key);
@@ -19,37 +22,48 @@ class PreviewTestView extends GetView<PathologyController> {
     var _size = MediaQuery.of(context).size;
     return Obx(() {
       return Scaffold(
+        backgroundColor: AppColor.figmaBackGround,
         appBar: AppBar(
+          backgroundColor: AppColor.figmaBackGround,
+          elevation: 0,
           title: Text("Test Details"),
           centerTitle: true,
         ),
         bottomNavigationBar: InkWell(
           onTap: () {
             print("hlw ");
-            List<int> testIds = controller.orderModel[0].testIdList.map((testOrder) => testOrder.id).toList();
-
-            controller.makeTestOrder(testIds, controller.orderModel[0].hospitalName);
+            List<int> testIds = controller.orderModel[0].testIdList
+                .map((testOrder) => testOrder.id)
+                .toList();
+            if (controller.term.value == true && controller.privacy.value == true && controller.refund.value == true) {
+              controller.makeTestOrder(
+                  testIds, controller.orderModel[0].hospitalName);
+            } else {
+              Get.showSnackbar(Ui.errorSnackBar(
+                  message: "Please select all the checkmark to proceed",
+                  title: 'error'.tr));
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child:  AnimatedContainer(
+            child: AnimatedContainer(
               duration: Duration(seconds: 2),
               height: controller.previewVisible.value == 1 ? 50 : 60,
               width: controller.previewVisible.value == 1 ? 50 : 140,
               decoration: BoxDecoration(
-                  color: AppColor.blueHos,
-                  borderRadius:
-                  BorderRadius.circular(controller.previewVisible.value == 1 ? 60 : 10)),
+                  color: AppColor.figmaRed,
+                  borderRadius: BorderRadius.circular(
+                      controller.previewVisible.value == 1 ? 60 : 10)),
               alignment: Alignment.center,
               child: controller.previewVisible.value == 1
                   ? Center(child: CircularProgressIndicator())
                   : Text(
-                "Make Order",
-                style: TextStyle(
-                  color: AppColor.backgroundColor,
-                  fontSize: 12,
-                ),
-              ),
+                      "Make Order",
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 12,
+                      ),
+                    ),
             ),
           ),
         ),
@@ -62,8 +76,12 @@ class PreviewTestView extends GetView<PathologyController> {
                 child: Container(
                   child: Column(
                     children: [
-                      Text("Selected Test matched: ${controller.orderModel[0].testIdList.length}/${controller.pathologyTestListID.value.length}"),
-                      Text("Hospital Name: ${controller.orderModel[0].hospitalName}", style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text(
+                          "Selected Test matched: ${controller.orderModel[0].testIdList.length}/${controller.pathologyTestListID.value.length}"),
+                      Text(
+                        "Hospital Name: ${controller.orderModel[0].hospitalName}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       Container(
                         height: MediaQuery.of(context).size.height * .3,
                         child: ListView.builder(
@@ -77,7 +95,12 @@ class PreviewTestView extends GetView<PathologyController> {
                                   children: [
                                     ListTile(
                                       title: Text(data.name!),
-                                      trailing: Text(data.price, style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
+                                      trailing: Text(
+                                        data.price,
+                                        style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                       //  subtitle: Text(data.branch!),
                                     ),
                                   ],
@@ -85,8 +108,6 @@ class PreviewTestView extends GetView<PathologyController> {
                               );
                             }),
                       ),
-
-
                       Divider(),
                       ListTile(
                         title: Text("Discount"),
@@ -108,9 +129,10 @@ class PreviewTestView extends GetView<PathologyController> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Text(
-                          "${controller.orderModel[0].testIdList.fold(0.0, (sum, testOrder) => sum + double.parse(testOrder.price))-controller.orderModel[0].testIdList.fold(0.0, (sum, testOrder) => sum + double.parse(testOrder.discount))}"
-                              " TK",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                          "${controller.orderModel[0].testIdList.fold(0.0, (sum, testOrder) => sum + double.parse(testOrder.price)) - controller.orderModel[0].testIdList.fold(0.0, (sum, testOrder) => sum + double.parse(testOrder.discount))}"
+                          " TK",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
                     ],
@@ -247,7 +269,7 @@ class PreviewTestView extends GetView<PathologyController> {
                                           color: Colors.black54),
                                     ),
                                     Text(
-                                      "Mr. Hasan",
+                                      Get.find<AuthService>().currentUser.value.user!.name.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           color: Colors.black),
@@ -281,7 +303,7 @@ class PreviewTestView extends GetView<PathologyController> {
                   controller: controller.dueDateController.value,
                   readOnly: true,
                   onTap: () {
-                   controller.selectTestDate(context);
+                    controller.selectTestDate(context);
                   },
                   onChanged: (value) {
                     // _productController.searchProduct(value);
@@ -352,6 +374,64 @@ class PreviewTestView extends GetView<PathologyController> {
                   ],
                 ),
               ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Get.to(TermAndConditionWeb( paymrntLink: "https://www.onetaphealth.com/terms-condition",appBar: "Terms and Conditions",));
+                    },
+                    child: Text(
+                      "I agree on terms and conditions!",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  Checkbox(
+                      value: controller.term.value,
+                      onChanged: (v) {
+                        controller.term.value = v!;
+                      }),
+                ],
+              ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          Get.to(TermAndConditionWeb(paymrntLink: "https://www.onetaphealth.com/privacy-policy", appBar: "Privacy Policy",));
+                        },
+                        child: Text(
+                          "I agree on Privacy Policy",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                      Checkbox(
+                          value: controller.privacy.value,
+                          onChanged: (v) {
+                            controller.privacy.value = v!;
+                          }),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          Get.to(TermAndConditionWeb(paymrntLink: "https://www.onetaphealth.com/refund-policy", appBar: "Refund Policy",));
+                        },
+                        child: Text(
+                          "I agree on Refund policy",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                      ),
+                      Checkbox(
+                          value: controller.refund.value,
+                          onChanged: (v) {
+                            controller.refund.value = v!;
+                          }),
+                    ],
+                  ),
             ]),
           ),
         ),

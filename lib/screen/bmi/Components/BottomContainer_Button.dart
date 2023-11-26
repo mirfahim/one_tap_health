@@ -12,15 +12,15 @@ class BottomContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: AppColor.blueHos,
-        margin: EdgeInsets.only(top: 10.0),
+        color: AppColor.figmaRed,
+        margin: EdgeInsets.all(5),
         width: double.infinity,
-        height: kbottomContainerHeight,
-        padding: EdgeInsets.only(bottom: 15.0),
+        height: 50,
+        padding: EdgeInsets.only(bottom: 5.0),
         child: Center(
           child: Text(
             text,
-            style: klargeBottomButtonTextStyle,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.white),
           ),
         ),
       ),

@@ -25,7 +25,7 @@ class HDCell extends StatelessWidget {
         height: 199,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: AppColor.appBackGroundBrn,
+          color: AppColor.figmaRed.withOpacity(.2),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(
@@ -60,14 +60,7 @@ class HDCell extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  Text(
-                    'Dr.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+
                   Text(
                     doctor!.name!,
                     style: TextStyle(

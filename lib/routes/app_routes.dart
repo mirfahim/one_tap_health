@@ -19,7 +19,12 @@ abstract class Routes {
   static const BROWSEJOB = _Paths.BROWSEJOB;
   static const CONTRACTORLISTVIEW = _Paths.CONTRACTORLISTVIEW;
   static const MYORDERTEST = _Paths.MYORDERTEST;
+  static const BLOODREQUEST = _Paths.BLOODREQUEST;
+  static const BLOODFORM = _Paths.BLOODFORM;
+  static const EMERGENCYHOME = _Paths.EMERGENCYHOME;
+  static const MEDSTUDY = _Paths.MEDSTUDY;
 
+  static const DOCTORCATEGORYLIST = _Paths.DOCTORCATEGORYLIST;
   static const DOCTOR = _Paths.DOCTOR;
   static const DOCTORDETAIL = _Paths.DOCTORDETAIL;
   static const BASE = _Paths.BASE;
@@ -28,26 +33,51 @@ abstract class Routes {
   static const MEDREMINDER = _Paths.MEDREMINDER;
   static const LANDING = _Paths.LANDING;
   static const PAYMENTWEB = _Paths.PAYMENTWEB;
+  static const PAYAPPOINTMENT = _Paths.PAYAPPOINTMENT;
+  static const REPORTPDFPREVIEW = _Paths.REPORTPDFPREVIEW;
+  static const PROFILEEDIT = _Paths.PROFILEEDIT;
+
   static const HOSPITALWISETEST = _Paths.HOSPITALWISETEST;
+  static const PHONESCREEN = _Paths.PHONESCREEN;
+  static const OTPSCREEN = _Paths.OTPSCREEN;
+  static const PAY = _Paths.PAY;
+  static const TRACKORDER = _Paths.TRACKORDER;
+
+  static const REGISTER = _Paths.REGISTER;
+  static const MEDDETAILS = _Paths.MEDDETAILS;
+  static const REPORTPROGRESSTAB = _Paths.REPORTPROGRESSTAB;
 
 
 }
 
 abstract class _Paths {
   _Paths._();
+  static const BLOODREQUEST = '/blood_request';
+  static const PROFILEEDIT = '/profile-edit';
+  static const REPORTPROGRESSTAB = '/report-progress-tab';
 
+  static const MEDDETAILS = '/med-details';
+  static const REPORTPDFPREVIEW = '/pdf-report';
+  static const EMERGENCYHOME = '/emergency-home';
+  static const REGISTER = '/register';
+  static const TRACKORDER = '/track_order';
   static const POSTPROJECT = '/post_project';
   static const DOCTOR = '/doctor';
   static const LANDING = '/landing';
   static const PROFILE = '/profile';
   static const DOCTORDETAIL = '/detail';
+  static const PAY ='/success-hospital';
+  static const DOCTORCATEGORYLIST = '/doctor_category';
   static const CREATEESTIMATION = '/estimation';
   static const HOME = '/home';
   static const TESTHOSPITAL = '/hospital';
   static const PAYMENTWEB = '/payment-web';
   static const HOSPITALWISETEST = '/hospital-wise-test';
   static const MYORDERTEST = '/my-order-test';
-
+  static const PAYAPPOINTMENT = '/my-order-test';
+  static const MEDSTUDY = '/med-study';
+  static const PHONESCREEN = '/phone-screen';
+  static const OTPSCREEN = '/otp-screen';
   static const TESTSUCCESS = '/test-success';
   static const MEDREMINDER = '/madereminder';
   static const TESTCAT = '/testcategory';
@@ -61,5 +91,6 @@ abstract class _Paths {
   static const MENUPAGE = '/menuPage';
   static const SPLASHSCREEN = '/splashscreen';
   static const BROWSEJOB = '/browsejob';
+  static const BLOODFORM = '/blood-form';
 
 }

@@ -1,9 +1,11 @@
-
+import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tap_health/screen/bmi/Components/BottomContainer_Button.dart';
 import 'package:one_tap_health/screen/bmi/constants.dart';
+import 'package:one_tap_health/service/lang_service.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
+import '../../profile/controller/profile_controller.dart';
 import '../Components/Reusable_Bg.dart';
 
 class ResultPage extends StatelessWidget {
@@ -21,10 +23,15 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.figmaBackGround,
       appBar: AppBar(
-        backgroundColor: AppColor.blueHos,
+        backgroundColor: AppColor.figmaBackGround,
+        elevation: 0,
         title: Center(
-          child: Text('BMI CALCULATOR'),
+          child:Get.find<ProfileController>().isBanglaControler.isTrue ?
+          Text(BangLang.bmi_calculator, style: TextStyle(color: Colors.black),):
+
+          Text('BMI CALCULATOR', style: TextStyle(color: Colors.black),),
         ),
       ),
       body: Column(
@@ -35,15 +42,21 @@ class ResultPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(15.0),
               alignment: Alignment.bottomCenter,
-              child: Text(
+              child:Get.find<ProfileController>().isBanglaControler.isTrue ?Text(
+                BangLang.result,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColor.figmaRed ),
+              ): Text(
                 'Your Result',
-                style: ktitleTextStyle,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, ),
+
               ),
             ),
           ),
           Expanded(
             flex: 5,
             child: ReusableBg(
+              borderclr:
+                   AppColor.figmaRed,
               colour: kactiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,13 +74,18 @@ class ResultPage extends StatelessWidget {
                     bmi,
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
                   ),
+                  Get.find<ProfileController>().isBanglaControler.isTrue ?
+                  Text(
+                    BangLang.normal_bmi,
+                    style: klabelTextStyle,
+                  ):
                   Text(
                     'Normal BMI range:',
                     style: klabelTextStyle,
                   ),
                   Text(
                     '18.5 - 25 kg/m2',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                    style: TextStyle(color: AppColor.white, fontWeight: FontWeight.bold, fontSize: 22),
 
                   ),
                   Text(
@@ -89,7 +107,11 @@ class ResultPage extends StatelessWidget {
                     elevation: 0.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
-                    child: Text(
+                    child:Get.find<ProfileController>().isBanglaControler.isTrue ? Text(
+                     BangLang.save_result,
+                      style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 20),
+
+                    ): Text(
                       'SAVE RESULT',
                       style: TextStyle(color: Colors.black54, fontWeight: FontWeight.bold, fontSize: 20),
 
@@ -100,7 +122,7 @@ class ResultPage extends StatelessWidget {
             ),
           ),
           BottomContainer(
-              text: 'RE-CALCULATE',
+              text: Get.find<ProfileController>().isBanglaControler.isTrue ? BangLang.re_calculate:'RE-CALCULATE',
               onTap: () {
                 Navigator.pop(context);
               }),

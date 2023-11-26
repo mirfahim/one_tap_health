@@ -36,10 +36,13 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
     int argumentData = Get.arguments[0];
     var data = controller.doctorScheduleList[argumentData];
     return Scaffold(
+      backgroundColor: AppColor.figmaBackGround,
+
       appBar: AppBar(
-        backgroundColor: AppColor.blueHos,
+        backgroundColor: AppColor.figmaBackGround,
         title: Text("Doctor Details"),
         centerTitle: true,
+        elevation: 0,
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
@@ -52,7 +55,7 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
             height: 40,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: AppColor.blueHos,
+                color: AppColor.figmaRed,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Center(
               child: Text(
@@ -71,7 +74,7 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
           children: [
             Container(
               height: 250,
-              color: AppColor.appBackGroundBrn,
+              color: AppColor.figmaRed.withOpacity(.2),
               child: Stack(
                 children: [
                   Align(
@@ -137,7 +140,7 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                             width: 4,
                           ),
                           Icon(
-                            CustomIcons.star,
+                            Icons.star,
                             color: Colors.white,
                             size: 14,
                           ),
@@ -157,7 +160,7 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dr.' + data.doctorName,
+                   data.doctorName,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,
@@ -165,31 +168,21 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                     ),
                   ),
                   SizedBox(
-                    height: 8,
+                    height: 5,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        CustomIcons.pin_location,
-                        size: 14,
-                        color: AppColor.oneTapBg,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        'Melbourn, Australia',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+
+                  Text(
+                    data.doctorDegree,
+                    style: TextStyle(
+                      color: AppColor.textColorBlack,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 5,
                   ),
+
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     decoration: BoxDecoration(
@@ -210,7 +203,7 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                     height: 32,
                   ),
                   Text(
-                    'Dr. Albert Alexanderis a Renal Physician who has comprehensive expertise in the fields of Renal Medicine and Internal Medicine. While Dr Ho specializes in dialysis and critical care nephrology, years of extensive training have also equipped him with skills to effectively handle a wide range of other kidney diseases, including kidney impairment, inflammation, infection and transplantation.',
+                  data.bio,
                     style: TextStyle(
                       color: Colors.black54,
                       fontSize: 14,
@@ -227,24 +220,14 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                       children: [
                         DetailCell(title: '162', subTitle: 'Patients'),
                         DetailCell(title: '4+', subTitle: 'Exp. Years'),
-                        DetailCell(title: '4273', subTitle: 'Rating'),
+                        DetailCell(title: data.feeAfterDiscount.toString(), subTitle: 'Fee'),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: 32,
                   ),
-                  Text(
-                    'Apart from kidney-related conditions, Dr Ho also offers care and consultation in various medical conditions that are related to kidney disease, such as hypertension, diabetes and vascular diseases.',
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 32,
-                  ),
+
                   Text(
                     'Appointment Time',
                     style: TextStyle(

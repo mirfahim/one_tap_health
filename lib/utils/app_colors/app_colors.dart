@@ -9,7 +9,7 @@ class AppColor {
   static Color textColorWhite = Color(0xffffffff);
   static Color textColorGrey = Colors.grey;
   static Color textColorGreen=Color(0xff2ECC71);
-
+//
   static Color textColorBlack=Colors.black;
   static Color textColorRed=Colors.red;
   static Color textColorBlue=Colors.blue;
@@ -17,9 +17,10 @@ class AppColor {
   static Color colorBlue=Colors.blue;
   static Color cuteColor1 = Colors.pink;
   static  Color appBackGroundBrn =HexColor("#FDF0C3");
+  static  Color colorBlueHos =HexColor("#94D8E5");
   static Color blueHos=HexColor("#a9d9e7");
-
   static  Color buttonColorYellow = HexColor("#FFCE4E");
+  static  Color hosLightred = HexColor("#219C90");
   static  Color jaygaWhite = HexColor("#FFFCF3");
   static  Color oneTapBg = HexColor("#DFA878");
   static  Color white = Colors.white;
@@ -32,6 +33,11 @@ class AppColor {
   static const secondary = Color(0xFF7C7D7E);
   static const placeholder = Color(0xFFB6B7B7);
   static const placeholderBg = Color(0xFFF2F2F2);
+  //
+  static Color figmaRed = HexColor("#B92025");
+  static Color figmaBackGround = HexColor("#F9FAFB");
+
+
 
 
 }

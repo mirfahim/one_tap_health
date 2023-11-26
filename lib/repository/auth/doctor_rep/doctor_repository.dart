@@ -7,17 +7,36 @@ import 'package:one_tap_health/api_provider/api_url.dart';
 import 'package:one_tap_health/service/auth_service.dart';
 
 class DoctorRepository {
-  Future doctorList() async {
+  Future doctorList(page) async {
     APIManager _manager = APIManager();
     final response = await _manager.getWithHeader(
-      ApiUrl.doctorList,
+      "${ApiUrl.doctorList}?page=$page",
       {'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",},
     );
     print("login response is $response");
 
     return response;
   }
+  Future doctorDepartementList() async {
+    APIManager _manager = APIManager();
+    final response = await _manager.getWithHeader(
+      ApiUrl.doctorDepartments,
+      {'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",},
+    );
+    print("department response is $response");
 
+    return response;
+  }
+  Future callPayment(appID) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICall(ApiUrl.appointmentPayLink,
+      {"doctor_appointment_id": appID.toString()},
+      //headerr: {'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",},
+    );
+    print("ssl response is $response");
+
+    return response;
+  }
   Future docotorSchedule(String ID,) async {
     APIManager _manager = APIManager();
     final response = await _manager.getWithHeader(

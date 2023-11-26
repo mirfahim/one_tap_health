@@ -25,290 +25,430 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Column(
+      child: Obx(
+        () {
+          return Column(
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  "images/banner/banner1.jpeg",
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SafeArea(
-                child: Column(
-                  children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.asset(
+                      "images/banner/banner1.jpeg",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  SafeArea(
+                    child: Column(
+                      children: [
 
 
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 1.5,
-                      width: double.infinity,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30.0),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 1.2,
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 30),
-                              decoration: ShapeDecoration(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(40),
-                                    topRight: Radius.circular(40),
-                                  ),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          controller.hospitalName.value,
-                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            right: 0,
-                                          ),
-                                          child: Align(
-                                            alignment: Alignment.topRight,
-                                            child: CircleAvatar(
-                                              radius: 12,
-                                              child: Icon(Icons.favorite_rounded, size: 15,),
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 1.5,
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 30.0),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height * 1.2,
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 30),
+                                  decoration: ShapeDecoration(
+                                    color: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(40),
+                                        topRight: Radius.circular(40),
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Row(
-                                              children: [
-                                                Image.asset(
-                                                  Helper.getAssetName(
-                                                      "star_filled.png",
-                                                      "new_icon"),
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Image.asset(
-                                                  Helper.getAssetName(
-                                                      "star_filled.png",
-                                                      "new_icon"),
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Image.asset(
-                                                  Helper.getAssetName(
-                                                      "star_filled.png",
-                                                      "new_icon"),
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Image.asset(
-                                                  Helper.getAssetName(
-                                                      "star_filled.png",
-                                                      "new_icon"),
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                                Image.asset(
-                                                  Helper.getAssetName(
-                                                      "star.png",
-                                                      "new_icon"),
-                                                ),
-                                                SizedBox(
-                                                  width: 8,
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
                                             Text(
-                                              controller.hospitalBranch.value,
-                                              style: TextStyle(
-                                                color: AppColor.orange,
-                                                fontSize: 12,
+                                              controller.hospitalName.value,
+                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                right: 0,
+                                              ),
+                                              child: Align(
+                                                alignment: Alignment.topRight,
+                                                child: CircleAvatar(
+                                                  radius: 12,
+                                                  child: Icon(Icons.favorite_rounded, size: 15,),
+                                                ),
                                               ),
                                             )
                                           ],
                                         ),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                            children: [
-                                              SizedBox(
-                                                height: 20,
-                                              ),
-                                              Text(
-                                                "Pathology Test: ${controller.activeTestList.value.length}",
-                                                style: TextStyle(
-                                                  color: AppColor.primary,
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.normal,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Image.asset(
+                                                      Helper.getAssetName(
+                                                          "star_filled.png",
+                                                          "new_icon"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Image.asset(
+                                                      Helper.getAssetName(
+                                                          "star_filled.png",
+                                                          "new_icon"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Image.asset(
+                                                      Helper.getAssetName(
+                                                          "star_filled.png",
+                                                          "new_icon"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Image.asset(
+                                                      Helper.getAssetName(
+                                                          "star_filled.png",
+                                                          "new_icon"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    Image.asset(
+                                                      Helper.getAssetName(
+                                                          "star.png",
+                                                          "new_icon"),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                  ],
                                                 ),
-                                              ),
-                                              Text(
-                                                "Doctors: ${controller.activeTestList.value.length}",
-                                                style: TextStyle(
-                                                  color: AppColor.primary,
-                                                  fontSize: 12,
-                                                  fontWeight:
-                                                  FontWeight.normal,
+                                                SizedBox(
+                                                  height: 5,
                                                 ),
+                                                Text(
+                                                  controller.hospitalBranch.value,
+                                                  style: TextStyle(
+                                                    color: AppColor.orange,
+                                                    fontSize: 12,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  Text(
+                                                    "Pathology Test: ${controller.activeTestList.value.length.toString()}",
+                                                    style: TextStyle(
+                                                      color: AppColor.primary,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "Doctors: ${controller.doctorScheduleList.value.length.toString()}",
+                                                    style: TextStyle(
+                                                      color: AppColor.primary,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                      FontWeight.normal,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Text(
-                                        "Description",
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Text(
+                                            "Description",
+                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
 
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Text(
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare leo non mollis id cursus. Eu euismod faucibus in leo malesuada",
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Divider(
-                                      color: AppColor.placeholder,
-                                      thickness: 1.5,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            "Pathology Test Available",
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Text(
+                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare leo non mollis id cursus. Eu euismod faucibus in leo malesuada",
+                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Divider(
+                                          color: AppColor.placeholder,
+                                          thickness: 1.5,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text(
+                                                    "Pathology Test Available",
+                                                    style: Helper.getTheme(context)
+                                                        .bodyMedium
+
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Container(
+                                                    height: 50,
+                                                    width: MediaQuery.of(context).size.width *.5,
+                                                    child: TextField(
+                                                      onChanged: (e) {
+                                                        controller.setSearchText(e);
+                                                        // controller.contactsResult.value =
+                                                        //     _search(controller.contacts.value);
+                                                      },
+                                                      controller: controller.searchController.value,
+                                                      decoration: InputDecoration(
+                                                          labelText: "Search",
+                                                          hintText: "Search",
+                                                          prefixIcon: Icon(Icons.search),
+                                                          border: OutlineInputBorder(
+                                                              borderRadius:
+                                                              BorderRadius.all(Radius.circular(25.0)))),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context).size.width * .04,
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                InkWell(
+                                                  onTap: (){
+                                                    if(controller.pathologyTestListID.isEmpty == true){
+                                                      Get.showSnackbar(Ui.errorSnackBar(
+                                                          message: "Please select atleast one test to see order preview", title: 'error'.tr));
+                                                    }else {
+                                                      Get.to(PreviewTestViewFromHospital());
+                                                    }
+
+                                                  },
+                                                  child:
+                                                  Container(
+                                                        width: 100,
+                                                        height: 30,
+                                                        clipBehavior: Clip.hardEdge,
+
+                                                        decoration: BoxDecoration(
+                                                          color: controller.pathologyTestListID.isEmpty == true? Colors.grey :AppColor.figmaRed,
+                                                          borderRadius: BorderRadius.circular(16),
+                                                        ),
+                                                        child: Center(
+                                                            child: Text("Show Cart", style: TextStyle(color: Colors.white, fontSize:  12),)),
+                                                      ),
+
+                                                ),
+                                                Text("Selected Tests: ${controller.pathologyTestListID.length}")
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: MediaQuery.of(context).size.height * .3,
+                                        child: controller.activeTestList.value.isEmpty ? Center(
+                                          child: Text("No Test Available"),
+                                        )
+                                        :GridView.builder(
+                                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 4,
+                                              crossAxisSpacing: 5.0,
+                                              mainAxisSpacing: 5.0,
+                                              childAspectRatio: .5,
+                                            ),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: controller.filteredTestList.length,
+                                            itemBuilder: (BuildContext context, int index) {
+                                              var data = controller.filteredTestList[index];
+                                              return GestureDetector(
+                                                  onTap: () {
+
+                                                    controller.addOrRemoveDataInTestList(data);
+
+                                                    print("my hospital id is ${controller.hospitalId.value}");
+                                                    // controller.pathologyController.hospitalBranch.value = controller.hospitalBranch.value;
+                                                    // controller.pathologyController.price.value = data.price;
+                                                    // controller.pathologyController.testDes.value = data.description ?? "No Description";
+                                                    // controller.pathologyController.testName.value = data.testTitle;
+
+
+
+                                                  },
+
+                                                  child: Obx(
+                                                     () {
+                                                      return Container(
+                                                        width: 100,
+                                                        height: 100,
+                                                        clipBehavior: Clip.hardEdge,
+                                                        padding: EdgeInsets.only(top: 14),
+                                                        decoration: BoxDecoration(
+                                                          color: controller.pathologyTestListID.contains(data) ? AppColor.textColorGreen :AppColor.figmaRed.withOpacity(.4),
+                                                          borderRadius: BorderRadius.circular(16),
+                                                        ),
+                                                        child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Padding(
+                                                              padding: EdgeInsets.only(left: 10),
+                                                              child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: [
+
+                                                                  Text(
+                                                                    data.testTitle,
+                                                                    style: TextStyle(
+                                                                      color: AppColor.textColorBlack,
+                                                                      fontWeight: FontWeight.w700,
+                                                                      fontSize: 10,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Stack(
+                                                              children: [
+                                                                Container(
+                                                                  height: 20,
+                                                                  width: 80,
+                                                                  decoration: BoxDecoration(
+                                                                      color: AppColor.figmaRed,
+                                                                      borderRadius:
+                                                                      BorderRadius.only(topRight: Radius.circular(10))),
+                                                                ),
+                                                                Positioned(
+                                                                  left: 16,
+                                                                  child: Text(
+                                                                    data.price!.toString() + "Tk",
+                                                                    style: TextStyle(
+                                                                      color: AppColor.textColorWhite,
+                                                                      fontSize: 12,
+                                                                      fontWeight: FontWeight.w400,
+                                                                    ),
+                                                                  ),
+                                                                ),
+
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    }
+                                                  )
+
+                                              );
+                                            }),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        child: Text(
+                                            "Doctor Available",
                                             style: Helper.getTheme(context)
                                                 .bodyMedium
 
                                         ),
-                                        InkWell(
-                                          onTap: (){
-                                            if(controller.pathologyTestListID.isEmpty == true){
-                                              Get.showSnackbar(Ui.errorSnackBar(
-                                                  message: "Please select atleast one test to see order preview", title: 'error'.tr));
-                                            }else {
-                                              Get.to(PreviewTestViewFromHospital());
-                                            }
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: MediaQuery.of(context).size.height * .3,
+                                        child: controller.doctorScheduleList.value.isEmpty ?   Center(
+                                          child: Text("No Doctor Available"),
+                                        )
+                                            :GridView.builder(
+                                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 5.0,
+                                              mainAxisSpacing: 5.0,
+                                              childAspectRatio: .5
+                                            ),
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: controller.doctorScheduleList.length,
+                                            itemBuilder: (BuildContext context, int i) {
+                                              var data = controller.doctorScheduleList[i];
+                                              return GestureDetector(
+                                                  onTap: () {
 
-                                          },
-                                          child: Obx(
-                                             () {
-                                              return Container(
-                                                width: 100,
-                                                height: 30,
-                                                clipBehavior: Clip.hardEdge,
+                                                    controller.pathologyController.hospitalName.value = controller.hospitalName.value;
+                                                    controller.pathologyController.hospitalBranch.value = controller.hospitalBranch.value;
+                                                    controller.doctorAvailableDayList.value = data.doctorAvailableDay.split(", ");
 
-                                                decoration: BoxDecoration(
-                                                  color: controller.pathologyTestListID.isEmpty == true? Colors.grey :AppColor.textColorGreen,
-                                                  borderRadius: BorderRadius.circular(16),
-                                                ),
-                                                child: Center(
-                                                    child: Text("Make Order", style: TextStyle(color: Colors.white, fontSize:  12),)),
-                                              );
-                                            }
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height * .3,
-                                    child: controller.activeTestList.value.isEmpty ? Center(
-                                      child: Text("No Test Available"),
-                                    )
-                                    :GridView.builder(
-                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 4,
-                                          crossAxisSpacing: 5.0,
-                                          mainAxisSpacing: 5.0,
-                                          childAspectRatio: .5,
-                                        ),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: controller.activeTestList.length,
-                                        itemBuilder: (BuildContext context, int index) {
-                                          var data = controller.activeTestList[index];
-                                          return GestureDetector(
-                                              onTap: () {
 
-                                                controller.addOrRemoveDataInTestList(data);
+                                                    Get.to(DoctorDetailFromHosScreen(), arguments: [i]);
 
-                                                print("my hospital id is ${controller.hospitalId.value}");
-                                                // controller.pathologyController.hospitalBranch.value = controller.hospitalBranch.value;
-                                                // controller.pathologyController.price.value = data.price;
-                                                // controller.pathologyController.testDes.value = data.description ?? "No Description";
-                                                // controller.pathologyController.testName.value = data.testTitle;
-
-                                                Get.toNamed(Routes.PREVIEWTEST);
-
-                                              },
-
-                                              child: Obx(
-                                                 () {
-                                                  return Container(
+                                                  },
+                                                  child: Container(
                                                     width: 100,
                                                     height: 100,
                                                     clipBehavior: Clip.hardEdge,
                                                     padding: EdgeInsets.only(top: 14),
                                                     decoration: BoxDecoration(
-                                                      color: controller.pathologyTestListID.contains(data) ? AppColor.textColorGreen :AppColor.oneTapBg,
+                                                      color: AppColor.figmaRed.withOpacity(.3),
                                                       borderRadius: BorderRadius.circular(16),
                                                     ),
                                                     child: Column(
@@ -320,13 +460,20 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-
+                                                              Icon(
+                                                                Icons.badge,
+                                                                size: 24,
+                                                                color:Colors.blue,
+                                                              ),
+                                                              SizedBox(
+                                                                height: 8,
+                                                              ),
                                                               Text(
-                                                                data.testTitle,
+                                                                data.doctorName,
                                                                 style: TextStyle(
                                                                   color: AppColor.textColorBlack,
                                                                   fontWeight: FontWeight.w700,
-                                                                  fontSize: 10,
+                                                                  fontSize: 12,
                                                                 ),
                                                               ),
                                                             ],
@@ -335,20 +482,20 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
                                                         Stack(
                                                           children: [
                                                             Container(
-                                                              height: 20,
-                                                              width: 80,
+                                                              height: 30,
+                                                              width: MediaQuery.of(context).size.width *.55,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor.blueHos,
+                                                                  color: AppColor.figmaRed,
                                                                   borderRadius:
                                                                   BorderRadius.only(topRight: Radius.circular(10))),
                                                             ),
                                                             Positioned(
                                                               left: 16,
                                                               child: Text(
-                                                                data.price!.toString() + "Tk",
+                                                                data.doctorDepartment!,
                                                                 style: TextStyle(
                                                                   color: AppColor.textColorWhite,
-                                                                  fontSize: 12,
+                                                                  fontSize: 16,
                                                                   fontWeight: FontWeight.w400,
                                                                 ),
                                                               ),
@@ -357,448 +504,338 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
                                                         ),
                                                       ],
                                                     ),
-                                                  );
-                                                }
-                                              )
+                                                  )
 
-                                          );
-                                        }),
+                                              );
+                                            }),
+                                      ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       horizontal: 20),
+                                      //   child: Container(
+                                      //     height: 50,
+                                      //     width: double.infinity,
+                                      //     padding: const EdgeInsets.only(
+                                      //         left: 30, right: 10),
+                                      //     decoration: ShapeDecoration(
+                                      //       shape: RoundedRectangleBorder(
+                                      //         borderRadius:
+                                      //         BorderRadius.circular(5),
+                                      //       ),
+                                      //       color: AppColor.placeholderBg,
+                                      //     ),
+                                      //     child: DropdownButtonHideUnderline(
+                                      //       child: DropdownButton(
+                                      //         hint: Row(
+                                      //           children: [
+                                      //             Text(
+                                      //                 "-Select the size of portion-"),
+                                      //           ],
+                                      //         ),
+                                      //         value: "default",
+                                      //         onChanged: (_) {},
+                                      //         items: [
+                                      //           DropdownMenuItem(
+                                      //             child: Text(
+                                      //                 "-Select the size of portion-"),
+                                      //             value: "default",
+                                      //           ),
+                                      //         ],
+                                      //         icon: Image.asset(
+                                      //           Helper.getAssetName(
+                                      //             "dropdown.png",
+                                      //             "new_icon",
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 5,
+                                      // ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       horizontal: 20),
+                                      //   child: Container(
+                                      //     height: 50,
+                                      //     width: double.infinity,
+                                      //     padding: const EdgeInsets.only(
+                                      //         left: 30, right: 10),
+                                      //     decoration: ShapeDecoration(
+                                      //       shape: RoundedRectangleBorder(
+                                      //         borderRadius:
+                                      //         BorderRadius.circular(5),
+                                      //       ),
+                                      //       color: AppColor.placeholderBg,
+                                      //     ),
+                                      //     child: DropdownButtonHideUnderline(
+                                      //       child: DropdownButton(
+                                      //         hint: Row(
+                                      //           children: [
+                                      //             Text(
+                                      //                 "-Select the ingredients-"),
+                                      //           ],
+                                      //         ),
+                                      //         value: "default",
+                                      //         onChanged: (_) {},
+                                      //         items: [
+                                      //           DropdownMenuItem(
+                                      //             child: Text(
+                                      //                 "-Select the ingredients-"),
+                                      //             value: "default",
+                                      //           ),
+                                      //         ],
+                                      //         icon: Image.asset(
+                                      //           Helper.getAssetName(
+                                      //             "dropdown.png",
+                                      //             "new_icon",
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 15,
+                                      // ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       horizontal: 20),
+                                      //   child: Row(
+                                      //     children: [
+                                      //       Text(
+                                      //         "Number of Portions",
+                                      //         style: Helper.getTheme(context)
+                                      //             .headlineSmall
+                                      //
+                                      //       ),
+                                      //       // Expanded(
+                                      //       //   child: Row(
+                                      //       //     mainAxisAlignment:
+                                      //       //     MainAxisAlignment.end,
+                                      //       //     children: [
+                                      //       //       ElevatedButton(
+                                      //       //         style: ButtonStyle(
+                                      //       //             elevation:
+                                      //       //             MaterialStateProperty
+                                      //       //                 .all(5.0)),
+                                      //       //         onPressed: () {},
+                                      //       //         child: Text("-"),
+                                      //       //       ),
+                                      //       //       SizedBox(
+                                      //       //         width: 5,
+                                      //       //       ),
+                                      //       //       Container(
+                                      //       //         height: 35,
+                                      //       //         width: 55,
+                                      //       //         decoration:
+                                      //       //         ShapeDecoration(
+                                      //       //           shape: StadiumBorder(
+                                      //       //             side: BorderSide(
+                                      //       //                 color: AppColor
+                                      //       //                     .orange),
+                                      //       //           ),
+                                      //       //         ),
+                                      //       //         child: Row(
+                                      //       //           mainAxisAlignment:
+                                      //       //           MainAxisAlignment
+                                      //       //               .center,
+                                      //       //           children: [
+                                      //       //             Text(
+                                      //       //               "2",
+                                      //       //               style: TextStyle(
+                                      //       //                 color: AppColor
+                                      //       //                     .orange,
+                                      //       //               ),
+                                      //       //             ),
+                                      //       //           ],
+                                      //       //         ),
+                                      //       //       ),
+                                      //       //       SizedBox(
+                                      //       //         width: 5,
+                                      //       //       ),
+                                      //       //       ElevatedButton(
+                                      //       //         style: ButtonStyle(
+                                      //       //             elevation:
+                                      //       //             MaterialStateProperty
+                                      //       //                 .all(5.0)),
+                                      //       //         onPressed: () {},
+                                      //       //         child: Text("+"),
+                                      //       //       ),
+                                      //       //     ],
+                                      //       //   ),
+                                      //       // ),
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                      // SizedBox(
+                                      //   height: 200,
+                                      //   width: double.infinity,
+                                      //   child: Stack(
+                                      //     children: [
+                                      //       Container(
+                                      //         width: 120,
+                                      //         decoration: ShapeDecoration(
+                                      //           color: AppColor.orange,
+                                      //           shape: RoundedRectangleBorder(
+                                      //             borderRadius:
+                                      //             BorderRadius.only(
+                                      //               topRight:
+                                      //               Radius.circular(40),
+                                      //               bottomRight:
+                                      //               Radius.circular(40),
+                                      //             ),
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       Align(
+                                      //         alignment:
+                                      //         Alignment.centerRight,
+                                      //         child: Padding(
+                                      //           padding: const EdgeInsets
+                                      //               .symmetric(
+                                      //             horizontal: 20,
+                                      //           ),
+                                      //           child: Container(
+                                      //             height: 160,
+                                      //             width: double.infinity,
+                                      //             margin:
+                                      //             const EdgeInsets.only(
+                                      //               left: 50,
+                                      //               right: 40,
+                                      //             ),
+                                      //             decoration: ShapeDecoration(
+                                      //               shape:
+                                      //               RoundedRectangleBorder(
+                                      //                 borderRadius:
+                                      //                 BorderRadius.only(
+                                      //                   topLeft:
+                                      //                   Radius.circular(
+                                      //                       40),
+                                      //                   bottomLeft:
+                                      //                   Radius.circular(
+                                      //                       40),
+                                      //                   topRight:
+                                      //                   Radius.circular(
+                                      //                       10),
+                                      //                   bottomRight:
+                                      //                   Radius.circular(
+                                      //                       10),
+                                      //                 ),
+                                      //               ),
+                                      //               shadows: [
+                                      //                 BoxShadow(
+                                      //                   color: AppColor
+                                      //                       .placeholder
+                                      //                       .withOpacity(0.3),
+                                      //                   offset: Offset(0, 5),
+                                      //                   blurRadius: 5,
+                                      //                 ),
+                                      //               ],
+                                      //               color: Colors.white,
+                                      //             ),
+                                      //             child: Column(
+                                      //               mainAxisAlignment:
+                                      //               MainAxisAlignment
+                                      //                   .center,
+                                      //               children: [
+                                      //                 Text(
+                                      //                   "Total Price",
+                                      //                 ),
+                                      //                 SizedBox(
+                                      //                   height: 10,
+                                      //                 ),
+                                      //                 Text(
+                                      //                   "LKR 1500",
+                                      //                   style: TextStyle(
+                                      //                     color: AppColor
+                                      //                         .primary,
+                                      //                     fontWeight:
+                                      //                     FontWeight.bold,
+                                      //                     fontSize: 20,
+                                      //                   ),
+                                      //                 ),
+                                      //                 SizedBox(height: 5),
+                                      //                 SizedBox(
+                                      //                   width: 200,
+                                      //                   child: ElevatedButton(
+                                      //                       onPressed: () {},
+                                      //                       child: Row(
+                                      //                         mainAxisAlignment:
+                                      //                         MainAxisAlignment
+                                      //                             .center,
+                                      //                         children: [
+                                      //                           Image.asset(
+                                      //                             Helper.getAssetName(
+                                      //                                 "add_to_cart.png",
+                                      //                                 "new_icon"),
+                                      //                           ),
+                                      //                           Text(
+                                      //                             "Add to Cart",
+                                      //                           )
+                                      //                         ],
+                                      //                       )),
+                                      //                 )
+                                      //               ],
+                                      //             ),
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       Padding(
+                                      //         padding: const EdgeInsets.only(
+                                      //           right: 20,
+                                      //         ),
+                                      //         child: Align(
+                                      //           alignment:
+                                      //           Alignment.centerRight,
+                                      //           child: Container(
+                                      //             width: 60,
+                                      //             height: 60,
+                                      //             decoration: ShapeDecoration(
+                                      //               color: Colors.white,
+                                      //               shadows: [
+                                      //                 BoxShadow(
+                                      //                   color: AppColor
+                                      //                       .placeholder
+                                      //                       .withOpacity(0.3),
+                                      //                   offset: Offset(0, 5),
+                                      //                   blurRadius: 5,
+                                      //                 ),
+                                      //               ],
+                                      //               shape: CircleBorder(),
+                                      //             ),
+                                      //             child: Image.asset(
+                                      //               Helper.getAssetName(
+                                      //                   "cart_filled.png",
+                                      //                   "new_icon"),
+                                      //             ),
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //     ],
+                                      //   ),
+                                      // )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
-                                    child: Text(
-                                        "Doctor Available",
-                                        style: Helper.getTheme(context)
-                                            .headlineSmall
-
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height * .3,
-                                    child: controller.doctorScheduleList.value.isEmpty ?   Center(
-                                      child: Text("No Doctor Available"),
-                                    )
-                                        :GridView.builder(
-                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 5.0,
-                                          mainAxisSpacing: 5.0,
-                                          childAspectRatio: .5
-                                        ),
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: controller.doctorScheduleList.length,
-                                        itemBuilder: (BuildContext context, int i) {
-                                          var data = controller.doctorScheduleList[i];
-                                          return GestureDetector(
-                                              onTap: () {
-
-                                                controller.pathologyController.hospitalName.value = controller.hospitalName.value;
-                                                controller.pathologyController.hospitalBranch.value = controller.hospitalBranch.value;
-                                                controller.doctorAvailableDayList.value = data.doctorAvailableDay.split(", ");
-
-
-                                                Get.to(DoctorDetailFromHosScreen(), arguments: [i]);
-
-                                              },
-                                              child: Container(
-                                                width: 100,
-                                                height: 100,
-                                                clipBehavior: Clip.hardEdge,
-                                                padding: EdgeInsets.only(top: 14),
-                                                decoration: BoxDecoration(
-                                                  color: AppColor.appBackGroundBrn,
-                                                  borderRadius: BorderRadius.circular(16),
-                                                ),
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(left: 10),
-                                                      child: Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.badge,
-                                                            size: 24,
-                                                            color:AppColor.blueHos,
-                                                          ),
-                                                          SizedBox(
-                                                            height: 8,
-                                                          ),
-                                                          Text(
-                                                            data.doctorName,
-                                                            style: TextStyle(
-                                                              color: AppColor.textColorBlack,
-                                                              fontWeight: FontWeight.w700,
-                                                              fontSize: 12,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Stack(
-                                                      children: [
-                                                        Container(
-                                                          height: 30,
-                                                          width: MediaQuery.of(context).size.width *.55,
-                                                          decoration: BoxDecoration(
-                                                              color: AppColor.blueHos,
-                                                              borderRadius:
-                                                              BorderRadius.only(topRight: Radius.circular(10))),
-                                                        ),
-                                                        Positioned(
-                                                          left: 16,
-                                                          child: Text(
-                                                            data.doctorDepartment!,
-                                                            style: TextStyle(
-                                                              color: AppColor.textColorWhite,
-                                                              fontSize: 16,
-                                                              fontWeight: FontWeight.w400,
-                                                            ),
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-
-                                          );
-                                        }),
-                                  ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.symmetric(
-                                  //       horizontal: 20),
-                                  //   child: Container(
-                                  //     height: 50,
-                                  //     width: double.infinity,
-                                  //     padding: const EdgeInsets.only(
-                                  //         left: 30, right: 10),
-                                  //     decoration: ShapeDecoration(
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(5),
-                                  //       ),
-                                  //       color: AppColor.placeholderBg,
-                                  //     ),
-                                  //     child: DropdownButtonHideUnderline(
-                                  //       child: DropdownButton(
-                                  //         hint: Row(
-                                  //           children: [
-                                  //             Text(
-                                  //                 "-Select the size of portion-"),
-                                  //           ],
-                                  //         ),
-                                  //         value: "default",
-                                  //         onChanged: (_) {},
-                                  //         items: [
-                                  //           DropdownMenuItem(
-                                  //             child: Text(
-                                  //                 "-Select the size of portion-"),
-                                  //             value: "default",
-                                  //           ),
-                                  //         ],
-                                  //         icon: Image.asset(
-                                  //           Helper.getAssetName(
-                                  //             "dropdown.png",
-                                  //             "new_icon",
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 5,
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.symmetric(
-                                  //       horizontal: 20),
-                                  //   child: Container(
-                                  //     height: 50,
-                                  //     width: double.infinity,
-                                  //     padding: const EdgeInsets.only(
-                                  //         left: 30, right: 10),
-                                  //     decoration: ShapeDecoration(
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius:
-                                  //         BorderRadius.circular(5),
-                                  //       ),
-                                  //       color: AppColor.placeholderBg,
-                                  //     ),
-                                  //     child: DropdownButtonHideUnderline(
-                                  //       child: DropdownButton(
-                                  //         hint: Row(
-                                  //           children: [
-                                  //             Text(
-                                  //                 "-Select the ingredients-"),
-                                  //           ],
-                                  //         ),
-                                  //         value: "default",
-                                  //         onChanged: (_) {},
-                                  //         items: [
-                                  //           DropdownMenuItem(
-                                  //             child: Text(
-                                  //                 "-Select the ingredients-"),
-                                  //             value: "default",
-                                  //           ),
-                                  //         ],
-                                  //         icon: Image.asset(
-                                  //           Helper.getAssetName(
-                                  //             "dropdown.png",
-                                  //             "new_icon",
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 15,
-                                  // ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.symmetric(
-                                  //       horizontal: 20),
-                                  //   child: Row(
-                                  //     children: [
-                                  //       Text(
-                                  //         "Number of Portions",
-                                  //         style: Helper.getTheme(context)
-                                  //             .headlineSmall
-                                  //
-                                  //       ),
-                                  //       // Expanded(
-                                  //       //   child: Row(
-                                  //       //     mainAxisAlignment:
-                                  //       //     MainAxisAlignment.end,
-                                  //       //     children: [
-                                  //       //       ElevatedButton(
-                                  //       //         style: ButtonStyle(
-                                  //       //             elevation:
-                                  //       //             MaterialStateProperty
-                                  //       //                 .all(5.0)),
-                                  //       //         onPressed: () {},
-                                  //       //         child: Text("-"),
-                                  //       //       ),
-                                  //       //       SizedBox(
-                                  //       //         width: 5,
-                                  //       //       ),
-                                  //       //       Container(
-                                  //       //         height: 35,
-                                  //       //         width: 55,
-                                  //       //         decoration:
-                                  //       //         ShapeDecoration(
-                                  //       //           shape: StadiumBorder(
-                                  //       //             side: BorderSide(
-                                  //       //                 color: AppColor
-                                  //       //                     .orange),
-                                  //       //           ),
-                                  //       //         ),
-                                  //       //         child: Row(
-                                  //       //           mainAxisAlignment:
-                                  //       //           MainAxisAlignment
-                                  //       //               .center,
-                                  //       //           children: [
-                                  //       //             Text(
-                                  //       //               "2",
-                                  //       //               style: TextStyle(
-                                  //       //                 color: AppColor
-                                  //       //                     .orange,
-                                  //       //               ),
-                                  //       //             ),
-                                  //       //           ],
-                                  //       //         ),
-                                  //       //       ),
-                                  //       //       SizedBox(
-                                  //       //         width: 5,
-                                  //       //       ),
-                                  //       //       ElevatedButton(
-                                  //       //         style: ButtonStyle(
-                                  //       //             elevation:
-                                  //       //             MaterialStateProperty
-                                  //       //                 .all(5.0)),
-                                  //       //         onPressed: () {},
-                                  //       //         child: Text("+"),
-                                  //       //       ),
-                                  //       //     ],
-                                  //       //   ),
-                                  //       // ),
-                                  //     ],
-                                  //   ),
-                                  // ),
-                                  // SizedBox(
-                                  //   height: 200,
-                                  //   width: double.infinity,
-                                  //   child: Stack(
-                                  //     children: [
-                                  //       Container(
-                                  //         width: 120,
-                                  //         decoration: ShapeDecoration(
-                                  //           color: AppColor.orange,
-                                  //           shape: RoundedRectangleBorder(
-                                  //             borderRadius:
-                                  //             BorderRadius.only(
-                                  //               topRight:
-                                  //               Radius.circular(40),
-                                  //               bottomRight:
-                                  //               Radius.circular(40),
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //       Align(
-                                  //         alignment:
-                                  //         Alignment.centerRight,
-                                  //         child: Padding(
-                                  //           padding: const EdgeInsets
-                                  //               .symmetric(
-                                  //             horizontal: 20,
-                                  //           ),
-                                  //           child: Container(
-                                  //             height: 160,
-                                  //             width: double.infinity,
-                                  //             margin:
-                                  //             const EdgeInsets.only(
-                                  //               left: 50,
-                                  //               right: 40,
-                                  //             ),
-                                  //             decoration: ShapeDecoration(
-                                  //               shape:
-                                  //               RoundedRectangleBorder(
-                                  //                 borderRadius:
-                                  //                 BorderRadius.only(
-                                  //                   topLeft:
-                                  //                   Radius.circular(
-                                  //                       40),
-                                  //                   bottomLeft:
-                                  //                   Radius.circular(
-                                  //                       40),
-                                  //                   topRight:
-                                  //                   Radius.circular(
-                                  //                       10),
-                                  //                   bottomRight:
-                                  //                   Radius.circular(
-                                  //                       10),
-                                  //                 ),
-                                  //               ),
-                                  //               shadows: [
-                                  //                 BoxShadow(
-                                  //                   color: AppColor
-                                  //                       .placeholder
-                                  //                       .withOpacity(0.3),
-                                  //                   offset: Offset(0, 5),
-                                  //                   blurRadius: 5,
-                                  //                 ),
-                                  //               ],
-                                  //               color: Colors.white,
-                                  //             ),
-                                  //             child: Column(
-                                  //               mainAxisAlignment:
-                                  //               MainAxisAlignment
-                                  //                   .center,
-                                  //               children: [
-                                  //                 Text(
-                                  //                   "Total Price",
-                                  //                 ),
-                                  //                 SizedBox(
-                                  //                   height: 10,
-                                  //                 ),
-                                  //                 Text(
-                                  //                   "LKR 1500",
-                                  //                   style: TextStyle(
-                                  //                     color: AppColor
-                                  //                         .primary,
-                                  //                     fontWeight:
-                                  //                     FontWeight.bold,
-                                  //                     fontSize: 20,
-                                  //                   ),
-                                  //                 ),
-                                  //                 SizedBox(height: 5),
-                                  //                 SizedBox(
-                                  //                   width: 200,
-                                  //                   child: ElevatedButton(
-                                  //                       onPressed: () {},
-                                  //                       child: Row(
-                                  //                         mainAxisAlignment:
-                                  //                         MainAxisAlignment
-                                  //                             .center,
-                                  //                         children: [
-                                  //                           Image.asset(
-                                  //                             Helper.getAssetName(
-                                  //                                 "add_to_cart.png",
-                                  //                                 "new_icon"),
-                                  //                           ),
-                                  //                           Text(
-                                  //                             "Add to Cart",
-                                  //                           )
-                                  //                         ],
-                                  //                       )),
-                                  //                 )
-                                  //               ],
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //       Padding(
-                                  //         padding: const EdgeInsets.only(
-                                  //           right: 20,
-                                  //         ),
-                                  //         child: Align(
-                                  //           alignment:
-                                  //           Alignment.centerRight,
-                                  //           child: Container(
-                                  //             width: 60,
-                                  //             height: 60,
-                                  //             decoration: ShapeDecoration(
-                                  //               color: Colors.white,
-                                  //               shadows: [
-                                  //                 BoxShadow(
-                                  //                   color: AppColor
-                                  //                       .placeholder
-                                  //                       .withOpacity(0.3),
-                                  //                   offset: Offset(0, 5),
-                                  //                   blurRadius: 5,
-                                  //                 ),
-                                  //               ],
-                                  //               shape: CircleBorder(),
-                                  //             ),
-                                  //             child: Image.asset(
-                                  //               Helper.getAssetName(
-                                  //                   "cart_filled.png",
-                                  //                   "new_icon"),
-                                  //             ),
-                                  //           ),
-                                  //         ),
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // )
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
 
-                        ],
-                      ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                height: 10,
               ),
             ],
-          ),
-
-          SizedBox(
-            height: 10,
-          ),
-        ],
+          );
+        }
       ),
     );
   }

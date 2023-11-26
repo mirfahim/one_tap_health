@@ -23,7 +23,7 @@ class IconContent extends StatelessWidget {
         sizedBox,
         Text(
           text,
-          style: klabelTextStyle,
+          style: TextStyle(color: Colors.black),
         ),
       ],
     );

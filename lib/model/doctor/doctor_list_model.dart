@@ -9,14 +9,14 @@ DoctorListModel doctorListModelFromJson(String str) => DoctorListModel.fromJson(
 String doctorListModelToJson(DoctorListModel data) => json.encode(data.toJson());
 
 class DoctorListModel {
-  String status;
-  String message;
-  Result result;
+  String? status;
+  String? message;
+  Result? result;
 
   DoctorListModel({
-    required this.status,
-    required this.message,
-    required this.result,
+     this.status,
+     this.message,
+     this.result,
   });
 
   factory DoctorListModel.fromJson(Map<String, dynamic> json) => DoctorListModel(
@@ -28,7 +28,7 @@ class DoctorListModel {
   Map<String, dynamic> toJson() => {
     "status": status,
     "message": message,
-    "result": result.toJson(),
+    "result": result!.toJson(),
   };
 }
 

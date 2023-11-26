@@ -7,10 +7,12 @@ import 'package:one_tap_health/screen/hospital_list/controller/hospital_list_con
 import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
 
 import 'package:flutter/widgets.dart';
+import 'package:one_tap_health/service/auth_service.dart';
 
 import 'package:one_tap_health/utils.dart';
 import 'package:get/get.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
+import 'package:one_tap_health/utils/ui_support.dart';
 
 
 
@@ -24,14 +26,24 @@ class PreviewAppointmentFromHosView extends GetView<HospitalController> {
     var _size = MediaQuery.of(context).size;
     return Obx(() {
       return Scaffold(
+        backgroundColor: AppColor.figmaBackGround,
         appBar: AppBar(
+          backgroundColor: AppColor.figmaBackGround,
           title: Text("Appointment Preview"),
           centerTitle: true,
+          elevation: 0,
         ),
         bottomNavigationBar: InkWell(
           onTap: () {
             controller.scheduleID.value = data.id.toString();
-            controller.makeAppointMentOrder();
+            if(controller.selectedCheckinDate.toString().isEmpty){
+              Get.showSnackbar(Ui.errorSnackBar(
+                  message: "Please select a date",
+                  title: 'error'.tr));
+            }else{
+              controller.makeAppointMentOrder();
+            }
+
           },
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -40,7 +52,7 @@ class PreviewAppointmentFromHosView extends GetView<HospitalController> {
               height: controller.previewVisible.value == 1 ? 50 : 60,
               width: controller.previewVisible.value == 1 ? 50 : 140,
               decoration: BoxDecoration(
-                  color: AppColor.blueHos,
+                  color: AppColor.figmaRed,
                   borderRadius: BorderRadius.circular(
                       controller.previewVisible.value == 1 ? 60 : 10)),
               alignment: Alignment.center,
@@ -50,7 +62,7 @@ class PreviewAppointmentFromHosView extends GetView<HospitalController> {
                 "Make Appointment",
                 style: TextStyle(
                   color: AppColor.backgroundColor,
-                  fontSize: 12,
+                  fontSize: 18,
                 ),
               ),
             ),
@@ -233,6 +245,14 @@ class PreviewAppointmentFromHosView extends GetView<HospitalController> {
                                     fontWeight: FontWeight.normal,
                                     color: Colors.black54),
                               ),
+                              controller
+                                  .patientNameController.value.text.isEmpty ?
+                              Text(
+                                Get.find<AuthService>().currentUser.value.user!.name.toString(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black),
+                              ):
                               Text(
                                 controller
                                     .patientNameController.value.text,
@@ -281,9 +301,9 @@ class PreviewAppointmentFromHosView extends GetView<HospitalController> {
                             clipBehavior: Clip.hardEdge,
                             padding: EdgeInsets.only(top: 14),
                             decoration: BoxDecoration(
-                              color: false == false
-                                  ? AppColor.oneTapBg
-                                  : Colors.white,
+
+                              color: AppColor.figmaRed.withOpacity(.3),
+                                 
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Column(

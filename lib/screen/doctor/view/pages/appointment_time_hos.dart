@@ -33,8 +33,11 @@ class MakeAppointmentScreen extends GetView<DoctorController> {
     return Obx(
        () {
         return Scaffold(
+          backgroundColor: AppColor.figmaBackGround,
+
           appBar: AppBar(
-            backgroundColor: AppColor.blueHos,
+            elevation: 0,
+            backgroundColor: AppColor.figmaBackGround,
             title: Text("Appointment Time"),
             centerTitle: true,
 
@@ -89,6 +92,7 @@ class MakeAppointmentScreen extends GetView<DoctorController> {
                                           padding: EdgeInsets.all(16),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
+                                            border: Border.all(color: AppColor.figmaRed.withOpacity(.4)),
                                             borderRadius: BorderRadius.circular(20),
                                             boxShadow: [
                                               BoxShadow(
@@ -101,16 +105,35 @@ class MakeAppointmentScreen extends GetView<DoctorController> {
                                           child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                height: 77,
-                                                width: 90,
-                                                decoration: BoxDecoration(
-                                                  color: AppColor.oneTapBg,
-                                                  borderRadius: BorderRadius.circular(10),
-                                                  image: DecorationImage(
-                                                    image: AssetImage('images/doctor/albert.png' ),
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    height: 77,
+                                                    width: 90,
+                                                    decoration: BoxDecoration(
+                                                      color: AppColor.figmaRed.withOpacity(.2),
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      image: DecorationImage(
+                                                        image: AssetImage('images/doctor/albert.png' ),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
+                                                  SizedBox(height: 10,),
+                                                  SizedBox(
+                                                    width: MediaQuery.of(context).size.width *.2,
+                                                    height: MediaQuery.of(context).size.height * .03,
+                                                    child: Text(
+                                                      maxLines:2,
+                                                      "Fee ${controller.scheduleList![index].doctoFee!.toString()}",
+                                                      style: TextStyle(
+
+                                                        color: Colors.black54,
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               SizedBox(
                                                 width: 16,
@@ -129,12 +152,33 @@ class MakeAppointmentScreen extends GetView<DoctorController> {
                                                   SizedBox(
                                                     height: 10,
                                                   ),
-                                                  Text(
-                                                    controller.scheduleList![index].hospital!,
-                                                    style: TextStyle(
-                                                      color: Colors.black54,
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w700,
+                                                  SizedBox(
+                                                    width: MediaQuery.of(context).size.width *.5,
+                                                    height: MediaQuery.of(context).size.height * .03,
+                                                    child: Text(
+                                                      maxLines:2,
+                                                      controller.scheduleList![index].hospital!,
+                                                      style: TextStyle(
+
+                                                        color: Colors.black54,
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+
+                                                  SizedBox(
+                                                    width: MediaQuery.of(context).size.width *.5,
+                                                    height: MediaQuery.of(context).size.height * .03,
+                                                    child: Text(
+                                                      maxLines:2,
+                                                      controller.scheduleList![index].doctorAvailableDay!,
+                                                      style: TextStyle(
+
+                                                        color: Colors.black54,
+                                                        fontSize: 10,
+                                                        fontWeight: FontWeight.w700,
+                                                      ),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -146,6 +190,7 @@ class MakeAppointmentScreen extends GetView<DoctorController> {
                                                         height: 40,
                                                         width: MediaQuery.of(context).size.width * .2,
                                                         decoration: BoxDecoration(
+
                                                             color: AppColor.blueHos,
 
                                                             borderRadius: BorderRadius.all(Radius.circular(10))

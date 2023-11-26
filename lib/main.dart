@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
 import 'package:one_tap_health/service/auth_service.dart';
 import 'package:one_tap_health/service/local_notification/notification_service.dart';
+import 'package:one_tap_health/service/location_service.dart';
 import 'package:one_tap_health/utils.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -22,7 +23,7 @@ initAllServices() async {
   // await Get.putAsync<SettingsService>(() async => SettingsService());
   await Get.putAsync<AuthService>(() async => AuthService());
   Get.find<AuthService>().currentUser.value.accessToken;
-
+  await Get.putAsync<LocationService>(() async => LocationService());
   Get.log('All services started...');
 
 

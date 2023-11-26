@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:one_tap_health/model/auth_model/login_model.dart';
@@ -8,16 +10,17 @@ import 'package:one_tap_health/repository/auth/auth_repository.dart';
 import 'package:one_tap_health/repository/auth/doctor_rep/doctor_repository.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
 import 'package:one_tap_health/screen/doctor/view/pages/appointment_time_hos.dart';
+import 'package:one_tap_health/utils/ui_support.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:one_tap_health/service/auth_service.dart';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:intl/intl.dart';
 class MedReminderController extends GetxController {
   //TODO: Implement LoginController
-  final journeyDate = DateTime.now().obs;
-  final journeyTime = TimeOfDay.now().obs;
+  final medDate = DateTime.now().obs;
+  final medTime = TimeOfDay.now().obs;
   var nameController = TextEditingController().obs;
-
+ final selectCat = 0.obs;
   final visible = 0.obs;
 
   final box = GetStorage();
@@ -74,8 +77,40 @@ class MedReminderController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  setUpTimedFetch() {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      sendOtpWithMuthoFun();
+    });
+  }
+
+  sendOtpWithMuthoFun() async{
+
+    AuthRepository().sendMsgWithMuthoFun("01782084390", "PLease take your med" ).then((e) async{
+      print("hlw muthofun1");
+      if(e['message']== "SMS queued successfully!"){
+        print("sms success");
+        Get.showSnackbar(Ui.successSnackBar(
+            message: "OTP code send",
+            title: 'success'.tr));
+
+
+
+      }else {
+        print("hlw muthofun3");
+
+      }
+
+      print("my login data $e");
+
+
+    });
+  }
   DateTime convertTimeOfDayToDateTime(TimeOfDay timeOfDay, DateTime date) {
     return DateTime(date.year, date.month, date.day, timeOfDay.hour, timeOfDay.minute);
+  }
+  DateTime join(DateTime date, TimeOfDay time) {
+    return new DateTime(date.year, date.month, date.day, time.hour, time.minute);
   }
   tz.TZDateTime convertToTZDateTime(DateTime dateTime, tz.Location timeZone) {
     print("time zone is ___________________________________$timeZone");
@@ -101,7 +136,7 @@ class MedReminderController extends GetxController {
     print("uuuuuuu");
     TimeOfDay? pickedTime = await showTimePicker(
       context: Get.context!,
-      initialTime: journeyTime.value,
+      initialTime: medTime.value,
       builder: (context, child) {
         return MediaQuery(
             data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
@@ -113,22 +148,22 @@ class MedReminderController extends GetxController {
       hourLabelText: 'Select Hour',
       minuteLabelText: 'Select Minute',
     );
-    if (pickedTime != null && pickedTime != journeyTime.value) {
-      journeyTime.value = pickedTime;
+    if (pickedTime != null && pickedTime != medTime.value) {
+      medTime.value = pickedTime;
     }
   }
   chooseDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
-      initialDate: journeyDate.value,
+      initialDate: medDate.value,
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(Duration(days: 365)),
       helpText: 'Select Journey Date',
       fieldHintText: 'Month/Date/Year',
       initialEntryMode: DatePickerEntryMode.calendar,
     );
-    if (pickedDate != null && pickedDate != journeyDate.value) {
-      journeyDate.value = pickedDate;
+    if (pickedDate != null && pickedDate != medDate.value) {
+      medDate.value = pickedDate;
     }
   }
 

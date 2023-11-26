@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart';
 import 'package:one_tap_health/api_provider/api_provider.dart';
 import 'package:one_tap_health/api_provider/api_url.dart';
+import 'package:one_tap_health/model/order_details_model.dart';
 import 'package:one_tap_health/service/auth_service.dart';
 
 class PathologyRepository {
@@ -31,6 +32,31 @@ class PathologyRepository {
     print("test order response is $response");
 
     return response;
+  }
+  //get report images
+  Future getReportImages(id) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.getWithHeader(
+      ApiUrl.getReportImages + id.toString(),
+      {
+        'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",
+      },
+    );
+    print("get report images response is $response");
+
+    return response;
+  }
+  Future<OrderDetailModel> orderDetails(orderId) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.getWithHeader(
+      ApiUrl.orderDetail + orderId,
+      {
+        'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",
+      },
+    );
+    print("test order response is $response");
+
+    return OrderDetailModel.fromJson(response);
   }
   Future myAppointmentOrderList() async {
     APIManager _manager = APIManager();
@@ -59,7 +85,7 @@ class PathologyRepository {
   Future catWiseActiveTestList(int ID) async {
     APIManager _manager = APIManager();
     final response = await _manager.getWithHeader(
-      ApiUrl.catWiseActiveTest + "$ID",
+      "${ApiUrl.catWiseActiveTest}$ID",
       {
         'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",
       },

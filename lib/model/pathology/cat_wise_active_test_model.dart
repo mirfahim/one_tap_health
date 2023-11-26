@@ -54,6 +54,7 @@ class Test {
   String? subTitle;
   String? categoryName;
   String? iconPhoto;
+  String? des;
 
   Test({
      this.id,
@@ -61,12 +62,15 @@ class Test {
      this.subTitle,
      this.categoryName,
      this.iconPhoto,
+    this.des
   });
 
   factory Test.fromJson(Map<String, dynamic> json) => Test(
     id: json["id"],
     title: json["title"],
     subTitle: json["sub_title"],
+    des: json["description"],
+
     categoryName: json["category_name"],
     iconPhoto: json["icon_photo"],
   );
@@ -77,5 +81,6 @@ class Test {
     "sub_title": subTitle,
     "category_name": categoryName,
     "icon_photo": iconPhoto,
+    "description": des,
   };
 }

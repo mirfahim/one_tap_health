@@ -6,13 +6,13 @@ import 'package:one_tap_health/api_provider/api_provider.dart';
 import 'package:one_tap_health/api_provider/api_url.dart';
 
 class AuthRepository {
-  Future userLogin(String email, String pass) async {
+  Future userLogin(String phn, String pass) async {
     APIManager _manager = APIManager();
     final response = await _manager.postAPICall(
       ApiUrl.login,
       //01687835844
       //12345678
-      {'username': email, 'password': pass},
+      {'username': phn, 'password': pass,},
 
 
 
@@ -22,7 +22,37 @@ class AuthRepository {
 
     return response;
   }
+  Future sendMsgWithMuthoFun(String phone, String mseesage) async {
+    print("otp started working");
+    APIManager _manager = APIManager();
+    Map body =  {
+      "sender_id": "8809601003930",
+      "receiver": phone,
+      "message": mseesage,
+      "remove_duplicate": "true",
+    };
+    final response = await _manager.postAPICallWithHeader(
+        "https://sysadmin.muthobarta.com/api/v1/send-sms",
 
+        {
+          "sender_id": "8809601003930",
+          "receiver": phone,
+          "message": mseesage,
+          "remove_duplicate": "true",
+        },
+
+        {
+          "Authorization": "Token 59ab62e2286088aeefe0d0ccd35c9dc34af3179e",
+          'content-type': 'application/json'
+          //"X-Content-Type-Options": "nosniff",
+          // "Referrer-Policy": "same-origin"
+
+        }
+    );
+    print("otp response is $response");
+
+    return response;
+  }
   Future registration({String? email, String? conPass, String? pass, String? mobile, String? address, String? birthDate, String? name}) async {
     APIManager _manager = APIManager();
     final response = await _manager.postAPICall(

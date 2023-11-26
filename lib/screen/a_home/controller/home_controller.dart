@@ -1,4 +1,20 @@
+import 'dart:async';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+
+
+import 'package:new_version_plus/new_version_plus.dart';
+import 'package:one_tap_health/model/banner_model.dart';
+import 'package:one_tap_health/repository/auth/home/home_rep.dart';
+
+import 'package:url_launcher/url_launcher.dart';
+
+
+//
+
+import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +27,7 @@ import 'package:one_tap_health/screen/profile/view/profile.dart';
 import 'package:one_tap_health/screen/report/controller/report_controller.dart';
 import 'package:one_tap_health/screen/report/view/test/my_test_order_list.dart';
 import 'package:one_tap_health/screen/report/view/test/report_front_page.dart';
-import 'package:one_tap_health/screen/report/view/test/track_order.dart';
+import 'package:one_tap_health/screen/report/view/test/report_progress/track_order.dart';
 import 'package:one_tap_health/service/auth_service.dart';
 import 'package:new_version_plus/new_version_plus.dart';
 import '../../pathology_test/controller/pathology_controller.dart';
@@ -24,9 +40,11 @@ class HomeController extends GetxController {
   var emailController = TextEditingController().obs;
   var passController = TextEditingController().obs;
   final currentIndex = 0.obs;
+
   final landingPage = 1.obs;
   final categoryDataLoaded = false.obs;
   final address = "".obs;
+  final bannerList = <ResultBanner>[].obs;
   List<Widget> pages = [
     HomeView(),
     HomeView(),
@@ -40,7 +58,7 @@ class HomeController extends GetxController {
     Get.put(ReportController());
     Get.put(PathologyController());
     Get.put(ProfileController());
-
+    getBannerController();
 
 
     super.onInit();
@@ -68,7 +86,15 @@ class HomeController extends GetxController {
       return false;
     }, arguments: index);
   }
-
+  getBannerController(){
+HomeRepository().getBanner().then((value) {
+  print("my all banner are $value");
+  bannerList.value = value.result;
+});
+  }
+  bangLangController(){
+    return Get.find<ProfileController>().isBangla.isTrue;
+  }
   advancedStatusCheck(BuildContext context) async {
     print("hlw version ________________________");
     final newVersion = NewVersionPlus(
@@ -79,7 +105,7 @@ class HomeController extends GetxController {
     print("version status ${status!.appStoreLink}");
     if (status.canUpdate == true) {
       newVersion.showUpdateDialog(
-        //launchMode: LaunchMode.platformDefault,
+        launchMode: LaunchMode.externalApplication,
         context: context,
         versionStatus: status,
         dialogTitle: 'Update Available!',
@@ -88,7 +114,7 @@ class HomeController extends GetxController {
       );
     }
   }
-
+//3181570001955
   getAddressFromLatLng(double lat, double lng) async {
     String mapApiKey = "AIzaSyAG8IAuH-Yz4b3baxmK1iw81BH5vE4HsSs";
     String _host = 'https://maps.google.com/maps/api/geocode/json';

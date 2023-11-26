@@ -12,6 +12,8 @@ import 'package:one_tap_health/repository/auth/pathology/pathology_rep.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
 import 'package:one_tap_health/screen/hospital_list/view/hospital_details_view.dart';
 import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
+import 'package:one_tap_health/screen/pathology_test/view/ssl_commcerce.dart';
+import 'package:one_tap_health/screen/report/controller/report_controller.dart';
 import 'package:one_tap_health/service/auth_service.dart';
 import 'package:flutter_sslcommerz/sslcommerz.dart';
 import 'package:intl/intl.dart';
@@ -38,13 +40,16 @@ import '../../../model/doctor/hospital_wise_doctor_model.dart';
 
 class HospitalController extends GetxController {
   //TODO: Implement LoginController
-
+  final paymentLink = "".obs;
+  final refund = false.obs;
+  final privacy = false.obs;
   var dueDateController = TextEditingController().obs;
   var passController = TextEditingController().obs;
   var patientNameController = TextEditingController().obs;
   var patientAddressController = TextEditingController().obs;
   PathologyController pathologyController = Get.find();
-
+  var searchController = TextEditingController().obs;
+  final searchString = "".obs;
   final testCatList = <Category>[].obs;
   final activeTestList = <TestsPrice>[].obs;
   final selectedTest = <TestsPrice>[].obs;
@@ -52,16 +57,20 @@ class HospitalController extends GetxController {
   final visible = 0.obs;
   final testName = "".obs;
   final testDes = "".obs;
+  final term =  false.obs;
   final price = 0.obs;
   final grpValue = 0.obs;
   final hospitalData = HospitalListModel().obs;
   final hospitalList = <Hospital>[].obs;
+  final filteredhospitalList = <Hospital>[].obs;
   final doctorScheduleList = <ScheduleByHos>[].obs;
-
+  var reportController = Get.find<ReportController>();
   final discount = 0.obs;
   final hospitalName = "".obs;
   final hospitalId = "".obs;
   final hospitalBranch  = "".obs;
+  final orderNo = "".obs;
+  final message  = "".obs;
   final scheduleID ="".obs;
   final visitType = 0.obs;
   final orderId =0.obs;
@@ -96,13 +105,49 @@ class HospitalController extends GetxController {
     super.onClose();
   }
 
+  void setSearchText(String text) {
+    searchString.value = text;
+  }
+
+  List<Hospital> get filteredHospitalList {
+
+    return hospitalList.value!.where((hos) {
+      final name = hos.name!.toLowerCase();
+
+      final searchTerm = searchString.value.toLowerCase();
+
+      return name.contains(searchTerm);
 
 
+
+
+
+    }).toList();
+
+
+  }
+  List<TestsPrice> get filteredTestList {
+
+    return activeTestList.value!.where((test) {
+      final name = test.testTitle!.toLowerCase();
+
+      final searchTerm = searchString.value.toLowerCase();
+
+      return name.contains(searchTerm);
+
+
+
+
+
+    }).toList();
+
+
+  }
   Future<void> selectTestDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedCheckinDate,
-      firstDate: DateTime(1920, 8),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2100),);
     if (picked != null && picked != selectedCheckinDate) {
       selectedCheckinDate = picked;
@@ -121,12 +166,13 @@ class HospitalController extends GetxController {
     print("my cat list data 1");
     HospitalRepository().hospitalListApi().then((e) async{
 
-      print("my cat list data start");
+      print("my hospital list data start");
       if(e != null){
         var data = HospitalListModel.fromJson(e);
         hospitalData.value = data;
 
         hospitalList.value = data.result!.hospitals!;
+        print("hospital lisy length is ${hospitalList.value.length}");
 
        // Get.toNamed(Routes.TESTHOSPITAL);
 
@@ -217,24 +263,66 @@ class HospitalController extends GetxController {
 
     });
   }
+
+  callPayment() async {
+    print("my cat list data 1");
+    PathologyRepository().callPayment(orderId.toString()).then((e) async {
+      print("my ssl response started");
+      if (e != null) {
+        paymentLink.value = e["ssl_pay_url"];
+        print(paymentLink.value);
+        Get.off(SSlWeb(paymrntLink:paymentLink.value,));
+
+        //  Get.offAndToNamed(Routes.PAYMENTWEB);
+      } else {
+        print("error ++++++++++++++");
+      }
+    });
+  }
+  sendMsgWithMuthoFun() async{
+
+    AuthRepository().sendMsgWithMuthoFun("01610242252, 01312131136", "Pathology Test Order Placed: ${orderNo.value}" ).then((e) async{
+      print("hlw muthofun1");
+      if(e['message']== "SMS queued successfully!"){
+        print("sms success");
+
+
+
+      }else {
+        print("hlw muthofun3");
+
+      }
+
+      print("my login data $e");
+
+
+    });
+  }
   makeTestOrder(testIds) async{
+    previewVisible.value ++;
     print("my cat list data 1");
     PathologyRepository().makeTestOrder(isPatient: grpValue.value.toString(), patientName: patientNameController.value.text,
         patientAddress: patientAddressController.value.text, patientAge: "32", patientMobile: "01782084391",
-        testdate: DateTime.now().toString(), testIDs:testIds, hospitalId: hospitalId.value).then((e) async{
+        testdate: selectedCheckinDate.toString(), testIDs:testIds, hospitalId: hospitalId.value).then((e) async{
 
       print("order data start");
       if(e != null){
 
         previewVisible.value = 0;
         orderId.value = e["result"]["test_order_id"];
+        orderNo.value = e["result"]["order_no"];
+        //orderId.value = e["result"]["test_order_id"];
 
-        Get.offNamed(Routes.TESTSUCCESS);
+        Get.offNamed(Routes.PAY);
 
+        sendMsgWithMuthoFun();
+        reportController.orderpathologyListController();
+        pathologyTestListID.value.clear();
 
       } else {
         print("error ++++++++++++++");
 
+        previewVisible.value = 0;
 
       }
 

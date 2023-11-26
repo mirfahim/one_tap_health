@@ -1,34 +1,9 @@
 import 'package:one_tap_health/screen/doctor/view/cells/detail_cell.dart';
-
 import 'package:one_tap_health/screen/doctor/utils/custom_icons_icons.dart';
-import 'package:one_tap_health/screen/doctor/utils/he_color.dart';
 import 'package:flutter/material.dart';
-import 'package:one_tap_health/screen/doctor/view/pages/appointment_time_hos.dart';
-
-import '../../../../model/doctor/doctor_list_model.dart';
-
-
-
 import 'package:one_tap_health/screen/doctor/controller/doctor_controller.dart';
-import 'package:one_tap_health/screen/doctor/view/cells/category_cell.dart';
-import 'package:one_tap_health/screen/doctor/view/cells/hd_cell.dart';
-import 'package:one_tap_health/screen/doctor/view/cells/trd_cell.dart';
-import 'package:one_tap_health/screen/doctor/models/category.dart';
-import 'package:one_tap_health/screen/doctor/models/doctor.dart';
-import 'package:one_tap_health/screen/doctor/view/pages/detail_page.dart';
-import 'package:one_tap_health/screen/doctor/utils/custom_icons_icons.dart';
-import 'package:one_tap_health/screen/doctor/utils/he_color.dart';
-import 'package:flutter/material.dart';
-
-
-
-
-
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:one_tap_health/screen/auth/controller/auth_controller.dart';
-import 'package:one_tap_health/screen/auth/view/registration_view.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 
 
@@ -44,31 +19,35 @@ class DoctorDetailScreen extends GetView<DoctorController> {
     return Obx(
        () {
         return Scaffold(
+          backgroundColor: AppColor.figmaBackGround,
           appBar: AppBar(
-            backgroundColor: AppColor.blueHos,
+            backgroundColor: AppColor.figmaBackGround,
+            elevation: 0,
             title: Text("Doctor Details"),
             centerTitle: true,
           ),
-          bottomNavigationBar:      GestureDetector(
+          bottomNavigationBar:    InkWell(
             onTap: (){
-               controller.doctorSchedule();
+              controller.doctorSchedule();
             },
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 40,
-                width: MediaQuery.of(context).size.width,
+              padding: const EdgeInsets.all(8.0),
+              child: AnimatedContainer(
+                duration: Duration(seconds: 2),
+                height: 50,
+                width: controller.scheduleContainer.value == 1 ? 50 : 140,
                 decoration: BoxDecoration(
-                    color: AppColor.blueHos,
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-
-                child: Center(
-                  child: Text(
-                    "Schedules",
-                    style: TextStyle(
-                        color: Colors.white
-                    ),
+                    color: AppColor.figmaRed,
+                    borderRadius:
+                    BorderRadius.circular(controller.scheduleContainer.value == 1 ? 20 : 10)),
+                alignment: Alignment.center,
+                child: controller.scheduleContainer.value == 1
+                    ? Center(child: CircularProgressIndicator())
+                    : Text(
+                  "Schedules",
+                  style: TextStyle(
+                    color: AppColor.backgroundColor,
+                    fontSize: 12,
                   ),
                 ),
               ),
@@ -82,7 +61,7 @@ class DoctorDetailScreen extends GetView<DoctorController> {
               children: [
                 Container(
                   height: 250,
-                  color: AppColor.appBackGroundBrn,
+                  color: AppColor.figmaRed.withOpacity(.3),
                   child: Stack(
                     children: [
                       Align(
@@ -167,7 +146,7 @@ class DoctorDetailScreen extends GetView<DoctorController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr.' +
+
                            controller.doctorName.value,
                         style: TextStyle(
                           color: Colors.black,
@@ -189,7 +168,7 @@ class DoctorDetailScreen extends GetView<DoctorController> {
                             width: 4,
                           ),
                           Text(
-                            'Melbourn, Australia',
+                            controller.doctorDegree.value,
                             style: TextStyle(
                               color: Colors.black54,
                               fontSize: 14,
@@ -221,7 +200,7 @@ class DoctorDetailScreen extends GetView<DoctorController> {
                         height: 32,
                       ),
                       Text(
-                        'Dr. Albert Alexanderis a Renal Physician who has comprehensive expertise in the fields of Renal Medicine and Internal Medicine. While Dr Ho specializes in dialysis and critical care nephrology, years of extensive training have also equipped him with skills to effectively handle a wide range of other kidney diseases, including kidney impairment, inflammation, infection and transplantation.',
+                        controller.doctorBio.value,
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 14,
@@ -243,16 +222,9 @@ class DoctorDetailScreen extends GetView<DoctorController> {
                         ),
                       ),
                       SizedBox(
-                        height: 32,
+                        height: 20,
                       ),
-                      Text(
-                        'Apart from kidney-related conditions, Dr Ho also offers care and consultation in various medical conditions that are related to kidney disease, such as hypertension, diabetes and vascular diseases.',
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
+
                     ],
                   ),
                 ),

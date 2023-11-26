@@ -4,7 +4,7 @@ import 'package:one_tap_health/screen/doctor/utils/custom_icons_icons.dart';
 import 'package:one_tap_health/screen/doctor/utils/he_color.dart';
 import 'package:flutter/material.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
-
+import 'package:get/get.dart';
 class TrdCell extends StatelessWidget {
   final Doctor? doctor;
 
@@ -55,7 +55,7 @@ class TrdCell extends StatelessWidget {
       height: 77,
       width: 90,
       decoration: BoxDecoration(
-        color: AppColor.appBackGroundBrn,
+        color: AppColor.figmaRed.withOpacity(.2),
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           image: AssetImage('images/doctor/albert.png' ),
@@ -92,12 +92,17 @@ class TrdCell extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Text(
-          doctor!.name! ,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+        SizedBox(
+        height: Get.height*.04,
+          width: Get.width *.5,
+          child: Text(
+            doctor!.name! ,
+            maxLines: 2,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         SizedBox(

@@ -21,8 +21,11 @@ class HospitalDetails extends GetView<HospitalController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.figmaBackGround,
+
         appBar: AppBar(
-          backgroundColor: AppColor.appBackGroundBrn,
+          backgroundColor: AppColor.figmaBackGround,
+          elevation: 0,
           title: Text("Hospital Details"),
           centerTitle: true,
         ),
