@@ -26,6 +26,7 @@ class AuthController extends GetxController {
   var birthDateController = TextEditingController().obs;
   var nameController = TextEditingController().obs;
   final visible = 0.obs;
+ final startTime = 0.obs;
   final lock = true.obs;
   final verifyLoad = false.obs;
   final otpOkay = false.obs;
@@ -60,6 +61,21 @@ class AuthController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void startTimer() {
+    const onsec = Duration(seconds: 1);
+    Timer timer = Timer.periodic(onsec, (timer) {
+      if(startTime.value == 0 ) {
+
+          timer.cancel();
+
+      }else{
+
+          startTime.value++ ;
+
+      }
+    });
+  }
   makeRandomOtpNUm(){
     var rng = new Random();
     otpNum.value =  rng.nextInt(9000) + 1000;
@@ -77,6 +93,19 @@ class AuthController extends GetxController {
          message: "OTP did not match",
          title: 'error'.tr));
    }
+  }
+
+  checkOTPForForgotPass(){
+    if(otpNum.value.toString() == pinCodeController.value.text){
+      Get.showSnackbar(Ui.successSnackBar(
+          message: "OTP code Matched",
+          title: 'success'.tr));
+      Get.offNamed(Routes.FORGOTPASSSCREEN);
+    } else{
+      Get.showSnackbar(Ui.errorSnackBar(
+          message: "OTP did not match",
+          title: 'error'.tr));
+    }
   }
   sendOtpWithMuthoFun() async{
 
@@ -110,6 +139,21 @@ class AuthController extends GetxController {
       selectedCheckoutDate = picked;
     }
     endDateInput.text = "${myFormat.format(selectedCheckoutDate)}";
+  }
+  resetPassWordController() async{
+    visible.value++;
+    AuthRepository().resetPass(phoneController.value.text, passController.value.text).then((e) async{
+
+      print("my login data");
+      if(e != null){
+        Get.offAllNamed(Routes.LOGIN);
+      } else {
+        print("error ++++++++++++++");
+        visible.value = 0;
+
+      }
+
+    });
   }
   loginController() async{
     visible.value++;

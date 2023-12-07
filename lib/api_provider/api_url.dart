@@ -13,6 +13,8 @@ class ApiUrl {
   static String getBanner = '$baseUrl/client/active-banner-list';
 //https://onetaphealth.com/api/v1/client/active-banner-list
   static String login = '$baseUrl/login';
+  static String reset_pass = '$baseUrl/reset-password';
+
   static String signup = '$baseUrl/register';
   static String testCatList = '$baseUrl/active-category-list';
   static String myTestOrder = '$baseUrl/test-order';

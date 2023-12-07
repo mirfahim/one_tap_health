@@ -48,6 +48,9 @@ import 'package:one_tap_health/screen/splash/binding/splash_binding.dart';
 import 'package:one_tap_health/screen/splash/view/splash_view.dart';
 
 import '../screen/a_home/controller/home_controller.dart';
+import '../screen/auth/view/forgot_pass/forgot_otp_screen.dart';
+import '../screen/auth/view/forgot_pass/forgot_pass_view.dart';
+import '../screen/auth/view/forgot_pass/give_phone_no_forgot.dart';
 import '../screen/blood_donate/view/blood_request_list.dart';
 import '../screen/pathology_test/view/available_test_hospital.dart';
 import '../screen/report/view/test/my_test_order_list.dart';
@@ -70,6 +73,22 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
+      binding: AuthBinding(),
+    ),
+    //forgot pass
+    GetPage(
+      name: _Paths.FORGOTPHONESCREEN,
+      page: () => const PhoneNOScreenForgot(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOTPASSSCREEN,
+      page: () => const ForGotPassScreen(),
+      binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOTOTPSCREEN,
+      page: () => const ForgotOTPScreen(),
       binding: AuthBinding(),
     ),
     GetPage(

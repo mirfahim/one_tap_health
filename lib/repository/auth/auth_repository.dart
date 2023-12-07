@@ -22,6 +22,23 @@ class AuthRepository {
 
     return response;
   }
+  //reset
+  Future resetPass(String phn, String pass) async {
+    APIManager _manager = APIManager();
+    final response = await _manager.postAPICall(
+      ApiUrl.reset_pass,
+      //01687835844
+      //12345678
+      {'username': phn, 'new_password': pass, "new_confirm_password": pass},
+
+
+
+
+    );
+    print("login response is $response");
+
+    return response;
+  }
   Future sendMsgWithMuthoFun(String phone, String mseesage) async {
     print("otp started working");
     APIManager _manager = APIManager();

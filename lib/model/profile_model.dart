@@ -53,8 +53,8 @@ class ProfileResult {
 
   factory ProfileResult.fromJson(Map<String, dynamic> json) => ProfileResult(
     id: json["id"],
-    name: json["name"],
-    email: json["email"],
+    name: json["name"] ?? "No Data",
+    email: json["email"] ?? "No Data",
     phone: json["phone"],
     userRole: json["user_role"],
     status: json["status"],

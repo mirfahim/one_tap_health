@@ -36,6 +36,11 @@ abstract class Routes {
   static const PAYAPPOINTMENT = _Paths.PAYAPPOINTMENT;
   static const REPORTPDFPREVIEW = _Paths.REPORTPDFPREVIEW;
   static const PROFILEEDIT = _Paths.PROFILEEDIT;
+  static const FORGOTPHONESCREEN = _Paths.FORGOTPHONESCREEN;
+  static const FORGOTPASSSCREEN = _Paths.FORGOTPASSSCREEN;
+  static const FORGOTOTPSCREEN = _Paths.FORGOTOTPSCREEN;
+
+
 
   static const HOSPITALWISETEST = _Paths.HOSPITALWISETEST;
   static const PHONESCREEN = _Paths.PHONESCREEN;
@@ -55,6 +60,10 @@ abstract class _Paths {
   static const BLOODREQUEST = '/blood_request';
   static const PROFILEEDIT = '/profile-edit';
   static const REPORTPROGRESSTAB = '/report-progress-tab';
+  //forgot screen
+  static const FORGOTPHONESCREEN = '/forgot-phone';
+  static const FORGOTPASSSCREEN = '/forgot-pass';
+  static const FORGOTOTPSCREEN = '/forgot-otp';
 
   static const MEDDETAILS = '/med-details';
   static const REPORTPDFPREVIEW = '/pdf-report';

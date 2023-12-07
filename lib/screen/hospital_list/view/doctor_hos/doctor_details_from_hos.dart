@@ -248,7 +248,10 @@ class DoctorDetailFromHosScreen extends GetView<HospitalController> {
                         Row(
                           children: [
                             Text("Weekdays: "),
-                            Text(data.doctorAvailableDay)
+                            Container(
+                              width: Get.width*.6,
+                              child: Text(data.doctorAvailableDay),
+                            ),
                           ],
                         ),
                         Row(

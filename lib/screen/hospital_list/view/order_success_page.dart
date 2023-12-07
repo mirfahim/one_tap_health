@@ -8,6 +8,15 @@ import 'package:one_tap_health/screen/pathology_test/controller/pathology_contro
 
 import '../../../utils/app_colors/app_colors.dart';
 import '../../../widget/block_button_widget.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:one_tap_health/routes/app_pages.dart';
+import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
+
+import '../../../utils/app_colors/app_colors.dart';
+import '../../../widget/block_button_widget.dart';
 
 class OrderSuccessHospitalView extends GetView<HospitalController> {
   final _size = Get.size;
@@ -16,7 +25,7 @@ class OrderSuccessHospitalView extends GetView<HospitalController> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.hosLightred,
       body: WillPopScope(
         onWillPop: () async {
           await Get.toNamed(Routes.HOSPITALIST);
@@ -27,207 +36,58 @@ class OrderSuccessHospitalView extends GetView<HospitalController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: size.width * .5,
-                width: size.width * .8,
-                child: Image.asset("images/banner/one.png"),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Container(
-              //     width: _size.width,
-              //     padding: EdgeInsets.all(8),
-              //     decoration: BoxDecoration(
-              //       color: AppColor.blueHos,
-              //       borderRadius: const BorderRadius.all(Radius.circular(10)),
-              //     ),
-              //     // child: Obx(() {
-              //     //   return Column(
-              //     //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     //     children: [
-              //     //       // Container(
-              //     //       //   child: Container(
-              //     //       //     height: _size.height * .2,
-              //     //       //     width: _size.width,
-              //     //       //     //  color: Colors.blue.withOpacity(.5),
-              //     //       //     child: Padding(
-              //     //       //       padding: const EdgeInsets.all(8.0),
-              //     //       //       child: Column(
-              //     //       //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //     //       //         children: [
-              //     //       //           Row(
-              //     //       //             mainAxisAlignment:
-              //     //       //                 MainAxisAlignment.spaceBetween,
-              //     //       //             children: [
-              //     //       //               Text(
-              //     //       //                 "Hospital",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //               Text(
-              //     //       //                 "${controller.hospitalName.value}",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //             ],
-              //     //       //           ),
-              //     //       //           Row(
-              //     //       //             mainAxisAlignment:
-              //     //       //                 MainAxisAlignment.spaceBetween,
-              //     //       //             children: [
-              //     //       //               Text(
-              //     //       //                 "Mobile Number",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //               Text(
-              //     //       //                 "${controller.hospitalBranch.value}",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //             ],
-              //     //       //           ),
-              //     //       //           Row(
-              //     //       //             mainAxisAlignment:
-              //     //       //                 MainAxisAlignment.spaceBetween,
-              //     //       //             children: [
-              //     //       //               Text(
-              //     //       //                 "Patient",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //               Text(
-              //     //       //                 "${controller.patientNameController.value.text}",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 14,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //             ],
-              //     //       //           ),
-              //     //       //           Row(
-              //     //       //             mainAxisAlignment:
-              //     //       //                 MainAxisAlignment.spaceBetween,
-              //     //       //             children: [
-              //     //       //               Text(
-              //     //       //                 "Mobile",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 12,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //               Text(
-              //     //       //                 "${controller.patientAddressController.value.text}",
-              //     //       //                 style: TextStyle(
-              //     //       //                     fontSize: 14,
-              //     //       //                     fontWeight: FontWeight.w500,
-              //     //       //                     color: Colors.white),
-              //     //       //               ),
-              //     //       //             ],
-              //     //       //           ),
-              //     //       //           SizedBox(
-              //     //       //             height: 10,
-              //     //       //           ),
-              //     //       //           Row(
-              //     //       //             mainAxisAlignment:
-              //     //       //                 MainAxisAlignment.spaceBetween,
-              //     //       //             children: [
-              //     //       //               Container(
-              //     //       //                 height: 60,
-              //     //       //                 width: 120,
-              //     //       //                 decoration: BoxDecoration(
-              //     //       //                   color: Colors.white,
-              //     //       //                   borderRadius: const BorderRadius.all(
-              //     //       //                       Radius.circular(10)),
-              //     //       //                 ),
-              //     //       //                 child: Padding(
-              //     //       //                   padding: const EdgeInsets.all(8.0),
-              //     //       //                   child: Column(
-              //     //       //                     mainAxisAlignment:
-              //     //       //                         MainAxisAlignment.center,
-              //     //       //                     crossAxisAlignment:
-              //     //       //                         CrossAxisAlignment.start,
-              //     //       //                     children: [
-              //     //       //                       Text(
-              //     //       //                         "Amount",
-              //     //       //                         style: TextStyle(
-              //     //       //                             fontSize: 12,
-              //     //       //                             fontWeight: FontWeight.w500,
-              //     //       //                             color: Colors.black54),
-              //     //       //                       ),
-              //     //       //                       Text(
-              //     //       //                         "${controller.price.value} BDT",
-              //     //       //                         style: const TextStyle(
-              //     //       //                             fontSize: 16,
-              //     //       //                             fontWeight: FontWeight.w500,
-              //     //       //                             color: Colors.black),
-              //     //       //                       ),
-              //     //       //                     ],
-              //     //       //                   ),
-              //     //       //                 ),
-              //     //       //               ),
-              //     //       //               Row(
-              //     //       //                 children: [
-              //     //       //                   Text(
-              //     //       //                     "Charge",
-              //     //       //                     style: const TextStyle(
-              //     //       //                         fontSize: 14,
-              //     //       //                         fontWeight: FontWeight.w500,
-              //     //       //                         color: Colors.black54),
-              //     //       //                   ),
-              //     //       //                   SizedBox(
-              //     //       //                     width: 10,
-              //     //       //                   ),
-              //     //       //                   Text(
-              //     //       //                     "${controller.discount.value}" +
-              //     //       //                         " BDT",
-              //     //       //                     style: const TextStyle(
-              //     //       //                         fontSize: 14,
-              //     //       //                         fontWeight: FontWeight.w500,
-              //     //       //                         color: Colors.white),
-              //     //       //                   ),
-              //     //       //                 ],
-              //     //       //               ),
-              //     //       //             ],
-              //     //       //           ),
-              //     //       //         ],
-              //     //       //       ),
-              //     //       //     ),
-              //     //       //   ),
-              //     //       // ),
-              //     //     ],
-              //     //   );
-              //     // }),
-              //   ),
-              // ),
-
-
-                    Center(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height*.2,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Thank you! Your order has been placed, Our concern person will make a contact with you as soon as possible.'.tr,
-                              style: TextStyle(fontSize: 20, color: Color(0xFF652981)),
-                            ),
-                          ),
+                          Text(
+                            '1. Thank you! Your order has been placed, Our concern person will make a contact with you as soon as possible.'
+                                .tr,
+                            style:
+                            TextStyle(fontSize: 14, color: Colors.white),
 
+                          ),
+                          Text(
+                            '2. You can pay as you want. You can pay advance for the service or after the service'
+                                .tr,
+                            style:
+                            TextStyle(fontSize: 14, color: Colors.white),
+
+                          ),
+                          Text(
+                            '3.If you want to pay advance, click on Pay Now button.'
+                                .tr,
+                            style:
+                            TextStyle(fontSize: 14, color: Colors.white),
+
+                          ),
+                          Text(
+                            '4.If you want to pay after service or later click on Pay After Service'
+                                .tr,
+                            style:
+                            TextStyle(fontSize: 14, color: Colors.white),
+
+                          ),
                         ],
                       ),
                     ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size.width * .5,
+                width: size.width * .8,
+                child: Image.asset("images/Icons/success.png"),
+              ),
+
 
               SizedBox(
                 height: 15,
@@ -237,12 +97,11 @@ class OrderSuccessHospitalView extends GetView<HospitalController> {
                 onPressed: () {
                   controller.callPayment();
 
-
                   // controller.amountFocusFocus.requestFocus();
                 },
                 color: AppColor.figmaRed,
                 text: Text(
-                  "Do You want to pay online?".tr,
+                  "Pay Now".tr,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -255,16 +114,17 @@ class OrderSuccessHospitalView extends GetView<HospitalController> {
                   // Get.back();
                   // Get.toNamed(Routes.MYORDERTEST);
                   controller.reportController.orderpathologyListController();
+                  Get.offNamed(Routes.BASE, arguments: [2]);
 
-                  Get.offNamed(Routes.MYORDERTEST);
+
 
                   // controller.amountFocusFocus.requestFocus();
                 },
                 color: AppColor.figmaRed,
                 text: Text(
-                  "You can check your order progress in Report section.".tr,
+                  "Pay After Service".tr,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 16,
                     color: Colors.white,
                   ),
                 ),
@@ -276,6 +136,7 @@ class OrderSuccessHospitalView extends GetView<HospitalController> {
     );
   }
 }
+
 
 
 

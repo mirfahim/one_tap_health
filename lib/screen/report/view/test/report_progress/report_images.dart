@@ -29,7 +29,7 @@ class ReportImages extends GetView<ReportController> {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   height: Get.height*.9,
-                  child: ListView.builder(
+                  child: controller.reportImagesList.isEmpty ? Center(child: Text("No Report Uploaded"),): ListView.builder(
                     itemCount: controller.reportImagesList.length,
                       itemBuilder: (b, i){
                       return  Container(

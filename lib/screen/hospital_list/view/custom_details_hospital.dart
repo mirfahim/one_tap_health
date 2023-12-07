@@ -460,48 +460,61 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
-                                                              Icon(
-                                                                Icons.badge,
-                                                                size: 24,
-                                                                color:Colors.blue,
+                                                              Row(
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons.badge,
+                                                                    size: 24,
+                                                                    color:Colors.blue,
+                                                                  ),
+                                                                  Text(
+                                                                    data.doctorName,
+                                                                    style: TextStyle(
+                                                                      color: AppColor.textColorBlack,
+                                                                      fontWeight: FontWeight.w700,
+                                                                      fontSize: 12,
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                               SizedBox(
                                                                 height: 8,
                                                               ),
                                                               Text(
-                                                                data.doctorName,
+                                                                data.doctorDegree,
                                                                 style: TextStyle(
-                                                                  color: AppColor.textColorBlack,
+                                                                  color: Colors.black54,
                                                                   fontWeight: FontWeight.w700,
-                                                                  fontSize: 12,
+                                                                  fontSize: 10,
                                                                 ),
+                                                              ),
+                                                              SizedBox(height: 5,),
+                                                              Row(
+                                                                children: [
+                                                                  Container(
+                                                                    height: 30,
+                                                                    width: MediaQuery.of(context).size.width *.3,
+                                                                    decoration: BoxDecoration(
+                                                                        color: AppColor.figmaRed,
+                                                                        borderRadius:
+                                                                        BorderRadius.only(topRight: Radius.circular(10))),
+                                                                    child: Center(child: Text("${data.doctorDepartment!}", style: TextStyle(color: Colors.white, fontSize: 12),)),
+                                                                  ),
+                                                                  Container(
+                                                                    height: 30,
+                                                                    width: MediaQuery.of(context).size.width *.15,
+                                                                    decoration: BoxDecoration(
+                                                                        color: AppColor.figmaRed.withOpacity(.5),
+                                                                        borderRadius:
+                                                                        BorderRadius.only(topRight: Radius.circular(10))),
+                                                                    child: Center(child: Text("${data.feeAfterDiscount!} Tk",style: TextStyle(color: Colors.white))),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
                                                         ),
-                                                        Stack(
-                                                          children: [
-                                                            Container(
-                                                              height: 30,
-                                                              width: MediaQuery.of(context).size.width *.55,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor.figmaRed,
-                                                                  borderRadius:
-                                                                  BorderRadius.only(topRight: Radius.circular(10))),
-                                                            ),
-                                                            Positioned(
-                                                              left: 16,
-                                                              child: Text(
-                                                                data.doctorDepartment!,
-                                                                style: TextStyle(
-                                                                  color: AppColor.textColorWhite,
-                                                                  fontSize: 16,
-                                                                  fontWeight: FontWeight.w400,
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
+
                                                       ],
                                                     ),
                                                   )
