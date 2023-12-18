@@ -443,7 +443,7 @@ class HospitalDetailsWidget extends GetView<HospitalController> {
 
                                                   },
                                                   child: Container(
-                                                    width: 100,
+                                                    width: Get.width*.4,
                                                     height: 100,
                                                     clipBehavior: Clip.hardEdge,
                                                     padding: EdgeInsets.only(top: 14),

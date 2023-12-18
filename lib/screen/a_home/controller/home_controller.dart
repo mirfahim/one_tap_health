@@ -3,18 +3,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-
 import 'package:new_version_plus/new_version_plus.dart';
 import 'package:one_tap_health/model/banner_model.dart';
 import 'package:one_tap_health/repository/auth/home/home_rep.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-
 //
 
 import 'dart:convert';
-
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,7 +47,6 @@ class HomeController extends GetxController {
     HomeView(),
     MyReportListFront(),
     ProfileView(),
-
   ];
   final visible = 0.obs;
   @override
@@ -59,7 +55,6 @@ class HomeController extends GetxController {
     Get.put(PathologyController());
     Get.put(ProfileController());
     getBannerController();
-
 
     super.onInit();
   }
@@ -76,6 +71,7 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   Widget get currentPage => pages[currentIndex.value];
   Future<void> changePageOutRoot(int index) async {
     currentIndex.value = index;
@@ -86,15 +82,18 @@ class HomeController extends GetxController {
       return false;
     }, arguments: index);
   }
-  getBannerController(){
-HomeRepository().getBanner().then((value) {
-  print("my all banner are $value");
-  bannerList.value = value.result;
-});
+
+  getBannerController() {
+    HomeRepository().getBanner().then((value) {
+      print("my all banner are $value");
+      bannerList.value = value.result;
+    });
   }
-  bangLangController(){
+
+  bangLangController() {
     return Get.find<ProfileController>().isBangla.isTrue;
   }
+
   advancedStatusCheck(BuildContext context) async {
     print("hlw version ________________________");
     final newVersion = NewVersionPlus(
@@ -110,10 +109,11 @@ HomeRepository().getBanner().then((value) {
         versionStatus: status,
         dialogTitle: 'Update Available!',
         dialogText:
-        'Upgrade OneTapHealth ${status.localVersion} to OneTapHealth ${status.storeVersion}',
+            'Upgrade OneTapHealth ${status.localVersion} to OneTapHealth ${status.storeVersion}',
       );
     }
   }
+
 //3181570001955
   getAddressFromLatLng(double lat, double lng) async {
     String mapApiKey = "AIzaSyAG8IAuH-Yz4b3baxmK1iw81BH5vE4HsSs";
@@ -126,7 +126,7 @@ HomeRepository().getBanner().then((value) {
         print("response of api google ==== ${response.body}");
         String _formattedAddress = data["results"][0]["formatted_address"];
         String _area =
-        data["results"][0]["address_components"][1]["short_name"];
+            data["results"][0]["address_components"][1]["short_name"];
         print("response ==== $_formattedAddress");
         address.value = _area + ", " + _formattedAddress;
         return address.value;
@@ -134,9 +134,8 @@ HomeRepository().getBanner().then((value) {
       return address.value;
     }
   }
-
-
 }
+
 class GeolocatorService {
   Future<Position?> determinePosition() async {
     print("location is -----");

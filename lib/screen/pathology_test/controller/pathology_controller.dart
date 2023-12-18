@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:one_tap_health/model/auth_model/login_model.dart';
 import 'package:one_tap_health/model/pathology/category_list_model.dart';
 import 'package:one_tap_health/model/pathology/test_available_hospital_model.dart';
 import 'package:one_tap_health/repository/auth/auth_repository.dart';
@@ -10,20 +8,15 @@ import 'package:one_tap_health/repository/auth/pathology/pathology_rep.dart';
 import 'package:one_tap_health/routes/app_pages.dart';
 import 'package:one_tap_health/screen/pathology_test/view/ssl_commcerce.dart';
 import 'package:one_tap_health/screen/report/controller/report_controller.dart';
-import 'package:one_tap_health/service/auth_service.dart';
 import 'package:flutter_sslcommerz/sslcommerz.dart';
 import '../../../model/hospital_model.dart';
 import '../../../model/pathology/cat_wise_active_test_model.dart';
-import 'package:flutter_sslcommerz/sslcommerz.dart';
 import 'package:flutter_sslcommerz/model/SSLCommerzInitialization.dart';
 import 'package:flutter_sslcommerz/model/SSLCurrencyType.dart';
 import 'package:flutter_sslcommerz/model/SSLCSdkType.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_sslcommerz/model/SSLCTransactionInfoModel.dart';
-
-import 'package:flutter_sslcommerz/sslcommerz.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../model/pathology/cost_of_hospital_under_test_model.dart';
 import '../../../model/pathology/my_test_order_model.dart';
 import '../../../repository/auth/hospital_rep/hospital_rep.dart';
@@ -400,6 +393,8 @@ class PathologyController extends GetxController {
     for (var result in resultsList) {
       for (var hospital in result.hospitals) {
         String hospitalName = hospital.hospitalName;
+        String district = hospital.district;
+        String disId = hospital.disID;
 
         // Check if the hospital is selected and create/update the order entry
         if (selectedTestIds.contains(result.testId.toString())) {
@@ -408,7 +403,7 @@ class PathologyController extends GetxController {
             testIdList.add(TestOrder(id: result.testId, name: result.test.title, price: hospital.price.toString(),discount:  hospital.discount.toString(), )); // Use any desired name
           } else {
             List<TestOrder> testIdList = [TestOrder(id: result.testId, name: result.test.title,price: hospital.price.toString(),discount:  hospital.discount.toString(), )];
-            orderMap[hospitalName] = OrderListModel(hospitalName: hospitalName, testIdList: testIdList, imageUrl: hospital.hospitalPhoto);
+            orderMap[hospitalName] = OrderListModel(disId: disId ,district : district ,hospitalName: hospitalName, testIdList: testIdList, imageUrl: hospital.hospitalPhoto);
           }
         }
       }
@@ -418,20 +413,20 @@ class PathologyController extends GetxController {
 
     return orderMap.values.toList();
   }
-  testHospitalCOntrollre(id) async {
-    print("my cat list data 1");
-    PathologyRepository().testHospital(id).then((e) async {
-      print("my cat list data start");
-      if (e != null) {
-        var data = TestAvailableHospitalModel.fromJson(e);
-        testHospitalList.value = data.result!.costOfHospitalsTest!;
-
-        Get.toNamed(Routes.TESTHOSPITAL);
-      } else {
-        print("error ++++++++++++++");
-      }
-    });
-  }
+  // testHospitalCOntrollre(id) async {
+  //   print("my cat list data 1");
+  //   PathologyRepository().testHospital(id).then((e) async {
+  //     print("my cat list data start");
+  //     if (e != null) {
+  //       var data = TestAvailableHospitalModel.fromJson(e);
+  //       testHospitalList.value = data.result!.costOfHospitalsTest!;
+  //
+  //       Get.toNamed(Routes.TESTHOSPITAL);
+  //     } else {
+  //       print("error ++++++++++++++");
+  //     }
+  //   });
+  // }
 
   Future<void> selectTestDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -531,9 +526,11 @@ extension MyControllerExtensions on PathologyController {
 class OrderListModel {
 
   String? hospitalName;
+  String? district;
+  String? disId;
   String? imageUrl;
   List<TestOrder> testIdList ;
-  OrderListModel({required this.hospitalName, this.imageUrl,this.testIdList = const []});
+  OrderListModel({required this.hospitalName, this.disId, this.district,this.imageUrl,this.testIdList = const []});
 
 
 }

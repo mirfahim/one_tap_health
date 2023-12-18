@@ -15,8 +15,7 @@ class ProfileView extends GetView<ProfileController> {
   const ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return Scaffold(
+    return Scaffold(
         backgroundColor: AppColor.figmaBackGround,
         appBar: AppBar(
           centerTitle: true,
@@ -61,52 +60,56 @@ class ProfileView extends GetView<ProfileController> {
                   SizedBox(
                     height: 20,
                   ),
-                  ListTile(
-                    leading: Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-
-                        color: AppColor.white,
-                      ),
-                      child: CachedNetworkImage(
-                        imageUrl: controller
-                                    .profileData!.value!.profilePhotoUrl ==
-                                null
-                            ? ""
-                            : controller.profileData!.value!.profilePhotoUrl!,
-                        imageBuilder: (context, imageProvider) => Container(
+                  Obx(
+                     () {
+                      return ListTile(
+                        leading: Container(
+                          height: 80,
+                          width: 80,
                           decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.contain,
+                            borderRadius: BorderRadius.circular(20),
+
+                            color: AppColor.white,
+                          ),
+                          child: CachedNetworkImage(
+                            imageUrl: controller
+                                        .profileData!.value!.profilePhotoUrl ==
+                                    null
+                                ? ""
+                                : controller.profileData!.value!.profilePhotoUrl!,
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                            placeholder: (context, url) => const Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Image(
+                                image: AssetImage(
+                                  'images/Icons/doctor.png',
+                                ),
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => const Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Image(
+                                image: AssetImage('images/doctor/albert.png'),
+                              ),
                             ),
                           ),
                         ),
-                        placeholder: (context, url) => const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Image(
-                            image: AssetImage(
-                              'images/Icons/doctor.png',
-                            ),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => const Padding(
-                          padding: EdgeInsets.all(5.0),
-                          child: Image(
-                            image: AssetImage('images/doctor/albert.png'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    title: Text(controller.profileData.value.name!),
-                    subtitle: Text(controller.profileData.value.email!),
-                    trailing: InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.PROFILEEDIT);
-                        },
-                        child: Icon(Icons.navigate_next)),
+                        title: Text(controller.profileData.value.name!),
+                        subtitle: Text(controller.profileData.value.email!),
+                        trailing: InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PROFILEEDIT);
+                            },
+                            child: Icon(Icons.navigate_next)),
+                      );
+                    }
                   ),
                   Divider(),
                   // Container(
@@ -136,298 +139,304 @@ class ProfileView extends GetView<ProfileController> {
                   SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * .7,
-                    child: ListView(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height * .2,
-                          decoration: BoxDecoration(
-                              color: AppColor.blueHos,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Obx(() {
-                                  return ListTile(
-                                    title: Text("District?"),
-                                    subtitle: Container(
-                                      height: 45,
-                                      color: Colors.white,
-                                      child: DropdownSearch<String>(
-                                        mode: Mode.MENU,
-                                        // dropdownSearchDecoration: Ui.getInputDecorationWithIcon(
-                                        //   hintText: '',
-                                        //   // iconData:
-                                        //   //     CupertinoIcons.location_solid,
-                                        // ),
-                                        showSelectedItems: true,
-                                        items: controller.districtList.isNotEmpty
-                                            ? controller.districtList!
-                                            .map((item) => item.name!)
-                                            .toList()
-                                            : [],
-                                        onChanged: (input) {
-                                          for (var item in controller.districtList) {
-                                            if (item.name == input) {
+                  Obx(
+                    () {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height * .57,
+                        child: ListView(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * .12,
+                              decoration: BoxDecoration(
+                                  color: AppColor.blueHos,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Obx(() {
+                                      return ListTile(
+                                        title: Text("District?"),
+                                        subtitle: Container(
+                                          height: 45,
+                                          color: Colors.white,
+                                          child: DropdownSearch<String>(
+                                            mode: Mode.MENU,
+                                            // dropdownSearchDecoration: Ui.getInputDecorationWithIcon(
+                                            //   hintText: '',
+                                            //   // iconData:
+                                            //   //     CupertinoIcons.location_solid,
+                                            // ),
+                                            showSelectedItems: true,
+                                            items: controller.districtList.isNotEmpty
+                                                ? controller.districtList!
+                                                .map((item) => item.name!)
+                                                .toList()
+                                                : [],
+                                            onChanged: (input) {
+                                              for (var item in controller.districtList) {
+                                                if (item.name == input) {
 
-                                              controller.districtId.value =
-                                                  item.id.toString();
-                                              controller.districtName.value = input!;
-                                              controller.box.remove("disName");
-                                              controller.box.remove("disID");
+                                                  controller.districtId.value =
+                                                      item.id.toString();
+                                                  controller.districtName.value = input!;
+                                                  controller.box.remove("disName");
+                                                  controller.box.remove("disID");
 
-                                              controller.box.write("disName", controller.districtName.value);
-                                              controller.box.write("disID", controller.districtId.value);
+                                                  controller.box.write("disName", controller.districtName.value);
+                                                  controller.box.write("disID", controller.districtId.value);
 
-                                              print("my district id is ${controller.districtId.value} ad input is $input");
-                                              controller.getAreaController(controller.districtId.value);
-                                              print("area list ${controller.areaListByDis.value} ad input is $input");
+                                                  print("my district id is ${controller.districtId.value} ad input is $input");
+                                                  controller.getAreaController(controller.districtId.value);
+                                                  print("area list ${controller.areaListByDis.value} ad input is $input");
 
-                                            }
-                                          }
-                                        },
-                                        selectedItem: controller.box.hasData("disName")
-                                            ?  controller.districtName.value.tr : controller.box.read("disName"),
-                                      ),
-                                    ),
+                                                }
+                                              }
+                                            },
+                                            selectedItem: controller.box.hasData("disName")
+                                                ?  controller.districtName.value.tr : controller.box.read("disName"),
+                                          ),
+                                        ),
 
-                                  );
-                                }
+                                      );
+                                    }
+                                  ),
+                                  // Obx(
+                                  //    () {
+                                  //     return ListTile(
+                                  //       title: Text("Select Area"),
+                                  //       subtitle: Container(
+                                  //         height: 45,
+                                  //         color: Colors.white,
+                                  //         child: DropdownSearch<String>(
+                                  //           mode: Mode.MENU,
+                                  //           // dropdownSearchDecoration: Ui.getInputDecorationWithIcon(
+                                  //           //   hintText: '',
+                                  //           //   // iconData:
+                                  //           //   //     CupertinoIcons.location_solid,
+                                  //           // ),
+                                  //           showSelectedItems: true,
+                                  //           items: controller.areaListByDis
+                                  //               .isNotEmpty
+                                  //               ? controller.areaListByDis
+                                  //               .map((item) => item.name!)
+                                  //               .toList()
+                                  //               : [],
+                                  //           onChanged: (input) {
+                                  //
+                                  //             controller.areaName.value = input!;
+                                  //
+                                  //           },
+                                  //           selectedItem: "Select Area".tr,
+                                  //         ),
+                                  //       ),
+                                  //
+                                  //     );
+                                  //   }
+                                  // ),
+
+
+                                ],
                               ),
-                              Obx(
-                                 () {
-                                  return ListTile(
-                                    title: Text("Select Area"),
-                                    subtitle: Container(
-                                      height: 45,
-                                      color: Colors.white,
-                                      child: DropdownSearch<String>(
-                                        mode: Mode.MENU,
-                                        // dropdownSearchDecoration: Ui.getInputDecorationWithIcon(
-                                        //   hintText: '',
-                                        //   // iconData:
-                                        //   //     CupertinoIcons.location_solid,
-                                        // ),
-                                        showSelectedItems: true,
-                                        items: controller.areaListByDis
-                                            .isNotEmpty
-                                            ? controller.areaListByDis
-                                            .map((item) => item.name!)
-                                            .toList()
-                                            : [],
-                                        onChanged: (input) {
-
-                                          controller.areaName.value = input!;
-
-                                        },
-                                        selectedItem: "Select Area".tr,
-                                      ),
-                                    ),
-
-                                  );
-                                }
-                              ),
-
-
-                            ],
-                          ),
-                        ),
-                        Text(
-                          "Settings",
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Obx(() {
-                          return Container(
+                            ),
+                            Divider(),
+                            Text(
+                              "Settings",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Obx(() {
+                              return Container(
+                                  height: 40,
+                                  child: SwitchListTile(
+                                    value: controller.isBangla.value,
+                                    onChanged: (v) {
+                                      controller.isBangla.value = v;
+                                      if (controller.isBangla.isTrue) {
+                                        controller.isBanglaControllerTrue(true);
+                                      } else {
+                                        controller.isBanglaControllerTrue(false);
+                                      }
+                                    },
+                                    title: controller.isBangla.isTrue
+                                        ? Text("${BangLang.banglaLanguge} ?")
+                                        : Text("Bangla Language?"),
+                                  ));
+                            }),
+                            Obx(() {
+                              return Container(
+                                  height: 40,
+                                  child: SwitchListTile(
+                                    value: controller.donateBlood.value,
+                                    onChanged: (v) {
+                                      controller.donateBlood.value = v;
+                                      if (controller.donateBlood.isTrue) {
+                                        controller.donateBloodController(true);
+                                      } else {
+                                        controller.donateBloodController(false);
+                                      }
+                                    },
+                                    title: controller.donateBlood.isTrue
+                                        ? Text("Do you want to donate blood?")
+                                        : Text("Do you want to donate blood?"),
+                                  ));
+                            }),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            controller.isBangla.isTrue
+                                ? Text(
+                                    BangLang.support,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Text("Support"),
+                            Container(
                               height: 40,
-                              child: SwitchListTile(
-                                value: controller.isBangla.value,
-                                onChanged: (v) {
-                                  controller.isBangla.value = v;
-                                  if (controller.isBangla.isTrue) {
-                                    controller.isBanglaControllerTrue(true);
-                                  } else {
-                                    controller.isBanglaControllerTrue(false);
-                                  }
-                                },
+                              child: ListTile(
+                                leading: Icon(Icons.settings),
                                 title: controller.isBangla.isTrue
-                                    ? Text("${BangLang.banglaLanguge} ?")
-                                    : Text("Bangla Language?"),
-                              ));
-                        }),
-                        Obx(() {
-                          return Container(
+                                    ? Text(BangLang.get_help)
+                                    : Text("Get help"),
+                                trailing: Icon(Icons.navigate_next),
+                              ),
+                            ),
+                            Container(
                               height: 40,
-                              child: SwitchListTile(
-                                value: controller.donateBlood.value,
-                                onChanged: (v) {
-                                  controller.donateBlood.value = v;
-                                  if (controller.donateBlood.isTrue) {
-                                    controller.donateBloodController(true);
-                                  } else {
-                                    controller.donateBloodController(false);
-                                  }
-                                },
-                                title: controller.donateBlood.isTrue
-                                    ? Text("Do you want to donate blood?")
-                                    : Text("Do you want to donate blood?"),
-                              ));
-                        }),
-                        SizedBox(
-                          height: 10,
+                              child: ListTile(
+                                leading: Icon(Icons.settings),
+                                title: controller.isBangla.isTrue
+                                    ? Text(BangLang.share_feedback)
+                                    : Text("Share your feedback"),
+                                trailing: Icon(Icons.navigate_next),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            controller.isBangla.isTrue
+                                ? Text(
+                                    BangLang.legal,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : Text(
+                                    "Legal",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(TermAndConditionWeb(
+                                  paymrntLink:
+                                      "https://www.onetaphealth.com/terms-condition",
+                                  appBar: "Terms and Conditons",
+                                ));
+                              },
+                              child: Container(
+                                height: 40,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings),
+                                  title: controller.isBangla.isTrue
+                                      ? Text(BangLang.terms_and_condition)
+                                      : Text("Terms and Conditons"),
+                                  trailing: Icon(Icons.navigate_next),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(TermAndConditionWeb(
+                                    appBar: "Refund Policy",
+                                    paymrntLink:
+                                        "https://www.onetaphealth.com/refund-policy"));
+                              },
+                              child: Container(
+                                height: 40,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings),
+                                  title: controller.isBangla.isTrue
+                                      ? Text(BangLang.refund_policy)
+                                      : Text("Refund Policy"),
+                                  trailing: Icon(Icons.navigate_next),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(TermAndConditionWeb(
+                                  appBar: "Privacy Policy",
+                                  paymrntLink:
+                                      "https://www.onetaphealth.com/privacy-policy",
+                                ));
+                              },
+                              child: Container(
+                                height: 40,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings),
+                                  title: controller.isBangla.isTrue
+                                      ? Text(BangLang.privacy_policy)
+                                      : Text("Privacy Policy"),
+                                  trailing: Icon(Icons.navigate_next),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Divider(),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              "App Id: 50",
+                              style: TextStyle(color: AppColor.blueHosest),
+                            ),
+                            Text(
+                              "From KotianIT",
+                              style: TextStyle(color: AppColor.blueHos),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+
+                          ],
+                        ),
+                      );
+                    }
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.find<AuthService>().removeCurrentUser();
+                      Get.toNamed(Routes.SPLASHSCREEN);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: AppColor.figmaRed,
                         ),
                         controller.isBangla.isTrue
                             ? Text(
-                                BangLang.support,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            : Text("Support"),
-                        Container(
-                          height: 40,
-                          child: ListTile(
-                            leading: Icon(Icons.settings),
-                            title: controller.isBangla.isTrue
-                                ? Text(BangLang.get_help)
-                                : Text("Get help"),
-                            trailing: Icon(Icons.navigate_next),
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          child: ListTile(
-                            leading: Icon(Icons.settings),
-                            title: controller.isBangla.isTrue
-                                ? Text(BangLang.share_feedback)
-                                : Text("Share your feedback"),
-                            trailing: Icon(Icons.navigate_next),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        controller.isBangla.isTrue
-                            ? Text(
-                                BangLang.legal,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              )
+                          BangLang.logout,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: AppColor.figmaRed,
+                              fontWeight: FontWeight.bold),
+                        )
                             : Text(
-                                "Legal",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(TermAndConditionWeb(
-                              paymrntLink:
-                                  "https://www.onetaphealth.com/terms-condition",
-                              appBar: "Terms and Conditons",
-                            ));
-                          },
-                          child: Container(
-                            height: 40,
-                            child: ListTile(
-                              leading: Icon(Icons.settings),
-                              title: controller.isBangla.isTrue
-                                  ? Text(BangLang.terms_and_condition)
-                                  : Text("Terms and Conditons"),
-                              trailing: Icon(Icons.navigate_next),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(TermAndConditionWeb(
-                                appBar: "Refund Policy",
-                                paymrntLink:
-                                    "https://www.onetaphealth.com/refund-policy"));
-                          },
-                          child: Container(
-                            height: 40,
-                            child: ListTile(
-                              leading: Icon(Icons.settings),
-                              title: controller.isBangla.isTrue
-                                  ? Text(BangLang.refund_policy)
-                                  : Text("Refund Policy"),
-                              trailing: Icon(Icons.navigate_next),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(TermAndConditionWeb(
-                              appBar: "Privacy Policy",
-                              paymrntLink:
-                                  "https://www.onetaphealth.com/privacy-policy",
-                            ));
-                          },
-                          child: Container(
-                            height: 40,
-                            child: ListTile(
-                              leading: Icon(Icons.settings),
-                              title: controller.isBangla.isTrue
-                                  ? Text(BangLang.privacy_policy)
-                                  : Text("Privacy Policy"),
-                              trailing: Icon(Icons.navigate_next),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Divider(),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "App Id: 50",
-                          style: TextStyle(color: AppColor.blueHosest),
-                        ),
-                        Text(
-                          "From KotianIT",
-                          style: TextStyle(color: AppColor.blueHos),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.find<AuthService>().removeCurrentUser();
-                            Get.toNamed(Routes.SPLASHSCREEN);
-                          },
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.logout,
-                                color: AppColor.figmaRed,
-                              ),
-                              controller.isBangla.isTrue
-                                  ? Text(
-                                      BangLang.logout,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: AppColor.figmaRed,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  : Text(
-                                      "Log out",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: AppColor.figmaRed,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                            ],
-                          ),
+                          "Log out",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: AppColor.figmaRed,
+                              fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -438,6 +447,6 @@ class ProfileView extends GetView<ProfileController> {
           ),
         ),
       );
-    });
+
   }
 }

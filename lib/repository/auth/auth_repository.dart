@@ -77,7 +77,7 @@ class AuthRepository {
       {
         'name': "name",
         'email': "mir11@gmail.com",
-        'phone': "01782084390",
+     //   'phone': "01782084390",
         "age": "55",
         'password': pass,
         'confirm_password': pass,

@@ -42,6 +42,7 @@ class EnglishLang {
 
 class BangLang {
   static String Pathology_test ="প্যাথলজি পরীক্ষা";
+  static String packages ="প্যাকেজ";
   static String Docto ="ডাক্তার";
   static String Hospital= "হাসপাতাল";
   static String explore= "অন্বেষন";

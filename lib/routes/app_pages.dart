@@ -184,11 +184,11 @@ class AppPages {
       binding: BloodRequestBinding(),
     ),
 
-    GetPage(
-      name: _Paths.TESTHOSPITAL,
-      page: () =>  AvailableTestHospital(),
-      binding: PathologyBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.TESTHOSPITAL,
+    //   page: () =>  AvailableTestHospital(),
+    //   binding: PathologyBinding(),
+    // ),
     GetPage(
       name: _Paths.TESTSUCCESS,
       page: () =>  OrderSuccessView(),

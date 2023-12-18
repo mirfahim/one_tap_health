@@ -95,18 +95,18 @@ class PathologyRepository {
     return response;
   }
 
-  Future testHospital(String id) async {
-    APIManager _manager = APIManager();
-    final response = await _manager.getWithHeader(
-      ApiUrl.testHospital + "$id",
-      {
-        'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",
-      },
-    );
-    print("login response is $response");
-
-    return response;
-  }
+  // Future testHospital(String id) async {
+  //   APIManager _manager = APIManager();
+  //   final response = await _manager.getWithHeader(
+  //     ApiUrl.testHospital + "$id",
+  //     {
+  //       'Authorization': "Bearer ${Get.find<AuthService>().apiToken}",
+  //     },
+  //   );
+  //   print("login response is $response");
+  //
+  //   return response;
+  // }
 
 //matched test
   Future costofHospitalUnderTest(List<String> id) async {

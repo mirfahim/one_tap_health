@@ -5,6 +5,7 @@ import 'package:one_tap_health/screen/auth/controller/auth_controller.dart';
 import 'package:one_tap_health/screen/a_home/controller/home_controller.dart';
 import 'package:one_tap_health/screen/pathology_test/controller/pathology_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:one_tap_health/screen/profile/controller/profile_controller.dart';
 import 'package:one_tap_health/utils/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +27,12 @@ class HospitalWiseTestList extends GetView<PathologyController> {
           backgroundColor: AppColor.figmaBackGround,
           appBar: AppBar(
             backgroundColor: AppColor.figmaBackGround,
-            title: Text("Hospital Wise Test"),
+            title:
+                ListTile(
+                  title: Text("Hospital Wise Test"),
+                  subtitle: Text(Get.find<ProfileController>().districtName.value),
+                ),
+
             centerTitle: true,
             elevation: 0,
             actions: [
@@ -155,12 +161,12 @@ class HospitalWiseTestList extends GetView<PathologyController> {
                           child: Text(
                               "This test is not available in any of our hospital now"))
                       : Container(
-                          height: MediaQuery.of(context).size.height * .72,
+                          height: MediaQuery.of(context).size.height * .6,
                           child: ListView.builder(
-                              itemCount: controller.filteredHospitals.length,
+                              itemCount: controller.filteredHospitals.where((element) => element.disId == Get.find<ProfileController>().districtId.toString()).length,
                               itemBuilder: (BuildContext context, int index) {
                                 var data =
-                                    controller.filteredHospitals[index];
+                                    controller.filteredHospitals.where((element) => element.disId == Get.find<ProfileController>().districtId.toString()).toList()[index];
                                 return InkWell(
                                   onTap: () {
                                     controller.selectCard(index);

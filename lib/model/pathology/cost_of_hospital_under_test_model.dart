@@ -66,9 +66,11 @@ class HospitalFromMatchedTest {
   String hospitalName;
   String hospitalBranch;
   String latitude;
+  String district;
   String longitude;
   String hospitalPhoto;
   int price;
+  String disID;
   int discount;
   int priceAfterDiscount;
 
@@ -79,10 +81,12 @@ class HospitalFromMatchedTest {
     required this.hospitalBranch,
     required this.latitude,
     required this.longitude,
+    required this.disID,
     required this.hospitalPhoto,
     required this.price,
     required this.discount,
     required this.priceAfterDiscount,
+    required this.district,
   });
 
   factory HospitalFromMatchedTest.fromJson(Map<String, dynamic> json) => HospitalFromMatchedTest(
@@ -95,6 +99,8 @@ class HospitalFromMatchedTest {
     hospitalPhoto: json["hospital_photo"],
     price: json["price"],
     discount: json["discount"],
+    district: json["district_name"],
+    disID : json["district_id"].toString(),
     priceAfterDiscount: json["price_after_discount"],
   );
 
@@ -108,6 +114,8 @@ class HospitalFromMatchedTest {
     "hospital_photo": hospitalPhoto,
     "price": price,
     "discount": discount,
+    "district_name":district,
+    "district_id" : disID,
     "price_after_discount": priceAfterDiscount,
   };
 }

@@ -173,8 +173,8 @@ class HomeView extends GetView<HomeController> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           Container(
-                                            height: 50,
-                                            width: 50,
+                                            height: Get.height*.05,
+                                            width: Get.width*.1,
                                             decoration: BoxDecoration(
                                               shape: BoxShape.rectangle,
                                               color: AppColor.textColorWhite,
@@ -206,6 +206,69 @@ class HomeView extends GetView<HomeController> {
                                                           fontSize: 10,
                                                           color: Colors.black),
                                                     )),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(Routes.TESTCAT);
+                                  },
+                                  child: Card(
+                                    elevation: 0,
+                                    child: Container(
+                                      width:
+                                      MediaQuery.of(context).size.width * .25,
+                                      height: MediaQuery.of(context).size.height *
+                                          .05,
+                                      padding: EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            width: 1, color: AppColor.hosLightred),
+                                        color: AppColor.white,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            height: Get.height*.05,
+                                            width: Get.width*.1,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.rectangle,
+                                              color: AppColor.textColorWhite,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                    'images/figma/lab_test.png',
+                                                  )),
+                                            ),
+                                          ),
+                                          Center(
+                                              child: Get.find<ProfileController>()
+                                                  .isBangla
+                                                  .isFalse
+                                                  ? Text(
+                                                maxLines: 2,
+                                                "Packages",
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 14,
+                                                    color: Colors.black),
+                                              )
+                                                  : Text(
+                                                maxLines: 2,
+                                                BangLang.packages,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 10,
+                                                    color: Colors.black),
+                                              )),
                                         ],
                                       ),
                                     ),
@@ -327,11 +390,11 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MedHome()),
-                                    );
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //       builder: (context) => MedHome()),
+                                    // );
                                   },
                                   child: Card(
                                     elevation: 0,

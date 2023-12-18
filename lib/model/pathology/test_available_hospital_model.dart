@@ -62,6 +62,7 @@ class CostOfHospitalsTest {
   String latitude;
   String longitude;
   String hospitalPhoto;
+  String district;
 
   CostOfHospitalsTest({
     required this.id,
@@ -73,12 +74,14 @@ class CostOfHospitalsTest {
     required this.latitude,
     required this.longitude,
     required this.hospitalPhoto,
+    required this.district,
   });
 
   factory CostOfHospitalsTest.fromJson(Map<String, dynamic> json) => CostOfHospitalsTest(
     id: json["id"],
     price: json["price"],
     discount: json["discount"],
+    district:  json['district_name'],
     hospitalId: json["hospital_id"],
     hospitalName: json["hospital_name"],
     hospitalBranch: json["hospital_branch"],
@@ -92,6 +95,7 @@ class CostOfHospitalsTest {
     "price": price,
     "discount": discount,
     "hospital_id": hospitalId,
+    "district_name" :district,
     "hospital_name": hospitalName,
     "hospital_branch": hospitalBranch,
     "latitude": latitude,
